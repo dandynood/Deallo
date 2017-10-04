@@ -1,4 +1,6 @@
-# Deallo
+# Deallo 
+https://dandynood.github.io/Deallo/ (check out our site on github)
+
 DP2 Development Project Pass Team
 This is to develop a e-marketplace website for our DP2 Development Project - Planning and Management Pass Team Project,
 For a fictional company named Deallo House Ltd. This repository started on 28/9/2017, and using the Scrum Agile Development,
