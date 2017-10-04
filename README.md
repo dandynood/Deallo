@@ -1,4 +1,4 @@
-# Deallo 
+[# Deallo](https://dandynood.github.io/Deallo/)
 https://dandynood.github.io/Deallo/ (check out our site on github)
 
 DP2 Development Project Pass Team
