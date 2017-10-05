@@ -5,6 +5,7 @@
        <meta name="viewport" content="width-device-width, initial-scale=1.0"/>
        <!-- Bootstrap -->
        <link href="framework/css/bootstrap.min.css" rel="stylesheet"/>
+       <link href="framework/css/bootstrap-select.min.css" rel="stylesheet"/>
        <link href="framework/css/navFooter.css" rel="stylesheet"/>
        <!--My stylesheet-->
        <!--<link href="framework/css/" rel="stylesheet"/>-->
@@ -19,7 +20,7 @@
         <a id="nav-top"></a>
         <!--Full width navigation bar lies here-->
         <nav class="navbar navbar-default">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -27,19 +28,56 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=""><img alt="Daello" src="images/logo.png" id="navlogo"></a>
+                    <a class="navbar-brand" href="">
+                        <img alt="Deallo" src="images/logo.png" id="navlogo">
+                        <img alt="Deallo" src="images/logo-small.png" id="navlogo-small">
+                    </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
-                    <form class="full-horizontal navbar-search" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search a product!">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-warning search-icon">
-                                    <span class="glyphicon glyphicon-search">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop by <br/>Categories <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">All categories</a></li>
+                                <li><a href="">Clothing</a></li>
+                                <li><a href="">Arts and Crafts</a></li>
+                                <li><a href="">Craft Materials</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <button class="btn btn-login navbar-btn" id="login-btn">
+                            <span class="glyphicon glyphicon-log-in"></span> Login
+                            </button>
+                        </li>
+                        <li>
+                            <p id="register-here"><small>Not a member?</small>
+                            <br/>
+                            <button class="btn btn-register navbar-btn">
+                            <span class="glyphicon glyphicon-bookmark"></span> Register
+                            </button></p>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-search">
+                        <div class="form-group" style="display:inline;">
+                          <div class="input-group" style="display:table;">
+                            <input type="text" class="form-control" placeholder="Search a product!"/>
+                            <div class="input-group-btn" id="search-btn-group">
+                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a category <span class="caret"></span></button>
+                                <ul class="dropdown-menu search-menu">
+                                    <li><a href="">All categories</a></li>
+                                    <li><a href="">Clothing</a></li>
+                                    <li><a href="">Arts and Crafts</a></li>
+                                    <li><a href="">Craft Materials</a></li>
+                                </ul>
+                                <button type="submit" class="btn btn-warning">
+                                    Search <span class="glyphicon glyphicon-search">
                                         <span class="sr-only">Search</span>
                                     </span>
                                 </button>
-                            </span>
+                            </div>
+                        </div>
                         </div>
                     </form>
                 </div>
@@ -65,6 +103,7 @@
         <!--All bootstrap plugins file-->
         <script src="framework/js/bootstrap.min.js"></script>
         <script src="framework/js/angular.min.js"></script>
+        <script src="framework/js/bootstrap-select.js"></script>
         <!--My controller-->
         <!--<script src=""></script>-->
     </body>
