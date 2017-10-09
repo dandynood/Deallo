@@ -21,7 +21,6 @@
    </head>
 
     <body data-ng-controller="">
-
         <a id="nav-top"></a>
         <!--Full width navigation bar lies here-->
         <nav class="navbar navbar-default">
@@ -88,35 +87,27 @@
                 </div>
             </div>
         </nav>
-
+        <div class="container-fluid" id="content">
         <div class="row">
           <div class="col-xs-12 homepage-background-color">
-
-                                <p id="welcome-text"  class="wordwrap welcome-text align-center">Start your buisness today.</p>
-
-                <img class="align-center img-hompage-background-1"src="https://s20.postimg.org/h3lx1nrgt/Screenshot_2017-10-08_19.48.22.png" alt="Unregistered Home Page Back Ground" />
-
+              <p id="welcome-text"  class="wordwrap welcome-text align-center">Start your buisness today.</p>
+              <img class="align-center img-hompage-background-1" src="https://s20.postimg.org/h3lx1nrgt/Screenshot_2017-10-08_19.48.22.png" alt="Unregistered Home Page Back Ground" />
           </div>
       </div>
-
       <div class="row">
         <div class="col-xs-12 join-button">
            <p class="text-center join-button-text">Join Our Community</p>
         </div>
       </div>
-
-
       <div class="row">
         <div class="col-xs-4 text-center">
             <span class="glyphicon glyphicon-shopping-cart glyphicon-welcome"></span>
             <p class="glyphicon-welcome-text">Buy</p>
             <span class="glyphicon glyphicon-menu-right pull-right glyphicon-welcome-arrow"></span>
         </div>
-
         <div class="col-xs-4 text-center">
             <span class="glyphicon glyphicon-credit-card glyphicon-welcome"></span>
             <p class="glyphicon-welcome-text">Pay</p>
-
         </div>
         <div class="col-xs-4 text-center">
             <span class="glyphicon glyphicon-menu-right pull-left glyphicon-welcome-arrow-2"></span>
@@ -124,21 +115,21 @@
             <p class="glyphicon-welcome-text glyphicon-welcome-text-3">Receive</p>
         </div>
       </div>
-
         <!--This is where the main content body is-->
         <div class="container">
             <data-ng-view>
             </data-ng-view>
         </div>
-
-        <!--Footer is here
+            
+        </div>
+        <!--Footer is here-->
         <footer class="footer-default">
             <a href="#nav-top" id="linkBackToTop">
                 <div class="backToTop">
                     <span class="backToTopText">Back to top</span>
                 </div>
             </a>
-        </footer>-->
+        </footer>
         <script>
 
           var cursorColor = false;
