@@ -5,6 +5,11 @@
        <meta name="viewport" content="width-device-width, initial-scale=1.0"/>
        <!-- Bootstrap -->
        <link href="framework/css/bootstrap.min.css" rel="stylesheet"/>
+       <link href="framework/css/bootstrap-select.min.css" rel="stylesheet"/>
+       <link href="framework/css/navFooter.css" rel="stylesheet"/>
+       <link href="framework/css/homePage.css" rel="stylesheet"/>
+       <!-- Newest version of JQuery -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
        <!--My stylesheet-->
        <!--<link href="framework/css/" rel="stylesheet"/>-->
        <!--HTML5 Shim and Respond.js, IE8 support of HTML5 elements and media queries -->
@@ -14,19 +19,242 @@
 <script src="framework/js/respond.min.js"></script>
 <![endif]-->
    </head>
+
     <body data-ng-controller="">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <h1>Hello! this index is the first starting page!</h1>
+        <a id="nav-top"></a>
+        <!--Full width navigation bar lies here-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">
+                        <img alt="Deallo" src="images/logo.png" id="navlogo">
+                        <img alt="Deallo" src="images/logo-small.png" id="navlogo-small">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop by <br/>Categories <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">All categories</a></li>
+                                <li><a href="">Clothing</a></li>
+                                <li><a href="">Arts and Crafts</a></li>
+                                <li><a href="">Craft Materials</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <button class="btn btn-login navbar-btn" id="login-btn">
+                            <span class="glyphicon glyphicon-log-in"></span> Login
+                            </button>
+                        </li>
+                        <li>
+                            <p id="register-here"><small>Not a member?</small>
+                            <br/>
+                            <button class="btn btn-register navbar-btn">
+                            <span class="glyphicon glyphicon-bookmark"></span> Register
+                            </button></p>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-search">
+                        <div class="form-group" style="display:inline;">
+                          <div class="input-group" style="display:table;">
+                            <input type="text" class="form-control" placeholder="Search a product!"/>
+                            <div class="input-group-btn" id="search-btn-group">
+                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a category <span class="caret"></span></button>
+                                <ul class="dropdown-menu search-menu">
+                                    <li><a href="">All categories</a></li>
+                                    <li><a href="">Clothing</a></li>
+                                    <li><a href="">Arts and Crafts</a></li>
+                                    <li><a href="">Craft Materials</a></li>
+                                </ul>
+                                <button type="submit" class="btn btn-warning">
+                                    Search <span class="glyphicon glyphicon-search">
+                                        <span class="sr-only">Search</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </nav>
+        <div class="container-fluid" id="content">
+        <div class="row">
+          <div class="col-xs-12 homepage-background-color">
+              <p id="welcome-text"  class="wordwrap welcome-text align-center">Start your buisness today.</p>
+              <img class="align-center img-hompage-background-1" src="https://s20.postimg.org/h3lx1nrgt/Screenshot_2017-10-08_19.48.22.png" alt="Unregistered Home Page Back Ground" />
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 join-button">
+           <p class="text-center join-button-text">Join Our Community</p>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4 text-center">
+            <span class="glyphicon glyphicon-shopping-cart glyphicon-welcome"></span>
+            <p class="glyphicon-welcome-text">Buy</p>
+            <span class="glyphicon glyphicon-menu-right pull-right glyphicon-welcome-arrow"></span>
+        </div>
+        <div class="col-xs-4 text-center">
+            <span class="glyphicon glyphicon-credit-card glyphicon-welcome"></span>
+            <p class="glyphicon-welcome-text">Pay</p>
+        </div>
+        <div class="col-xs-4 text-center">
+            <span class="glyphicon glyphicon-menu-right pull-left glyphicon-welcome-arrow-2"></span>
+            <span class="glyphicon glyphicon-globe glyphicon-welcome"></span>
+            <p class="glyphicon-welcome-text glyphicon-welcome-text-3">Receive</p>
+        </div>
+      </div>
+        <!--This is where the main content body is-->
+        <div class="container">
+            <data-ng-view>
+            </data-ng-view>
+        </div>
+            
+        </div>
+        <!--Footer is here-->
+        <footer class="footer-default">
+            <a href="#nav-top" id="linkBackToTop">
+                <div class="backToTop">
+                    <span class="backToTopText">Back to top</span>
+                </div>
+            </a>
+        </footer>
+        <script>
+
+          var cursorColor = false;
+          var clearText= false;
+          var clearOnce = false;
+          var setText = false;
+          var numSetTextCounter=0;
+          var numStringCounter=1;
+
+          setTimeout(function(){clearText=true;},2000);
+          function cursorBlink()
+          {
+
+            if(!cursorBlink)
+            {
+                $('.welcome-text').css('border-color','transparent');
+                cursorBlink = true;
+            }
+            else if(cursorBlink) {
+                $('.welcome-text').css('border-color','black');
+                cursorBlink = false;
+            }
+
+          }
+
+          // Creates the effect of delete a string text
+          function clearWelcomeText()
+          {
+              var getString = document.getElementById('welcome-text').innerHTML;
+
+
+                    if(getString.length >0 && clearText)
+                    {
+
+                    getString = document.getElementById('welcome-text').innerHTML;
+                    getString = getString.slice(0,-1);
+                    document.getElementById('welcome-text').innerHTML = getString;
+
+                     }
+;
+
+                     if(getString.length ==0 && !clearOnce && clearText)
+                     {
+                       clearText = false;
+                       clearOnce = true;
+                       setText = true;
+                     }
+          }
+
+          // Creates the effect of typing a string text
+          function addWelcomeText()
+          {
+            var String1 = ["S","t","a","r","t"," ","Y","o","u","r"," ","B","u","s","i","n","e","s","s"," ","T","o","d","a","y","."];
+            var String2 = ["B","u","y"," ","M","e","r","c","h","a","n","d","i","s","e"," ","W","o","r","l","d","w","i","d","e","."];
+            var String3 = ["F","a","s","t","."," ","S","i","m","p","l","e","."," ","S","e","c","u","r","e","."];
+
+          //  alert(String1[0]);
+
+
+
+
+                  if(setText)
+                  {
+
+                      if(numStringCounter == 1)
+                      {
+                        var StringCurrent = String1;
+                      }else if(numStringCounter == 2)
+                      {
+                        var StringCurrent = String2;
+                      }else if(numStringCounter == 3)
+                      {
+                        var StringCurrent = String3;
+                      }
+
+
+
+
+                      var getString = document.getElementById('welcome-text').innerHTML;
+                      if(getString.length!=StringCurrent.length)
+                      {
+
+                        getString = getString+StringCurrent[numSetTextCounter];
+                        document.getElementById('welcome-text').innerHTML = getString;
+                        numSetTextCounter++;
+                      }
+                      else {
+                        setText = false;
+                        setTimeout(function(){clearText=true;},4000);
+                        numSetTextCounter = 0;
+                        clearOnce = false;
+                        numStringCounter++;
+                      }
+
+                      if(numStringCounter==4)
+                      {
+                        numStringCounter=1;
+                      }
+
+
+                }
+
+
+
+
+
+
+
+          }
+
+          // Creates the cursorBlinking effect
+          setInterval(cursorBlink,500);
+          setInterval(clearWelcomeText,50);
+          setInterval(addWelcomeText,50);
+
+
+
+
+        </script>
         <!--jQuery - required for Bootstrap's Javascript plugins-->
         <script src="framework/js/jquery-3.1.1.min.js"></script>
         <!--All bootstrap plugins file-->
         <script src="framework/js/bootstrap.min.js"></script>
         <script src="framework/js/angular.min.js"></script>
+        <script src="framework/js/bootstrap-select.js"></script>
         <!--My controller-->
         <!--<script src=""></script>-->
     </body>
