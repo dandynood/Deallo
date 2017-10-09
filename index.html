@@ -101,18 +101,25 @@
       </div>
       <div class="row">
         <div class="col-xs-4 text-center">
-            <span class="glyphicon glyphicon-shopping-cart glyphicon-welcome"></span>
+            <span class="glyphicon glyphicon-shopping-cart glyphicon-animate-1 glyphicon-welcome"></span>
             <p class="glyphicon-welcome-text">Buy</p>
             <span class="glyphicon glyphicon-menu-right pull-right glyphicon-welcome-arrow"></span>
+            <p class="glyphicon-welcome-secondary-text">Buy items from merchant worldwide.</p>
         </div>
+
         <div class="col-xs-4 text-center">
-            <span class="glyphicon glyphicon-credit-card glyphicon-welcome"></span>
+            <span class="glyphicon glyphicon-credit-card  glyphicon-animate-2 glyphicon-welcome"></span>
             <p class="glyphicon-welcome-text">Pay</p>
+            <p class="glyphicon-welcome-secondary-text">Pay securely with PayPal.</p>
+
         </div>
+
         <div class="col-xs-4 text-center">
-            <span class="glyphicon glyphicon-menu-right pull-left glyphicon-welcome-arrow-2"></span>
-            <span class="glyphicon glyphicon-globe glyphicon-welcome"></span>
+
+            <span class="glyphicon glyphicon-globe glyphicon-animate-3 glyphicon-welcome"></span>
             <p class="glyphicon-welcome-text glyphicon-welcome-text-3">Receive</p>
+              <span class="glyphicon glyphicon-menu-right pull-left  glyphicon-welcome-arrow"></span>
+            <p class="glyphicon-welcome-secondary-text">Receive Merchandise from anywhere.</p>
         </div>
       </div>
         <!--This is where the main content body is-->
@@ -120,7 +127,7 @@
             <data-ng-view>
             </data-ng-view>
         </div>
-            
+
         </div>
         <!--Footer is here-->
         <footer class="footer-default">
@@ -131,6 +138,65 @@
             </a>
         </footer>
         <script>
+
+        setInterval(function(){
+            function isScrolledIntoView(elem)
+            {
+              var docViewTop = $(window).scrollTop();
+              var docViewBottom = docViewTop + $(window).height();
+
+              var elemTop = $(elem).offset().top;
+              var elemBottom = elemTop + $(elem).height();
+
+              return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+            }
+
+
+            function Utils() {
+
+            }
+
+            Utils.prototype = {
+                constructor: Utils,
+                isElementInView: function (element, fullyInView) {
+                    var pageTop = $(window).scrollTop();
+                    var pageBottom = pageTop + $(window).height();
+                    var elementTop = $(element).offset().top;
+                    var elementBottom = elementTop + $(element).height();
+
+                    if (fullyInView === true) {
+                        return ((pageTop < elementTop) && (pageBottom > elementBottom));
+                    } else {
+                        return ((elementTop <= pageBottom) && (elementBottom >= pageTop));
+                    }
+                }
+            };
+
+            var Utils = new Utils();
+
+
+            var isElementInView = Utils.isElementInView($('.glyphicon-welcome'), false);
+
+            if (isElementInView) {
+                console.log('in view');
+
+                    $(".glyphicon-animate-1").animate({marginTop: "25%",opacity: 1},1100);
+
+                    setTimeout(function(){
+                        $(".glyphicon-animate-2").animate({marginTop: "25%",opacity: 1},1100);
+                    },300);
+
+                    setTimeout(function(){
+                        $(".glyphicon-animate-3").animate({marginTop: "25%",opacity: 1},1100);
+                    },600);
+
+
+            } else {
+                console.log('out of view');
+            }
+
+        },50);
+
 
           var cursorColor = false;
           var clearText= false;

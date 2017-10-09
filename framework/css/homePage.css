@@ -70,30 +70,39 @@ img.img-hompage-background-1
 .glyphicon-welcome
 {
   font-size: 50px;
-  margin-top: 15%;
+  margin-top: 35%;
 }
 
 .glyphicon-welcome-text
 {
   margin-top: 5%;
   font-size:20px;
+  margin-bottom: 0%;
 }
 
 .glyphicon-welcome-arrow
 {
-  margin-top: -70px ;
+  margin-top: -15% ;
   font-size: 25px;
 }
 
-.glyphicon-welcome-arrow-2
-{
-  margin-top: 86px ;
-  font-size: 25px;
-}
+
 
 .glyphicon-welcome-text-3
 {
   margin-top: 5%;
   font-size:20px;
-  margin-left:8%;
+  margin-left:0%;
+}
+
+.glyphicon-animate-1,.glyphicon-animate-2,.glyphicon-animate-3
+{
+  opacity: 0;
+}
+
+.glyphicon-welcome-secondary-text
+{
+  margin-top:3%;
+  color:darkgrey;
+  margin-bottom: 10%;
 }
