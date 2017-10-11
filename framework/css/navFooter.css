@@ -166,6 +166,10 @@ body {
         width:1%;
     }
     
+    .search-menu{
+        margin-left: -10px;
+    }
+    
     .navbar-search input {
         margin: 0px;
         border-radius: 0px;
@@ -189,9 +193,9 @@ body {
         height:auto;
         width:220px
     }
-
-    #search-btn-group{
-        width: 1%;
+    
+    .search-menu{
+        margin-left: -100px;
     }
 
     .navbar-btn {
