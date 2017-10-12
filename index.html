@@ -9,7 +9,6 @@
        <link href="framework/css/navFooter.css" rel="stylesheet"/>
        <link href="framework/css/homePage.css" rel="stylesheet"/>
        <!-- Newest version of JQuery -->
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
        <!--My stylesheet-->
        <!--<link href="framework/css/" rel="stylesheet"/>-->
        <!--HTML5 Shim and Respond.js, IE8 support of HTML5 elements and media queries -->
@@ -19,12 +18,11 @@
 <script src="framework/js/respond.min.js"></script>
 <![endif]-->
    </head>
-
     <body data-ng-controller="">
         <a id="nav-top"></a>
         <!--Full width navigation bar lies here-->
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -49,7 +47,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" id="loginRegister">
                         <li>
                             <button class="btn btn-login navbar-btn" id="login-btn">
                             <span class="glyphicon glyphicon-log-in"></span> Login
@@ -68,8 +66,8 @@
                           <div class="input-group" style="display:table;">
                             <input type="text" class="form-control" placeholder="Search a product!"/>
                             <div class="input-group-btn" id="search-btn-group">
-                                <button class="btn btn-default dropdown-toggle" id="normalSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a category <span class="caret"></span></button>
-                                <button class="btn btn-default dropdown-toggle" id="smallSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                                <button class="btn btn-default dropdown-toggle navbar-select" id="normalSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a category <span class="caret"></span></button>
+                                <button class="btn btn-default dropdown-toggle navbar-select" id="smallSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
                                 <ul class="dropdown-menu search-menu">
                                     <li><a href="">All categories</a></li>
                                     <li><a href="">Clothing</a></li>

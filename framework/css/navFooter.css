@@ -1,12 +1,15 @@
-html {
-    margin:0;
-    padding:0;
-    height:100%;
+@font-face {
+    font-family: 'Futura';
+    src: url('../fonts/futura/Futura BOok font.ttf')format('truetype');
 }
 
-body {
-    min-height:100%;
-	position:relative;
+body{
+    padding-top: 50px;
+    font-family: 'Futura', sans-serif;
+}
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+    position: fixed;
 }
 
 #content{
@@ -15,14 +18,11 @@ body {
 
 .navbar .nav{
     font-size: 18px;
+    margin-top: 5px;
 }
 
 .navbar-search{
-    margin: 10px;
-}
-
-.navbar-search .form-group .input-group .input-group-addon{
-    padding: 0;
+    margin: 20px;
 }
 
 .navbar-brand>img {
@@ -31,19 +31,27 @@ body {
     width: 145px;
 }
 
-.navbar-select{
-    border-left: 1px solid grey;
-}
-
 .navbar-search button,
 .navbar-search input {
-    margin-left: 20px;
-    border-radius: 0px;
-    border-width: 0px;
+    margin-left: 0px;
+    border-radius: 5px;
+    border: 1px solid grey;
     outline: none;
     height: 40px;
 }
 
+#search-btn-group{
+        width:20%;
+}
+
+#normalSearch{
+       border-left: 0;
+    border-radius: 0px;
+}
+
+.navbar-search input-group{
+    width: 0px;
+}
 
 .navbar-collapse .navbar-search input {
 		font-size: 14pt;
@@ -64,6 +72,10 @@ body {
     margin-right: 15px;
     text-decoration: none;
 }
+
+#loginRegister{
+        margin-right:10px;
+    }
 
 .btn-register{
     background: -moz-linear-gradient(top, #e6f0a3 0%, #d2e638 50%, #c3d825 51%, #dbf043 100%);
@@ -108,35 +120,6 @@ body {
     color: #11bca4;
 }
 
-#linkBackToTop{
-    text-decoration: none;
-}
-
-.backToTop{
-    text-align: center;
-    background-color: #6495E4;
-    text-decoration: none;
-    margin-bottom: 40px;
-    padding: 15px
-}
-
-.backToTop:hover{
-    background-color: #8BB2EF;
-}
-
-.backToTopText{
-    color: white;
-    text-decoration: none;
-}
-
-#search-btn-group{
-        width:20%;
-}
-
-#search-btn-group .dropdown-toggle{
-       border-left: 1px solid grey
-}
-
 .navbar-btn{
     margin-top: 10px;
 }
@@ -154,12 +137,14 @@ body {
     }
 
 @media(max-width:768px) {
-    .navbar-form {
+    .navbar-search {
         padding-bottom: 0;
         padding-top: 0;
         padding-left: 0;
         padding-right: 0;
         border: 0;
+        margin-left: 0px;
+        margin-right: 0px;
     }
     
     #search-btn-group{
@@ -167,23 +152,22 @@ body {
     }
     
     .search-menu{
-        margin-left: -10px;
+        margin-left: -50px;
     }
     
     .navbar-search input {
-        margin: 0px;
-        border-radius: 0px;
-        border-width: 0px;
         outline: none;
         height: 40px;
     }
     
-    #normalSearch{
-        display: none;
+    #smallSearch{
+        border-left: 1px solid grey;
+        border-radius: 0px;
+        display: inline;
     }
     
-    #smallSearch{
-        display: inline;
+    #normalSearch{
+        display: none;
     }
     
     .navbar .nav{
@@ -199,7 +183,7 @@ body {
     }
 
     .navbar-btn {
-        width: 95%;
+        width: 100%;
         margin-top: 0;
     }
 
@@ -218,6 +202,10 @@ body {
         margin: 0px;
         text-decoration: none;
     }
+    
+    #loginRegister{
+        margin:auto;
+    }
 
     #navlogo-small{
         display:inline;
@@ -233,7 +221,7 @@ body {
 https://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0
 */
 .navbar-default {
-  background-color: #2260c2;
+  background-color: rgba(34,96,194,0.8);
   border-color: #4129c8;
 }
 .navbar-default .navbar-brand {
@@ -335,4 +323,25 @@ https://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0
     background-color: #2260c2;
     border-top: 4129c8;
     color:white;
+}
+
+#linkBackToTop{
+    text-decoration: none;
+}
+
+.backToTop{
+    text-align: center;
+    background-color: #6495E4;
+    text-decoration: none;
+    margin-bottom: 40px;
+    padding: 15px
+}
+
+.backToTop:hover{
+    background-color: #8BB2EF;
+}
+
+.backToTopText{
+    color: white;
+    text-decoration: none;
 }
