@@ -10,6 +10,7 @@ body{
 
 .navbar-fixed-bottom, .navbar-fixed-top {
     position: fixed;
+    border-bottom: none;
 }
 
 #content{
