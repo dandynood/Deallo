@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="">
+<html data-ng-app="mainApp">
    <head>
        <title>Deallo House</title>
        <meta name="viewport" content="width-device-width, initial-scale=1.0"/>
@@ -7,7 +7,6 @@
        <link href="framework/css/bootstrap.min.css" rel="stylesheet"/>
        <link href="framework/css/bootstrap-select.min.css" rel="stylesheet"/>
        <link href="framework/css/navFooter.css" rel="stylesheet"/>
-       <link href="framework/css/homePage.css" rel="stylesheet"/>
        <!-- Newest version of JQuery -->
        <!--My stylesheet-->
        <!--<link href="framework/css/" rel="stylesheet"/>-->
@@ -18,7 +17,7 @@
 <script src="framework/js/respond.min.js"></script>
 <![endif]-->
    </head>
-    <body data-ng-controller="">
+    <body data-ng-controller="mainCtrl">
         <a id="nav-top"></a>
         <!--Full width navigation bar lies here-->
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -38,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop by <br/>Categories <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop by Categories <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="">All categories</a></li>
                                 <li><a href="">Clothing</a></li>
@@ -46,6 +45,31 @@
                                 <li><a href="">Craft Materials</a></li>
                             </ul>
                         </li>
+                    </ul>
+                    <form class="navbar-form navbar-left navbar-search">
+                    <div class="form-group">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search a product!" id="searchBar" data-ng-model="searchText"/>
+                            <div class="input-group-btn" id="search-btn-group">
+                                <select class="selectpicker" data-ng-model="categorySelect" id="search-menu">
+                                    <option value="All Categories">All categories</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Arts and Crafts">Arts and Crafts</option>
+                                    <option value="Craft Materials">Craft Materials</option>
+                                </select>
+                                <button type="submit" class="btn btn-warning" data-ng-click="search()">
+                                    Search <span class="glyphicon glyphicon-search">
+                                        <span class="sr-only">Search</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="">About us</a>
+                    </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" id="loginRegister">
                         <li>
@@ -61,73 +85,33 @@
                             </button></p>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-search">
-                        <div class="form-group" style="display:inline;">
-                          <div class="input-group" style="display:table;">
-                            <input type="text" class="form-control" placeholder="Search a product!"/>
-                            <div class="input-group-btn" id="search-btn-group">
-                                <button class="btn btn-default dropdown-toggle navbar-select" id="normalSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a category <span class="caret"></span></button>
-                                <button class="btn btn-default dropdown-toggle navbar-select" id="smallSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
-                                <ul class="dropdown-menu search-menu">
-                                    <li><a href="">All categories</a></li>
-                                    <li><a href="">Clothing</a></li>
-                                    <li><a href="">Arts and Crafts</a></li>
-                                    <li><a href="">Craft Materials</a></li>
-                                </ul>
-                                <button type="submit" class="btn btn-warning">
-                                    Search <span class="glyphicon glyphicon-search">
-                                        <span class="sr-only">Search</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </nav>
-        <div class="container-fluid" id="content">
-        <div class="row">
-          <div class="col-xs-12 homepage-background-color">
-              <p id="welcome-text"  class="wordwrap welcome-text align-center">Start your buisness today.</p>
-              <img class="align-center img-hompage-background-1" src="https://s20.postimg.org/h3lx1nrgt/Screenshot_2017-10-08_19.48.22.png" alt="Unregistered Home Page Back Ground" />
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 join-button">
-           <p class="text-center join-button-text">Join Our Community</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 text-center">
-            <span class="glyphicon glyphicon-shopping-cart glyphicon-welcome"></span>
-            <p class="glyphicon-welcome-text">Buy</p>
-            <span class="glyphicon glyphicon-menu-right pull-right glyphicon-welcome-arrow"></span>
-        </div>
-        <div class="col-xs-4 text-center">
-            <span class="glyphicon glyphicon-credit-card glyphicon-welcome"></span>
-            <p class="glyphicon-welcome-text">Pay</p>
-        </div>
-        <div class="col-xs-4 text-center">
-            <span class="glyphicon glyphicon-menu-right pull-left glyphicon-welcome-arrow-2"></span>
-            <span class="glyphicon glyphicon-globe glyphicon-welcome"></span>
-            <p class="glyphicon-welcome-text glyphicon-welcome-text-3">Receive</p>
-        </div>
-      </div>
-        <!--This is where the main content body is-->
         <div class="container">
             <data-ng-view>
             </data-ng-view>
         </div>
             
-        </div>
         <!--Footer is here-->
         <footer class="footer-default">
-            <a href="#nav-top" id="linkBackToTop">
-                <div class="backToTop">
-                    <span class="backToTopText">Back to top</span>
+            <div class="container">
+                <nav>
+                <div class="row">
+                    <div class="col-xs-12">
+                    <ul class="nav nav-pills">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Products</a></li>
+                        <li><a href="index.html">About us</a></li>
+                        <li><button class="btn btn-lg btn-warning" id="disclaimerFooter">Disclaimer</button></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li><img src="images/logo-footer.png" alt="Deallo Logo" id="footerBrandImg"/></li>
+                    </ul>
+                    </div>
                 </div>
-            </a>
+                </nav>
+            </div>
         </footer>
         <script>
 
