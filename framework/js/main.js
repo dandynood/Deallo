@@ -1,7 +1,7 @@
 /*jslint white:true */
 /*global angular */
 /*jslint plusplus:true*/
-var app = angular.module("mainApp",[]);
+var app = angular.module("mainApp",['ngRoute']);
 app.controller("mainCtrl", function($scope)
 {
     "use strict";
@@ -14,6 +14,20 @@ app.controller("mainCtrl", function($scope)
 
     };
     
-    
-    
 });
+
+app.config(['$routeProvider','$locationProvider', function($routeProvider) 
+{
+    "use strict";
+    $routeProvider
+        .when('/product-catalog/:searchTags', {
+        templateUrl: 'modalContainer'
+    })
+    .when('/product/:id', {
+        templateUrl: 'template/AdminSettingsTemplate.html'
+    })
+    .otherwise({
+        redirectTo: '/home'
+    });
+    
+}]);
