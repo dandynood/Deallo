@@ -16,6 +16,7 @@ state VARCHAR(255) NOT NULL,
 country VARCHAR(255) NOT NULL,
 Email VARCHAR(255) NOT NULL,
 phoneNumber VARCHAR(50),
+accountType VARCHAR(10) NOT NULL,
 CHECK (accountType = 'Normal' OR accountType = 'Admin'),
 PRIMARY KEY (accountID)
 );
