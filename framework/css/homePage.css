@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Futura;
+    src: url("fonts/Futura Book Oblique.otf") format("opentype");
+}
+
+*
+{
+  font-family: Futura;
+}
+
 
 .wordwrap {
    white-space: pre-wrap;      /* CSS3 */
@@ -14,8 +24,8 @@
   border-collapse: collapse;
   padding-right:2%;
   font-size: 40px;
-  margin-top: 4% !important;
-  margin-bottom: 5% !important;
+  margin-top: 1.3% !important;
+
 }
 
 /* To align center for block elements */
@@ -85,5 +95,35 @@ img.img-hompage-background-1
 {
   margin-top: 5%;
   font-size:20px;
-  margin-left:8%;
+
+}
+
+.home-button-join
+{
+  background: #4caf50;
+  color:white;
+
+}
+.home-button-view
+{
+  background: #4caf50;
+  color:white;
+}
+
+.home-buttons
+{
+  margin-top:0%;
+  margin-bottom: 0%;
+}
+
+.glyphicon-welcome-desc
+{
+  color:darkgray;
+}
+
+.appear-1,.appear-2,.appear-3
+{
+  opacity: 0;
+  margin-top:10%;
+  margin-bottom:-10%;
 }

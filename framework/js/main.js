@@ -20,8 +20,11 @@ app.config(['$routeProvider','$locationProvider', function($routeProvider)
 {
     "use strict";
     $routeProvider
-        .when('/product-catalog/:searchTags', {
+    .when('/product-catalog/:searchTags', {
         templateUrl: 'modalContainer'
+    })
+    .when('/home/', {
+        templateUrl: 'template/home-unregistered.html'
     })
     .when('/product/:id', {
         templateUrl: 'template/AdminSettingsTemplate.html'
