@@ -1,6 +1,7 @@
 @font-face {
-    font-family: Futura;
-    src: url("fonts/Futura Book Oblique.otf") format("opentype");
+    font-family:Futura;
+    src:   url('Futura Book Italic font.ttf')  format('truetype');
+
 }
 
 *
@@ -105,4 +106,147 @@ img.img-hompage-background-1
   margin-top:3%;
   color:darkgrey;
   margin-bottom: 10%;
+}
+
+.discount-text
+{
+  color:white;
+  font-size:54px;
+  margin-top: 16%;
+  margin-bottom:3%;
+}
+
+.buttons-hover {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.container-hover {
+  display: table-cell;
+  padding: 1em;
+  text-align: center;
+  vertical-align: middle;
+  background: $red;
+
+
+}
+
+
+.btn-hover {
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size:16px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 auto 2em;
+  max-width: 160px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100%;
+
+
+  @media(min-width: 400px) {
+    display: inline-block;
+    margin-right: 2.5em;
+
+    &:nth-of-type(even) {
+      margin-right: 0;
+    }
+  }
+
+  @media(min-width: 600px) {
+
+    &:nth-of-type(even) {
+      margin-right: 2.5em;
+    }
+
+    &:nth-of-type(5) {
+      margin-right: 0;
+    }
+
+  }
+
+  &:hover { text-decoration: none; }
+
+}
+
+.btn-11 {
+  background: darken($red, 1.5%);
+  font-weight: 100;
+
+
+
+
+}
+
+.btn-11 svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+
+.btn-11 rect {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+  }
+
+.btn-11:hover {
+  background: rgba($red, 0);
+  font-weight: 900;
+  letter-spacing: 1px;
+    text-decoration: none;
+
+
+  color:red;
+                -webkit-transition: all 1s ease;
+                -moz-transition: all 1s ease;
+                -o-transition: all 1s ease;
+                transition: all 1s ease;
+
+}
+
+.button-view-listing
+{
+  margin-bottom: 14%;
+}
+
+.search-item-button
+{
+  margin-top:5%;
+  color:white;
+  background: #4caf50;
+
+}
+
+.glyphicon-list-search-item
+{
+  display:block;
+  font-size:45px;
+  margin-top: 13%;
+}
+
+.border-right-dark-gray
+{
+  border-right: 1px solid darkgray;
+
+}
+
+.registered-hompage-selection
+{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.list-item-button
+{
+
 }
