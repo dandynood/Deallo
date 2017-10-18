@@ -63,3 +63,178 @@
     </div>
         
     </div>
+
+
+
+
+
+    <script>
+        
+        
+                    setInterval(function(){
+        
+        function isScrolledIntoView(elem)
+        {
+            var docViewTop = $(window).scrollTop();
+            var docViewBottom = docViewTop + $(window).height();
+        
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + $(elem).height();
+        
+            return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+        }
+        
+        function Utils() {
+        
+        }
+        
+        Utils.prototype = {
+            constructor: Utils,
+            isElementInView: function (element, fullyInView) {
+                var pageTop = $(window).scrollTop();
+                var pageBottom = pageTop + $(window).height();
+                var elementTop = $(element).offset().top;
+                var elementBottom = elementTop + $(element).height();
+        
+                if (fullyInView === true) {
+                    return ((pageTop < elementTop) && (pageBottom > elementBottom));
+                } else {
+                    return ((elementTop <= pageBottom) && (elementBottom >= pageTop));
+                }
+            }
+        };
+        
+        var Utils = new Utils();
+        
+        var isElementInView = Utils.isElementInView($('.glyphicon-welcome'), false);
+        
+        if (isElementInView) {
+            console.log('in view');
+        
+        
+            setTimeout(function(){ $(".appear-1").animate({opacity:1,marginTop:'0%',marginBottom:'0%'},1000) },0);
+            setTimeout(function(){ $(".appear-2").animate({opacity:1,marginTop:'0%',marginBottom:'0%'},1000) },350);
+            setTimeout(function(){ $(".appear-3").animate({opacity:1,marginTop:'0%',marginBottom:'0%'},1000) },700);
+        } else {
+            console.log('out of view');
+        }
+        
+        },25);
+        
+                  var cursorColor = false;
+                  var clearText= false;
+                  var clearOnce = false;
+                  var setText = false;
+                  var numSetTextCounter=0;
+                  var numStringCounter=1;
+        
+                  setTimeout(function(){clearText=true;},2000);
+                  function cursorBlink()
+                  {
+        
+                    if(!cursorBlink)
+                    {
+                        $('.welcome-text').css('border-color','transparent');
+                        cursorBlink = true;
+                    }
+                    else if(cursorBlink) {
+                        $('.welcome-text').css('border-color','black');
+                        cursorBlink = false;
+                    }
+        
+                  }
+        
+                  // Creates the effect of delete a string text
+                  function clearWelcomeText()
+                  {
+                      var getString = document.getElementById('welcome-text').innerHTML;
+        
+        
+                            if(getString.length >0 && clearText)
+                            {
+        
+                            getString = document.getElementById('welcome-text').innerHTML;
+                            getString = getString.slice(0,-1);
+                            document.getElementById('welcome-text').innerHTML = getString;
+        
+                             }
+        ;
+        
+                             if(getString.length ==0 && !clearOnce && clearText)
+                             {
+                               clearText = false;
+                               clearOnce = true;
+                               setText = true;
+                             }
+                  }
+        
+                  // Creates the effect of typing a string text
+                  function addWelcomeText()
+                  {
+                    var String1 = ["S","t","a","r","t"," ","Y","o","u","r"," ","B","u","s","i","n","e","s","s"," ","T","o","d","a","y","."];
+                    var String2 = ["B","u","y"," ","M","e","r","c","h","a","n","d","i","s","e"," ","W","o","r","l","d","w","i","d","e","."];
+                    var String3 = ["F","a","s","t","."," ","S","i","m","p","l","e","."," ","S","e","c","u","r","e","."];
+        
+                  //  alert(String1[0]);
+        
+        
+        
+        
+                          if(setText)
+                          {
+        
+                              if(numStringCounter == 1)
+                              {
+                                var StringCurrent = String1;
+                              }else if(numStringCounter == 2)
+                              {
+                                var StringCurrent = String2;
+                              }else if(numStringCounter == 3)
+                              {
+                                var StringCurrent = String3;
+                              }
+        
+        
+        
+        
+                              var getString = document.getElementById('welcome-text').innerHTML;
+                              if(getString.length!=StringCurrent.length)
+                              {
+        
+                                getString = getString+StringCurrent[numSetTextCounter];
+                                document.getElementById('welcome-text').innerHTML = getString;
+                                numSetTextCounter++;
+                              }
+                              else {
+                                setText = false;
+                                setTimeout(function(){clearText=true;},4000);
+                                numSetTextCounter = 0;
+                                clearOnce = false;
+                                numStringCounter++;
+                              }
+        
+                              if(numStringCounter==4)
+                              {
+                                numStringCounter=1;
+                              }
+        
+        
+                        }
+        
+        
+        
+        
+        
+        
+        
+                  }
+        
+                  // Creates the cursorBlinking effect
+                  setInterval(cursorBlink,500);
+                  setInterval(clearWelcomeText,50);
+                  setInterval(addWelcomeText,50);
+        
+        
+        
+        
+        </script>
