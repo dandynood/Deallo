@@ -16,18 +16,21 @@ app.controller("mainCtrl", function($scope)
     
 });
 
-app.config(['$routeProvider','$locationProvider', function($routeProvider) 
+//whenever you load/refresh the webpage it will always go to the index/start
+app.run(function($window, $location, $rootScope){
+    "use strict";
+    $window.onbeforeunload = function(){
+        $location.path('/course');
+    };
+});
+
+
+app.config(['$routeProvider', function($routeProvider) 
 {
     "use strict";
     $routeProvider
-    .when('/product-catalog/:searchTags', {
-        templateUrl: 'modalContainer'
-    })
-    .when('/home/', {
+    .when('/home', {
         templateUrl: 'template/home-unregistered.html'
-    })
-    .when('/product/:id', {
-        templateUrl: 'template/AdminSettingsTemplate.html'
     })
     .otherwise({
         redirectTo: '/home'
