@@ -1,8 +1,16 @@
 <link href="../framework/css/loginRegister.css" rel="stylesheet"/>
-<div class="page-header" >
-<a data-ng-click="gotoHome()" href="">
-   <img alt="Deallo" src="images/logo.png" id="navlogo">
-</a>
+<link href="../framework/css/homePage.css" rel="stylesheet"/>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="page-header">
+        <a data-ng-click="gotoHome()" href="" class="btn btn-warning" id="goHomeFromLogin">Home
+        </a>
+        <a data-ng-click="gotoHome()" href="">
+           <img alt="Deallo" src="images/logo.png" id="navlogo">
+        </a>
+        </div>
+    </div>
 </div>
 
 <div class="row">
@@ -11,29 +19,35 @@
     </div>
 </div>
 
-
-
-<div class="row" data-ng-controller="mainCtrl">
+<div class="row">
 <div class="col-xs-4"></div>
 <div class="col-xs-4">
     <div class="form-1" style="margin-top:0%;">
     <!-- Email Form -->
     <form name="registerform4" class="form-register">
         <p class="animate-field animate-field-12" >Email</p>
-        <input onfocus="this.placeholder='';animateField('.animate-field-12')" class="align-center inline-block form-control-reg form-login-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="loginemail" data-ng-model="loginemail" data-ng-blur="enableWarning(12)"
+        <input onfocus="this.placeholder='';animateField('.animate-field-12')" class="align-center inline-block form-control-reg form-login-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="loginemail" 
+               data-ng-model="inputData.username" data-ng-blur="enableWarning(12)"
         data-ng-focus="disableWarning(13)" id="reg-login-email" />
+        
         <p class="animate-field animate-field-13" >Password</p>
-        <input onfocus="this.placeholder='';animateField('.animate-field-13')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password" type="password" data-ng-required="true" required="required" name="loginpassword" data-ng-model="loginpassword" data-ng-minlength="6" data-ng-blur="enableWarning(13)" data-ng-focus="disableWarning(13)" id="reg-login-password" />
+        <input onfocus="this.placeholder='';animateField('.animate-field-13')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password" type="password" data-ng-required="true" required="required" name="loginpassword" 
+               data-ng-model="inputData.password" data-ng-minlength="6" data-ng-blur="enableWarning(13)" data-ng-focus="disableWarning(13)" id="reg-login-password" />
     </form>
     <div class="home-buttons">
-    <span  onclick="checkLoginForm();turnCircleGreen(1)"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" >Login</span>
+    <span onclick="checkLoginForm();"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="showStuff()">Login</span>
     <p class="form-4-error text-center" style="visibility:hidden;color:red;margin-bottom:10%">One or more field(s) empty</p>
     </div>
     </div>
 </div>
 <div class="col-xs-4"></div>
 </div>
-
+<div class="row">
+    <div class="col-xs-12">
+        <div class="divider"></div>
+    </div>
+</div>
+</div>
 
 <script>
     

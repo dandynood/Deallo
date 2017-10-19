@@ -1,12 +1,12 @@
 /*jslint white:true */
 /*global angular */
 /*jslint plusplus:true*/
-var app = angular.module("mainApp",['ngRoute']);
+var app = angular.module("mainApp",
+                         ['ngRoute','ngCookies'
+                         ,'loginService']);
 app.controller("mainCtrl", function($scope,$window,$interval,$location)
 {
     "use strict";
-    
-    
     $scope.searchText = "";
     $scope.categorySelect = "All Categories";
     
@@ -47,7 +47,7 @@ app.controller("mainCtrl", function($scope,$window,$interval,$location)
      var alwaysCheckForm = function()
     {
         
-       $scope.warningArray = new Array();
+       $scope.warningArray = [];
         /** Section 1 **/
         $window.email = $scope.registerform.email.$valid;
         $window.password = $scope.registerform.password.$valid;
@@ -103,92 +103,21 @@ app.controller("mainCtrl", function($scope,$window,$interval,$location)
     $interval(alwaysCheckForm,50);
 });
 
-app.controller("loginCtrl",function($scope, $location, $cookies, $http)
-{
-    "use strict";
-    this.login = function(){
-        var str = {username: encodeURIComponent(this.inputData.username), password: encodeURIComponent(this.inputData.password)};
-        $http({method: 'POST', url:'php/loginJSON.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
-        .then(function(response){
-           if(response.data === "failed"){
-               $scope.errorMsg = 'Either the username or password is incorrect';
-           } else {
-               $cookies.put('user', response.data);
-               $location.path("/home");
-               $scope.errorMsg = "";
-               $scope.currentLoggedInUser = $cookies.get('user');
-           }
-        });
-    };
-    
-    this.logout = function(){
-        this.inputData.username = "";
-        this.inputData.password = "";
-        $cookies.remove('user');
-        $location.path('/home');
-        $scope.currentLoggedInUser = "";
-    };
-
-    if(!$cookies.get('user') && $location.path() !== '/home')
-    {
-        $location.path('/home');
-    }   
-   
-});
-
-app.controller("registerCtrl",function($scope, $location, $cookies, $http)
-{
-    "use strict";
-    this.login = function(){
-        var str = {
-            username: encodeURIComponent(this.inputData.username),
-            password: encodeURIComponent(this.inputData.password),
-            firstName: encodeURIComponent(this.inputData.firstName),
-            lastName: encodeURIComponent(this.inputData.lastName),
-            address: encodeURIComponent(this.inputData.address),
-            postcode: encodeURIComponent(this.inputData.postcode),
-            state: encodeURIComponent(this.inputData.state),
-            country: encodeURIComponent(this.inputData.country),
-            Email: encodeURIComponent(this.inputData.Email),
-            phoneNumber: encodeURIComponent(this.inputData.phoneNumber),
-            accountType: encodeURIComponent(this.inputData.accountType)};
-        
-        $http({method: 'POST', url:'php/register.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
-        .then(function(response){
-           if(response.data === "failed"){
-               $scope.errorMsg = 'Registration failed! Somethere went wrong! Sorry';
-           }
-        });
-    };
-    
-    this.logout = function(){
-        this.inputData.username = "";
-        this.inputData.password = "";
-        $cookies.remove('user');
-        $location.path('/home');
-        $scope.currentLoggedInUser = "";
-    };
-
-    if(!$cookies.get('user') && $location.path() !== '/home')
-    {
-        $location.path('/home');
-    }   
-   
-});
-
-
 app.config(['$routeProvider', function($routeProvider) 
 {
     "use strict";
     $routeProvider
     .when('/home', {
-        templateUrl: 'template/home-unregistered.html'
+        templateUrl: 'template/home-unregistered.html',
+        controller: 'loginCtrl'
     })
     .when('/register', {
-        templateUrl: 'template/register.html'
+        templateUrl: 'template/register.html',
+        controller: 'registerCtrl'
     })
     .when('/login', {
-        templateUrl: 'template/login.html'
+        templateUrl: 'template/login.html',
+        controller: 'loginCtrl'
     })
     .when('/product', {
         templateUrl: 'template/IndiProduct.html'

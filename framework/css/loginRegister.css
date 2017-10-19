@@ -1,7 +1,6 @@
 /*--footer---*/
 .footer-default {
-    position: absolute;
-    bottom: 0;
+    display: none;
 }
 
 .home-buttons{
@@ -17,9 +16,37 @@
     margin:0;
     padding: 20px;
     background-color: rgba(34,96,194,0.8);
+    margin-left: -15px;
+    margin-right: -15px;
 }
 .page-header > a > img{
     height: auto;
     width: 145px;
     cursor:pointer;
+}
+
+.divider {
+    background: linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.03) 3px,transparent);  
+    height: 44px;
+}
+
+.divider::after{
+    background:linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+    height: 44px;
+    display: block;
+    content: "";
+}
+
+.loginForm > .form-1{
+    text-align: center;
+}
+
+#goHomeFromLogin{
+    float: left;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+#goHomeFromLogin::after{
+    clear: both;
 }

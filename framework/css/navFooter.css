@@ -58,6 +58,12 @@ body{
     padding-right: 0px;
 }
 
+.navbar-collapse > div::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
 .navbar-search .input-group-addon{
     padding: 0;
     border: none;
@@ -389,6 +395,12 @@ https://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0
     #footer-brand{
     margin-top: 40px;
         float: left !important;
+    }
+    
+    #footer-brand::after{
+        content: '';
+        display: block;
+        clear: both;
     }
         
 }
