@@ -15,12 +15,14 @@ angular.module('loginService',[])
         .then(function(response){
            if(response.data === "failed"){
                $scope.errorMsg = 'Either the username or password is incorrect';
+               alert($scope.errorMsg);
            } else {
                $cookies.put('user', response.data);
                $location.path("/home");
                $scope.errorMsg = "";
                $scope.currentLoggedInUser = $cookies.get('user');
                $scope.inputData = [{}];
+               alert(response.data);
            }
         });
     };

@@ -9,14 +9,14 @@
         $data = json_decode(file_get_contents("php://input")); 
         $username = $data->username;
         $password = $data->password;
-        $sql = "SELECT Name FROM userAccounts WHERE username = '$username' AND password = '$password'";
+        $sql = "SELECT * FROM userAccounts WHERE username = '$username' AND password = '$password'";
 
 
         $result = $conn->query($sql);
 
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
-                echo $row['Name'];
+                echo $row['email'];
             }
         }
         else
