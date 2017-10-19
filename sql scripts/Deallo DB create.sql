@@ -30,6 +30,18 @@ categoryName VARCHAR(255) NOT NULL,
 PRIMARY KEY(categoryID)
 );
 
+INSERT INTO category 
+(categoryID,categoryName)
+VALUES 
+("CLOTH","Clothing"),
+("ACCES","Accessories"),
+("JEWEL","Jewelry"),
+("CRAFT","Craft Supplies"),
+("ROOM", "Bedding/Room Décor"),
+("TOYS", "Soft Toys"),
+("ARTS", "Vintage Arts"),
+("WEDD", "Wedding accessories");
+
 -- -----------------------------------------------------
 -- Table products
 -- -----------------------------------------------------
