@@ -20,74 +20,75 @@
     <body data-ng-controller="mainCtrl">
         <a id="nav-top"></a>
         <!--Full width navigation bar lies here-->
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a data-ng-click="gotoHome()" class="navbar-brand" href="">
+                <img alt="Deallo" src="images/logo.png" id="navlogo">
+                <img alt="Deallo" src="images/logo-small.png" id="navlogo-small">
+            </a>
+        </div>
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <div class="col-xs-12 col-md-12">
+            <form class="navbar-form navbar-search" role="search">
+              <div id="categorySearch">
+              <select class="form-control">
+                <option>All categories</option>
+                <option>Clothing</option>
+                <option>Arts and Crafts</option>
+                <option>Craft Materials</option>    
+              </select>
+              </div>
+              <div class="form-group" style="display:inline;">
+                <div class="input-group" style="display:table;">
+                  <input class="form-control" id="search-input" placeholder="Search..." type="text">
+                  <div class="input-group-addon" id="searchBtn">
+                      <button type="submit" class="btn btn-warning" data-ng-click="search()">Search 
+                          <span class="glyphicon glyphicon-search">
+                            <span class="sr-only">Search</span></span>
+                      </button>
+                    </div>
+                </div>
+              </div>
+            </form>
+          </div>
+            <div class="col-xs-12 col-md-12">
+                <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop by Categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">All categories</a></li>
+                        <li><a href="">Clothing</a></li>
+                        <li><a href="">Arts and Crafts</a></li>
+                        <li><a href="">Craft Materials</a></li>
+                    </ul>
+                </li>
+                <li><a href="">About</a></li>
+            </ul>
+             <ul class="nav navbar-nav navbar-right" id="loginRegister">
+                <li id="login">
+                    <button data-ng-click="gotoLogin()"  class="btn btn-login navbar-btn" id="login-btn">
+                    <span class="glyphicon glyphicon-log-in"></span> Login
                     </button>
-                    <a data-ng-click="gotoHome()" class="navbar-brand" href="">
-                        <img alt="Deallo" src="images/logo.png" id="navlogo">
-                        <img alt="Deallo" src="images/logo-small.png" id="navlogo-small">
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop by Categories <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="">All categories</a></li>
-                                <li><a href="">Clothing</a></li>
-                                <li><a href="">Arts and Crafts</a></li>
-                                <li><a href="">Craft Materials</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-left navbar-search">
-                    <div class="form-group">
-                          <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search a product!" id="searchBar" data-ng-model="searchText"/>
-                            <div class="input-group-btn" id="search-btn-group">
-                                <select class="selectpicker" data-ng-model="categorySelect" id="search-menu">
-                                    <option value="All Categories">All categories</option>
-                                    <option value="Clothing">Clothing</option>
-                                    <option value="Arts and Crafts">Arts and Crafts</option>
-                                    <option value="Craft Materials">Craft Materials</option>
-                                </select>
-                                <button type="submit" class="btn btn-warning" data-ng-click="search()">
-                                    Search <span class="glyphicon glyphicon-search">
-                                        <span class="sr-only">Search</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="">About us</a>
-                    </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right" id="loginRegister">
-                        <li>
-                            <button data-ng-click="gotoLogin()"  class="btn btn-login navbar-btn" id="login-btn">
-                            <span class="glyphicon glyphicon-log-in"></span> Login
-                            </button>
-                        </li>
-                        <li>
-                            <p id="register-here"><small>Not a member?</small>
-                            <br/>
-                            <button data-ng-click="gotoRegister()"  class="btn btn-register navbar-btn">
-                            <span class="glyphicon glyphicon-bookmark"></span> Register
-                            </button></p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                </li>
+                <li id="register">
+                    <small> New?</small>
+                    <button data-ng-click="gotoRegister()"  class="btn btn-register navbar-btn">
+                    <span class="glyphicon glyphicon-bookmark"></span> Register
+                    </button>
+                </li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      </nav>
+        
         <div data-ng-view></div>
             
         <!--Footer is here-->

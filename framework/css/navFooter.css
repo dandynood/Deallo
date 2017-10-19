@@ -31,7 +31,7 @@ body{
 .navbar-brand>img {
     margin-top: -10px;
     height: auto;
-    width: 145px;
+    width: 125px;
 }
 
 .navbar-search button,
@@ -43,38 +43,26 @@ body{
     outline: none;
     font-size: 18px;
     height: 40px;
-    margin-top: 10px;
 }
 
-#searchBar{
-    border-right: 0;
+#searchBtn{
+    width: 1%
 }
 
-#search-btn-group{
-    width: 30%
+#categorySearch{
+    float: left;
 }
 
-
-#search-menu {
-    width:20%;
-    border-left: none;
-    border-radius: 0px;
+.navbar-collapse > div {
+    float: none !important;
+    padding-right: 0px;
 }
 
-#register-here{
-    text-align: center;
-    color: white;
-}
-
-#register-here button{
-    font-size: 15px;
-    margin-top: 0px;
-}
-
-#login-btn{
-    margin-top: 5px;
-    margin-right: 15px;
-}
+.navbar-search .input-group-addon{
+    padding: 0;
+    border: none;
+    background: none;
+} 
 
 #loginRegister{
     margin-top: 5px;
@@ -113,9 +101,19 @@ body{
     background: -moz-linear-gradient(top, #b6e026 0%, #abdc28 100%);
     background: -webkit-linear-gradient(top, #b6e026 0%,#abdc28 100%);
     background: linear-gradient(to bottom, #b6e026 0%,#abdc28 100%);
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 18px;
+    margin-right: 10px;
+    color: black;
+}
+
+#login{
+    border-right: 1px solid #b7f8ef;
+}
+
+#register{
+    margin-left: 10px;
+}
+
+#register > small{
     color: white;
 }
 
@@ -158,43 +156,29 @@ body{
         border: 0;
         margin-bottom: 20px;
     }
-    
     .navbar-search .input-group{
-        display: block;
-    }
-    
-    #searchBar{
         width: 100%;
     }
     
-    #search-btn-group{
-        width: 100%;
-        display:inline-block;
-    }
-    
-    #search-btn-group > .bootstrap-select{
+    .navbar-search button,
+    .navbar-search .input-group-addon, 
+    .navbar-search #categorySearch {
+        display: inline-block;
         width: 100%;
     }
     
-    #search-btn-group > button{
-        display: block;
+    #categorySearch{
         width: 100%;
-        z-index: auto;
+        margin-bottom: 5px;
     }
     
-    .navbar-search input {
-        outline: none;
-        height: 40px;
+    #searchBtn{
+        width: 100%;
+        margin-top: 5px;
     }
     
-    #smallCategorySearch{
-        border-left: 1px solid grey;
-        border-radius: 0px;
-        display: inline;
-    }
-    
-    #normalCategorySearch{
-        display: none;
+    .navbar-collapse > div {
+        padding: 0;
     }
     
     .navbar .nav{
@@ -203,10 +187,6 @@ body{
     .navbar-brand>img {
         height:auto;
         width:220px
-    }
-    
-    .search-menu{
-        margin-left: -100px;
     }
 
     .navbar-btn {
@@ -232,6 +212,8 @@ body{
 
     #navlogo-small{
         display:inline;
+        height: auto;
+        width: 170px;
     }
 
     #navlogo{
