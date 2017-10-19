@@ -186,3 +186,10 @@ transition-delay:.2s;
    border:20px solid white;
    background-color:#F3F3F3;
 }
+
+.button-search
+{
+  background: #4caf50;
+  color:white;
+}
+
