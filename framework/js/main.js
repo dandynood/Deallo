@@ -44,8 +44,6 @@ app.controller("mainCtrl", function($scope,$window,$interval,$location)
            
        };
 
-
-
      var alwaysCheckForm = function()
     {
         
@@ -188,6 +186,9 @@ app.config(['$routeProvider', function($routeProvider)
     })
     .when('/register', {
         templateUrl: 'template/register.html'
+    })
+    .when('/login', {
+        templateUrl: 'template/login.html'
     })
     .when('/product', {
         templateUrl: 'template/IndiProduct.html'

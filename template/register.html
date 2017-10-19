@@ -2,223 +2,154 @@
 <div class="page-header">
    <img alt="Deallo" src="images/logo.png" id="navlogo">
   </div>
+<div class="row">
+    <div class="col-xs-12">
+        <p class="text-center" style="font-size:35px; margin-top:3%">Register</p>
+    </div>
+</div>
+
+<div class="row form-indi">
+    <div class="col-xs-12">
+        <div class="text-center">
+             <span onclick="clickCircleNext('.form-1');gloFormIndex=1" class="circle-next circle-next-1">1</span>
+             <span class="glyphicon glyphicon-menu-right"></span>
+             <span onclick="clickCircleNext('.form-2');gloFormIndex=2" class="circle-next circle-next-2">2</span>
+             <span class="glyphicon glyphicon-menu-right"></span>
+             <span onclick="clickCircleNext('.form-3');gloFormIndex=3" class="circle-next circle-next-3">3</span>
+
+        </div>
+    </div>
+</div>
+
+<div class="row" data-ng-controller="mainCtrl">
+<div class="col-xs-4"></div>
+    <div class="col-xs-4">
+        <div class="form-1" style="margin-top:0%;">
+<!-- Email Form -->
+<form name="registerform" class="form-register">
+    <p class="animate-field animate-field-1" >Email</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-1')" class="align-center inline-block form-control-reg form-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="email" data-ng-model="email" data-ng-blur="enableWarning(0)"data-ng-focus="disableWarning(0)" id="reg-email" />
+    <p class="animate-field animate-field-2" >Password</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-2')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password" type="password" data-ng-required="true" required="required" name="password" data-ng-model="password" data-ng-minlength="6" data-ng-blur="enableWarning(1)" data-ng-focus="disableWarning(1)" id="reg-password" />
+    <p class="animate-field animate-field-3" >Retype Password</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-3')" class="align-center inline-block form-control-reg form-repassword" style="color:black;" placeholder="Retype Password" data-ng-minlength="6"
+    type="password" data-ng-required="true" required="required" name="repassword" data-ng-model="repassword" data-ng-blur="enableWarning(2)"
+    data-ng-focus="disableWarning(2)" id="reg-repassword" />
+<!--      <p data-ng-model-options="{ updateOn: 'blur'}" data-ng-show="regform.email.$valid == false && warningEmailShow==true" class="text-center"
+        style="margin-top:1%;margin-left:-5%;color:red">Invalid Email</p>
+</div>-->
+
+</form>
+<div class="home-buttons">
+    <span  onclick="checkThroughDisplay(1,'.form-1','.form-2');turnCircleGreen(1)"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%" >Next</span>
+
+    <p class="form-1-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
+</div>
+</div>
+
+<div class="form-2" style="display:none;">
+    <form name="registerform2" class="form-register">
+    <p class="animate-field animate-field-4" >First Name</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-4')" class="align-center inline-block form-control-reg form-first" style="color:black;" placeholder="First Name"
+    type="text" data-ng-required="true" required="required" name="first" data-ng-model="first" data-ng-blur="enableWarning(3)"
+    data-ng-focus="disableWarning(3)" id="reg-first" />
+    <p class="animate-field animate-field-5" >Last Name</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-5')" class="align-center inline-block form-control-reg form-last" style="color:black;" placeholder="Last Name"
+    type="text" data-ng-required="true" required="required" name="last" data-ng-model="last" data-ng-blur="enableWarning(4)"
+    data-ng-focus="disableWarning(4)" id="reg-last" />
+    <p class="animate-field animate-field-6" >Telephone Number</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-6')" class="align-center inline-block form-control-reg form-tel" style="color:black;" placeholder="Telephone Number"
+    type="text" data-ng-required="true" required="required"
+           data-ng-pattern="/^[0-9]*$/" name="tel" data-ng-model="tel" data-ng-blur="enableWarning(5)"
+    data-ng-focus="disableWarning(5)" id="reg-tel" />
+
+
+<!--      <p data-ng-model-options="{ updateOn: 'blur'}" data-ng-show="regform.email.$valid == false && warningEmailShow==true" class="text-center"
+        style="margin-top:1%;margin-left:-5%;color:red">Invalid Email</p>
+</div>-->
+
+</form>
+    <div class="home-buttons">
+            <span onclick="checkThroughDisplay(2,'.form-2','.form-3');turnCircleGreen(2)"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" >Next</span>
+
+         <p class="form-2-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
+
+        </div>
+
+
+</div>
+<div class="form-3" style="display:none;">
+
+
+<form name="registerform3" class="form-register">
+
+
+<p class="animate-field animate-field-7" >Address Line 1</p>
+<input onfocus="this.placeholder='';animateField('.animate-field-7')" class="align-center inline-block form-control-reg form-address1" style="color:black;" placeholder="Address Line 1"
+type="text" data-ng-required="true" required="required" name="address1" data-ng-model="address1" data-ng-blur="enableWarning(6)"
+data-ng-focus="disableWarning(6)" id="reg-address1" />
+<p class="animate-field animate-field-8" >Address Line 2</p>
+<input onfocus="this.placeholder='';animateField('.animate-field-8')" class="align-center inline-block form-control-reg form-address2" style="color:black;" placeholder="Address Line 2 (Optional)"
+type="text" data-ng-required="true"  name="address2" data-ng-model="address2" data-ng-blur="enableWarning(7)"
+data-ng-focus="disableWarning(7)" id="reg-last" />
 
 <div class="row">
-            <div class="col-xs-12">
-                <p class="text-center" style="font-size:35px; margin-top:3%">Register</p>
-            </div>
-        </div>
+<div class="col-xs-6">
+    <p class="animate-field animate-field-9" >Postcode</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-9')" class="align-center inline-block form-control-reg form-postcode" style="color:black;" placeholder="Postcode"
+    type="text" data-ng-required="true" required="required" name="postcode" data-ng-model="postcode" data-ng-blur="enableWarning(8)"
+    data-ng-focus="disableWarning(8)" id="reg-postcode" />
 
-        <div class="row form-indi">
-                <div class="col-xs-12">
-                    <div class="text-center">
-                         <span onclick="clickCircleNext('.form-1');gloFormIndex=1" class="circle-next circle-next-1">1</span>
-                         <span class="glyphicon glyphicon-menu-right"></span>
-                         <span onclick="clickCircleNext('.form-2');gloFormIndex=2" class="circle-next circle-next-2">2</span>
-                         <span class="glyphicon glyphicon-menu-right"></span>
-                         <span onclick="clickCircleNext('.form-3');gloFormIndex=3" class="circle-next circle-next-3">3</span>
-
-                    </div>
-                </div>
-        </div>
-
-        <div class="row" data-ng-controller="mainCtrl">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-4">
-
-            <div class="form-1" style="margin-top:0%;">
-                
-                    <!-- Email Form -->
-                    <form name="registerform" class="form-register">
-                    
-         
-                        <p class="animate-field animate-field-1" >Email</p>
-                        <input onfocus="this.placeholder='';animateField('.animate-field-1')" class="align-center inline-block form-control-reg form-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="email" data-ng-model="email" data-ng-blur="enableWarning(0)"
-                                                            data-ng-focus="disableWarning(0)" id="reg-email" />
-                                                            <p class="animate-field animate-field-2" >Password</p>
-                                                            <input onfocus="this.placeholder='';animateField('.animate-field-2')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password"
-                                                            type="password" data-ng-required="true" required="required" name="password" data-ng-model="password" data-ng-minlength="6" data-ng-blur="enableWarning(1)"
-                                                            data-ng-focus="disableWarning(1)" id="reg-password" />
-                                                            <p class="animate-field animate-field-3" >Retype Password</p>
-                                                            <input onfocus="this.placeholder='';animateField('.animate-field-3')" class="align-center inline-block form-control-reg form-repassword" style="color:black;" placeholder="Retype Password" data-ng-minlength="6"
-                                                            type="password" data-ng-required="true" required="required" name="repassword" data-ng-model="repassword" data-ng-blur="enableWarning(2)"
-                                                            data-ng-focus="disableWarning(2)" id="reg-repassword" />
-                            
-                            
-                  <!--      <p data-ng-model-options="{ updateOn: 'blur'}" data-ng-show="regform.email.$valid == false && warningEmailShow==true" class="text-center"
-                                                            style="margin-top:1%;margin-left:-5%;color:red">Invalid Email</p>
-                                                    </div>-->
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                </form>
-
-         
-
-                            <div class="home-buttons">
-                                    <span  onclick="checkThroughDisplay(1,'.form-1','.form-2');turnCircleGreen(1)"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%" >Next</span>
-                                
-                                    <p class="form-1-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
-                                    
-                            </div>
+</div>
+<div class="col-xs-6">
+    <p class="animate-field animate-field-10" >City</p>
+    <input onfocus="this.placeholder='';animateField('.animate-field-10')" class="align-center inline-block form-control-reg form-city" style="color:black;" placeholder="City"
+    type="text" data-ng-required="true" required="required" name="city" data-ng-model="city" data-ng-blur="enableWarning(9)"
+    data-ng-focus="disableWarning(9)" id="reg-city" />
 
 
-                            </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-xs-6">
+        <p class="animate-field animate-field-11" >State</p>
+        <input onfocus="this.placeholder='';animateField('.animate-field-11')" class="align-center inline-block form-control-reg form-state" style="color:black;" placeholder="State"
+        type="text" data-ng-required="true" required="required" name="state" data-ng-model="state" data-ng-blur="enableWarning(10)"
+        data-ng-focus="disableWarning(10)" id="reg-state" />
+</div>
+<div class="col-xs-6">
+<p class="animate-field animate-field-12" >Country</p>
+<input onfocus="this.placeholder='';animateField('.animate-field-12')" class="align-center inline-block form-control-reg form-country" style="color:black;" placeholder="Country"
+type="text" data-ng-required="true" required="required" name="country" data-ng-model="country" data-ng-blur="enableWarning(11)"
+data-ng-focus="disableWarning(11)" id="reg-country" />
+
+</div>
+</div>
 
 
 
-                            <div class="form-2" style="display:none;">
-                                    
-                     
-                                        <form name="registerform2" class="form-register">
-                                                
-                    
-                                            <p class="animate-field animate-field-4" >First Name</p>
-                                            <input onfocus="this.placeholder='';animateField('.animate-field-4')" class="align-center inline-block form-control-reg form-first" style="color:black;" placeholder="First Name"
-                                                                                type="text" data-ng-required="true" required="required" name="first" data-ng-model="first" data-ng-blur="enableWarning(3)"
-                                                                                data-ng-focus="disableWarning(3)" id="reg-first" />
-                                                                                <p class="animate-field animate-field-5" >Last Name</p>
-                                                                                <input onfocus="this.placeholder='';animateField('.animate-field-5')" class="align-center inline-block form-control-reg form-last" style="color:black;" placeholder="Last Name"
-                                                                                type="text" data-ng-required="true" required="required" name="last" data-ng-model="last" data-ng-blur="enableWarning(4)"
-                                                                                data-ng-focus="disableWarning(4)" id="reg-last" />
-                                                                                <p class="animate-field animate-field-6" >Telephone Number</p>
-                                                                                <input onfocus="this.placeholder='';animateField('.animate-field-6')" class="align-center inline-block form-control-reg form-tel" style="color:black;" placeholder="Telephone Number"
-                                                                                type="text" data-ng-required="true" required="required"
-                                                                                       data-ng-pattern="/^[0-9]*$/" name="tel" data-ng-model="tel" data-ng-blur="enableWarning(5)"
-                                                                                data-ng-focus="disableWarning(5)" id="reg-tel" />
-                                                
-                                                
-                                      <!--      <p data-ng-model-options="{ updateOn: 'blur'}" data-ng-show="regform.email.$valid == false && warningEmailShow==true" class="text-center"
-                                                                                style="margin-top:1%;margin-left:-5%;color:red">Invalid Email</p>
-                                                                        </div>-->
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                    </form>
-                    
-                             
-                    
-                                                <div class="home-buttons">
-                                                        <span onclick="checkThroughDisplay(2,'.form-2','.form-3');turnCircleGreen(2)"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" >Next</span>
-                                                    
-                                                     <p class="form-2-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
-                                                        
-                                                    </div>
-                    
-                    
-                            </div>
+<!--      <p data-ng-model-options="{ updateOn: 'blur'}" data-ng-show="regform.email.$valid == false && warningEmailShow==true" class="text-center"
+                    style="margin-top:1%;margin-left:-5%;color:red">Invalid Email</p>
+            </div>-->
+</form>
 
+<div class="home-buttons">
+<span onclick="checkThroughDisplay(3,'none','none')"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" >Register</span>
+<p class="form-3-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
+</div>
 
+</div>
 
-                            <div class="form-3" style="display:none;">
-                                    
-                                    
-                                        <form name="registerform3" class="form-register">
-                                                
-                    
-                                            <p class="animate-field animate-field-7" >Address Line 1</p>
-                                            <input onfocus="this.placeholder='';animateField('.animate-field-7')" class="align-center inline-block form-control-reg form-address1" style="color:black;" placeholder="Address Line 1"
-                                                                                type="text" data-ng-required="true" required="required" name="address1" data-ng-model="address1" data-ng-blur="enableWarning(6)"
-                                                                                data-ng-focus="disableWarning(6)" id="reg-address1" />
-                                                                                <p class="animate-field animate-field-8" >Address Line 2</p>
-                                                                                <input onfocus="this.placeholder='';animateField('.animate-field-8')" class="align-center inline-block form-control-reg form-address2" style="color:black;" placeholder="Address Line 2 (Optional)"
-                                                                                type="text" data-ng-required="true"  name="address2" data-ng-model="address2" data-ng-blur="enableWarning(7)"
-                                                                                data-ng-focus="disableWarning(7)" id="reg-last" />
+<div class="form-complete">
+<span class="glyphicon align-center glyphicon-ok circle-done" style="font-size:30px;margin-left:42%;"></span>
+<p class="text-center" style="font-size:30px">Registration Successful</p>
 
-                                                                                <div class="row">
-                                                                                    <div class="col-xs-6">
-                                                                                            <p class="animate-field animate-field-9" >Postcode</p>
-                                                                                            <input onfocus="this.placeholder='';animateField('.animate-field-9')" class="align-center inline-block form-control-reg form-postcode" style="color:black;" placeholder="Postcode"
-                                                                                            type="text" data-ng-required="true" required="required" name="postcode" data-ng-model="postcode" data-ng-blur="enableWarning(8)"
-                                                                                            data-ng-focus="disableWarning(8)" id="reg-postcode" />
+</div>
+</div>
 
-
-
-                                                                                    </div>
-                                                                                    <div class="col-xs-6">
-                                                                                            <p class="animate-field animate-field-10" >City</p>
-                                                                                            <input onfocus="this.placeholder='';animateField('.animate-field-10')" class="align-center inline-block form-control-reg form-city" style="color:black;" placeholder="City"
-                                                                                            type="text" data-ng-required="true" required="required" name="city" data-ng-model="city" data-ng-blur="enableWarning(9)"
-                                                                                            data-ng-focus="disableWarning(9)" id="reg-city" />
-
-
-                                                                                    </div>
-
-                                                                                </div>
-
-
-                                                                                <div class="row">
-                                                                                        <div class="col-xs-6">
-                                                                                                <p class="animate-field animate-field-11" >State</p>
-                                                                                                <input onfocus="this.placeholder='';animateField('.animate-field-11')" class="align-center inline-block form-control-reg form-state" style="color:black;" placeholder="State"
-                                                                                                type="text" data-ng-required="true" required="required" name="state" data-ng-model="state" data-ng-blur="enableWarning(10)"
-                                                                                                data-ng-focus="disableWarning(10)" id="reg-state" />
-    
-    
-    
-                                                                                        </div>
-                                     <div class="col-xs-6">
-                                         <p class="animate-field animate-field-12" >Country</p>
-                                                                                                <input onfocus="this.placeholder='';animateField('.animate-field-12')" class="align-center inline-block form-control-reg form-country" style="color:black;" placeholder="Country"
-                                                                                                type="text" data-ng-required="true" required="required" name="country" data-ng-model="country" data-ng-blur="enableWarning(11)"
-                                                                                                data-ng-focus="disableWarning(11)" id="reg-country" />
-    
-    
-                                                                                        </div>
-    
-                                                                                    </div>
-                                                                            
-                                                
-                                                
-                                      <!--      <p data-ng-model-options="{ updateOn: 'blur'}" data-ng-show="regform.email.$valid == false && warningEmailShow==true" class="text-center"
-                                                                                style="margin-top:1%;margin-left:-5%;color:red">Invalid Email</p>
-                                                                        </div>-->
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                    </form>
-                    
-                             
-                    
-                                                <div class="home-buttons">
-                                                        <span onclick="checkThroughDisplay(3,'none','none')"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" >Register</span>
-                                                         <p class="form-3-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
-                                                    </div>
-                                
-                                
-                                
-                    
-                    
-                            </div>
-                
-                            <div class="form-complete">
-                                <span class="glyphicon align-center glyphicon-ok circle-done" style="font-size:30px;margin-left:42%;"></span>
-                                <p class="text-center" style="font-size:30px">Registration Successful</p>
-                
-                
-                
-                            </div>
-
-            </div>
-
-
-           
-               
- 
-            <div class="col-xs-4"></div>
-        </div>
+<div class="col-xs-4"></div>
+</div>
 
 
 <script>
