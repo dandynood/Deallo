@@ -1,0 +1,332 @@
+
+
+<div class="row">
+            <div class="col-xs-12">
+                <p class="text-center" style="font-size:35px; margin-top:5%;margin-bottom:2%">Login</p>
+            </div>
+        </div>
+
+
+
+        <div class="row" data-ng-controller="mainCtrl">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+
+            <div class="form-1" style="margin-top:0%;">
+                
+                    <!-- Email Form -->
+                    <form name="registerform4" class="form-register">
+                    
+
+                        <p class="animate-field animate-field-12" >Email</p>
+                        <input onfocus="this.placeholder='';animateField('.animate-field-12')" class="align-center inline-block form-control-reg form-login-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="loginemail" data-ng-model="loginemail" data-ng-blur="enableWarning(12)"
+                                                            data-ng-focus="disableWarning(13)" id="reg-login-email" />
+                                                            <p class="animate-field animate-field-13" >Password</p>
+                                                            <input onfocus="this.placeholder='';animateField('.animate-field-13')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password"
+                                                            type="password" data-ng-required="true" required="required" name="loginpassword" data-ng-model="loginpassword" data-ng-minlength="6" data-ng-blur="enableWarning(13)"
+                                                            data-ng-focus="disableWarning(13)" id="reg-login-password" />
+                                                  
+
+                            
+                            
+                            
+                            
+                </form>
+
+         
+
+                            <div class="home-buttons">
+                                    <span  onclick="checkLoginForm();turnCircleGreen(1)"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%;" >Login</span>
+                                
+                                    <p class="form-4-error text-center" style="visibility:hidden;color:red;margin-bottom:10%">One or more field(s) empty</p>
+                                    
+                            </div>
+
+
+                            </div>
+
+
+
+                       
+            </div>
+
+
+           
+               
+ 
+            <div class="col-xs-4"></div>
+        </div>
+
+
+<script>
+    
+    
+     var emailstat =false;
+    var passwordstat =false;   
+    
+    
+    
+function checkLoginForm()
+{
+    
+
+            if(document.getElementById('reg-login-password').value.length > 0 && document.getElementById('reg-login-email').value.length >0)
+            {
+                $('.form-4-error').css('visibility','hidden');
+            }else
+            {
+                 $('.form-4-error').css('visibility','visible');
+            }
+    
+           
+}
+    
+    
+    
+    
+    
+    
+
+var gloFormIndex = 1;
+var completion = new Array();
+completion[1]=false;
+completion[2]=false;
+completion[3]=false;
+    
+function clickCircleNext(destination)
+{
+    displayNone('.form-'+gloFormIndex.toString(),destination);
+}
+    
+function alwaysChangeForm()
+{
+    
+
+
+    
+    
+     
+        if(window.email && window.password && window.repassword)
+        {
+            completion[1] = true; 
+        }
+    
+        if(window.first && window.last && window.tel)
+                {
+                     completion[2] = true;
+                }
+    
+    
+        if(window.address1 && window.postcode && window.city && window.state && window.country)
+                {
+                    completion[3] = true
+                }
+    
+        if(gloFormIndex==1)
+        {
+            $('.circle-next-1').css('border-color','rgba(34,96,194,0.8)');
+            $('.circle-next-1').css('color','rgba(34,96,194,0.8)');  
+        }else if(gloFormIndex==2)
+        {
+            $('.circle-next-2').css('border-color','rgba(34,96,194,0.8)');
+            $('.circle-next-2').css('color','rgba(34,96,194,0.8)');  
+        }else if(gloFormIndex==3)
+        {
+            $('.circle-next-3').css('border-color','rgba(34,96,194,0.8)');
+            $('.circle-next-3').css('color','rgba(34,96,194,0.8)');  
+        }
+    
+    
+        for(var i=1;i<4;i++)
+        {
+            if(i!=gloFormIndex && !completion[i])
+            {
+                
+                var string = ".circle-next-"+i.toString();
+                $(string).css('border-color','black');
+                $(string).css('color','black');  
+                
+            }
+        }
+    
+        if (window.email)
+        {
+            $(".form-email").css('border-color','#39FF14');    
+        }else if(!window.email && window.warning0)
+        {
+            $(".form-email").css('border-color','red'); 
+        }
+    
+        if (window.password)
+        {
+            $(".form-password").css('border-color','#39FF14');    
+        }else if(!window.password && window.warning1)
+        {
+            $(".form-password").css('border-color','red'); 
+        }
+    
+        if (window.repassword)
+        {
+            $(".form-repassword").css('border-color','#39FF14');    
+        }else if(!window.repassword && window.warning2)
+        {
+            $(".form-repassword").css('border-color','red'); 
+        }
+    
+        if (window.first)
+        {
+            $(".form-first").css('border-color','#39FF14');    
+        }else if(!window.first && window.warning3)
+        {
+            $(".form-first").css('border-color','red'); 
+        }
+    
+        if (window.last)
+        {
+            $(".form-last").css('border-color','#39FF14');    
+        }else if(!window.last && window.warning4)
+        {
+            $(".form-last").css('border-color','red'); 
+        }
+    
+        if (window.tel)
+        {
+            $(".form-tel").css('border-color','#39FF14');    
+        }else if(!window.tel && window.warning5)
+        {
+            $(".form-tel").css('border-color','red'); 
+        }
+    
+        if (window.address1)
+        {
+            $(".form-address1").css('border-color','#39FF14');    
+        }else if(!window.address1 && window.warning6)
+        {
+            $(".form-address1").css('border-color','red'); 
+        }
+    
+        
+        if (window.address2)
+        {
+            $(".form-address2").css('border-color','#39FF14');    
+        }else if(!window.address2 && window.warning7)
+        {
+            $(".form-address2").css('border-color','red'); 
+        }
+    
+    
+        if (window.postcode)
+        {
+            $(".form-postcode").css('border-color','#39FF14');    
+        }else if(!window.postcode && window.warning8)
+        {
+            $(".form-postcode").css('border-color','red'); 
+        }
+    
+        
+        if (window.city)
+        {
+            $(".form-city").css('border-color','#39FF14');    
+        }else if(!window.city && window.warning9)
+        {
+            $(".form-city").css('border-color','red'); 
+        }
+    
+        if (window.state)
+        {
+            $(".form-state").css('border-color','#39FF14');    
+        }else if(!window.state && window.warning10)
+        {
+            $(".form-state").css('border-color','red'); 
+        }
+    
+        if (window.country)
+        {
+            $(".form-country").css('border-color','#39FF14');    
+        }else if(!window.country && window.warning11)
+        {
+            $(".form-country").css('border-color','red'); 
+        }
+    
+    
+ }
+    
+    
+setInterval(alwaysChangeForm,50);
+    
+    
+function turnCircleGreen(num)
+{
+    var string = ".circle-next-"+num.toString();
+
+    $(string).css('border-color', '#39FF14');
+    $(string).css('color', '#39FF14');
+}
+    
+function checkThroughDisplay(num,string1,string2)
+    {
+        if(num==1)
+        {
+            if(window.email && window.password && window.repassword)
+                {
+                    displayNone(string1,string2);
+                }
+            else
+                {
+                    $('.form-1-error').css('visibility','visible')
+                }
+            
+            gloFormIndex=2;
+                
+        }else if(num==2)
+        {
+              if(window.first && window.last && window.tel)
+                {
+                    displayNone(string1,string2);
+                }
+            else
+                {
+                    $('.form-2-error').css('visibility','visible');
+                }
+            
+             gloFormIndex=3;
+            
+        }else if (num==3)
+            {
+                if(window.address1 && window.postcode && window.city && window.state && window.country)
+                {
+                    $('.circle-next-3').css('border-color','#39FF14');  
+                    $('.circle-next-3').css('color','#39FF14');  
+                    $('.form-3').css('display','none');
+                    $('.form-complete').css('display','block');
+                    $('.form-complete').animate({marginTop:'25%',marginBottom:'60%',opacity:1},500);
+                    $('.form-indi').css('display','none');
+                }
+            }
+    }
+function displayNone(stringsource,stringtarget)
+{
+  
+   $(stringsource).animate({opacity:0},1000);
+   setTimeout(function(){$(stringsource).css('display','none');},500);
+
+
+
+
+ 
+
+   setTimeout(function(){   
+    $(stringtarget).css('display',"block");
+    $(stringtarget).css('opacity',"1");
+  //$(stringtarget).animate({opacity:1},500);
+},500);
+
+}
+
+function animateField(string)
+{
+$(string).css("visibility","visible");
+$(string).animate({marginBottom:'-2%',marginTop:'3%',fontSize:'16px'},300);
+}
+
+</script>

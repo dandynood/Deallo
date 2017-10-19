@@ -35,6 +35,7 @@ app.controller("mainCtrl", function($scope,$window,$interval)
 
      var alwaysCheckForm = function()
     {
+        
        
         /** Section 1 **/
         $window.email = $scope.registerform.email.$valid;
@@ -57,8 +58,10 @@ app.controller("mainCtrl", function($scope,$window,$interval)
         $window.state = $scope.registerform3.state.$valid;
         $window.country = $scope.registerform3.country.$valid;
         
+        $window.loginemail  = $scope.registerform4.loginemail.$valid;
+        $window.loginpassword  = $scope.registerform4.loginpassword.$valid;
         
-        
+        alert($scope.registerform4.loginpassword.$valid);
         
         $window.warning0 = $scope.warningArray[0];
         $window.warning1 = $scope.warningArray[1];
@@ -72,6 +75,17 @@ app.controller("mainCtrl", function($scope,$window,$interval)
         $window.warning9 = $scope.warningArray[9];
         $window.warning10 = $scope.warningArray[10];
         $window.warning11 = $scope.warningArray[11];
+        
+        /* Section Login */
+        
+        if($scope.registerform4.loginemail.$valid && $scope.registerform4.loginpassword.$valid)
+        {
+            $window.loginstat = true;
+        }
+        else
+        {
+            $window.loginstat = false;
+        }
 
 
     }
@@ -162,6 +176,9 @@ app.config(['$routeProvider', function($routeProvider)
     })
     .when('/register', {
         templateUrl: 'template/register.html'
+    })
+    .when('/login', {
+        templateUrl: 'template/login.html'
     })
     .otherwise({
         redirectTo: '/home'
