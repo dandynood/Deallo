@@ -6,91 +6,52 @@
 </div>
 
 <div class="row">
-            <div class="col-xs-12">
-                <p class="text-center" style="font-size:35px; margin-top:5%;margin-bottom:2%">Login</p>
-            </div>
-        </div>
+    <div class="col-xs-12">
+        <p class="text-center" style="font-size:35px; margin-top:5%;margin-bottom:2%">Login</p>
+    </div>
+</div>
 
 
 
-        <div class="row" data-ng-controller="mainCtrl">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-4">
-
-            <div class="form-1" style="margin-top:0%;">
-                
-                    <!-- Email Form -->
-                    <form name="registerform4" class="form-register">
-                    
-
-                        <p class="animate-field animate-field-12" >Email</p>
-                        <input onfocus="this.placeholder='';animateField('.animate-field-12')" class="align-center inline-block form-control-reg form-login-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="loginemail" data-ng-model="loginemail" data-ng-blur="enableWarning(12)"
-                                                            data-ng-focus="disableWarning(13)" id="reg-login-email" />
-                                                            <p class="animate-field animate-field-13" >Password</p>
-                                                            <input onfocus="this.placeholder='';animateField('.animate-field-13')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password"
-                                                            type="password" data-ng-required="true" required="required" name="loginpassword" data-ng-model="loginpassword" data-ng-minlength="6" data-ng-blur="enableWarning(13)"
-                                                            data-ng-focus="disableWarning(13)" id="reg-login-password" />
-                                                  
-
-                            
-                            
-                            
-                            
-                </form>
-
-         
-
-                            <div class="home-buttons">
-                                    <span  onclick="checkLoginForm();turnCircleGreen(1)"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" >Login</span>
-                                
-                                    <p class="form-4-error text-center" style="visibility:hidden;color:red;margin-bottom:10%">One or more field(s) empty</p>
-                                    
-                            </div>
-
-
-                            </div>
-
-
-
-                       
-            </div>
-
-
-           
-               
- 
-            <div class="col-xs-4"></div>
-        </div>
+<div class="row" data-ng-controller="mainCtrl">
+<div class="col-xs-4"></div>
+<div class="col-xs-4">
+    <div class="form-1" style="margin-top:0%;">
+    <!-- Email Form -->
+    <form name="registerform4" class="form-register">
+        <p class="animate-field animate-field-12" >Email</p>
+        <input onfocus="this.placeholder='';animateField('.animate-field-12')" class="align-center inline-block form-control-reg form-login-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="loginemail" data-ng-model="loginemail" data-ng-blur="enableWarning(12)"
+        data-ng-focus="disableWarning(13)" id="reg-login-email" />
+        <p class="animate-field animate-field-13" >Password</p>
+        <input onfocus="this.placeholder='';animateField('.animate-field-13')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password" type="password" data-ng-required="true" required="required" name="loginpassword" data-ng-model="loginpassword" data-ng-minlength="6" data-ng-blur="enableWarning(13)" data-ng-focus="disableWarning(13)" id="reg-login-password" />
+    </form>
+    <div class="home-buttons">
+    <span  onclick="checkLoginForm();turnCircleGreen(1)"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" >Login</span>
+    <p class="form-4-error text-center" style="visibility:hidden;color:red;margin-bottom:10%">One or more field(s) empty</p>
+    </div>
+    </div>
+</div>
+<div class="col-xs-4"></div>
+</div>
 
 
 <script>
     
-    
-     var emailstat =false;
-    var passwordstat =false;   
-    
-    
+var emailstat = false;
+var passwordstat = false;  
     
 function checkLoginForm()
 {
     
-
-            if(document.getElementById('reg-login-password').value.length > 0 && document.getElementById('reg-login-email').value.length >0)
-            {
-                $('.form-4-error').css('visibility','hidden');
-            }else
-            {
-                 $('.form-4-error').css('visibility','visible');
-            }
-    
+    if(document.getElementById('reg-login-password').value.length > 0 && document.getElementById('reg-login-email').value.length >0)
+    {
+        $('.form-4-error').css('visibility','hidden');
+    }else
+    {
+         $('.form-4-error').css('visibility','visible');
+    } 
            
 }
-    
-    
-    
-    
-    
-    
 
 var gloFormIndex = 1;
 var completion = new Array();
