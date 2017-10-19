@@ -29,6 +29,12 @@ app.controller("mainCtrl", function($scope,$window,$interval,$location)
             
         }
         
+       
+       $scope.gotoHome = function()
+       {
+           $location.path('/home');
+       }
+       
        $scope.gotoRegister = function()
        {
             $location.path('/register');
