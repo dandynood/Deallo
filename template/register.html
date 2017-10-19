@@ -1,4 +1,5 @@
-<link href="../framework/css/loginRegister.css" rel="stylesheet"/>
+<link href="framework/css/loginRegister.css" rel="stylesheet"/>
+<link href="framework/css/homePage.css" rel="stylesheet"/>
 <div class="page-header">
 <a data-ng-click="gotoHome()" href="">
    <img alt="Deallo" src="images/logo.png" id="navlogo">
@@ -23,16 +24,18 @@
     </div>
 </div>
 
-<div class="row" data-ng-controller="mainCtrl">
+<div class="row">
 <div class="col-xs-4"></div>
     <div class="col-xs-4">
         <div class="form-1" style="margin-top:0%;">
 <!-- Email Form -->
 <form name="registerform" class="form-register">
     <p class="animate-field animate-field-1" >Email</p>
-    <input onfocus="this.placeholder='';animateField('.animate-field-1')" class="align-center inline-block form-control-reg form-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="email" data-ng-model="email" data-ng-blur="enableWarning(0)"data-ng-focus="disableWarning(0)" id="reg-email" />
+    <input onfocus="this.placeholder='';animateField('.animate-field-1')" class="align-center inline-block form-control-reg form-email" style="color:black;" placeholder="Email" type="email" data-ng-required="true" required="required" name="email" 
+           data-ng-model="email" data-ng-blur="enableWarning(0)"data-ng-focus="disableWarning(0)" id="reg-email" />
     <p class="animate-field animate-field-2" >Password</p>
-    <input onfocus="this.placeholder='';animateField('.animate-field-2')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password" type="password" data-ng-required="true" required="required" name="password" data-ng-model="password" data-ng-minlength="6" data-ng-blur="enableWarning(1)" data-ng-focus="disableWarning(1)" id="reg-password" />
+    <input onfocus="this.placeholder='';animateField('.animate-field-2')" class="align-center inline-block form-control-reg form-password" style="color:black;" placeholder="Password" type="password" data-ng-required="true" required="required" name="password" 
+           data-ng-model="password" data-ng-minlength="6" data-ng-blur="enableWarning(1)" data-ng-focus="disableWarning(1)" id="reg-password" />
     <p class="animate-field animate-field-3" >Retype Password</p>
     <input onfocus="this.placeholder='';animateField('.animate-field-3')" class="align-center inline-block form-control-reg form-repassword" style="color:black;" placeholder="Retype Password" data-ng-minlength="6"
     type="password" data-ng-required="true" required="required" name="repassword" data-ng-model="repassword" data-ng-blur="enableWarning(2)"
@@ -137,7 +140,8 @@ data-ng-focus="disableWarning(11)" id="reg-country" />
 </form>
 
 <div class="home-buttons">
-<span onclick="checkThroughDisplay(3,'none','none')"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" >Register</span>
+<span onclick="checkThroughDisplay(3,'none','none')"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" data-ng-click="register()" >Register</span>
+    {{email}}
 <p class="form-3-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
 </div>
 
@@ -153,6 +157,11 @@ data-ng-focus="disableWarning(11)" id="reg-country" />
 <div class="col-xs-4"></div>
 </div>
 
+<div class="row">
+    <div class="col-xs-12">
+        <div class="divider"></div>
+    </div>
+</div>
 
 <script>
 

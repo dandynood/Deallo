@@ -1,5 +1,5 @@
-<link href="../framework/css/loginRegister.css" rel="stylesheet"/>
-<link href="../framework/css/homePage.css" rel="stylesheet"/>
+<link href="framework/css/loginRegister.css" rel="stylesheet"/>
+<link href="framework/css/homePage.css" rel="stylesheet"/>
 <div class="container-fluid">
 <div class="row">
     <div class="col-xs-12 col-md-12">
@@ -35,7 +35,7 @@
                data-ng-model="inputData.password" data-ng-minlength="6" data-ng-blur="enableWarning(13)" data-ng-focus="disableWarning(13)" id="reg-login-password" />
     </form>
     <div class="home-buttons">
-    <span onclick="checkLoginForm();"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="showStuff()">Login</span>
+    <span onclick="checkLoginForm();"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="login()">Login</span>
     <p class="form-4-error text-center" style="visibility:hidden;color:red;margin-bottom:10%">One or more field(s) empty</p>
     </div>
     </div>

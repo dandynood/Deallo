@@ -9,7 +9,7 @@ angular.module('loginService',[])
     $scope.inputData.username = "";
     $scope.inputData.password = "";
     
-    this.login = function(){
+    $scope.login = function(){
         var str = {username: encodeURIComponent($scope.inputData.username), password: encodeURIComponent($scope.inputData.password)};
         $http({method: 'POST', url:'php/login.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
         .then(function(response){

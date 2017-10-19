@@ -4,6 +4,7 @@
 
     if($conn->connect_error){
         die("Connection failed: " . $conn->connect_error);
+        echo 'failed';
     }         
         $data = json_decode(file_get_contents("php://input")); 
         $username = $data->username;
