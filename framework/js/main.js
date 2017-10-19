@@ -194,9 +194,13 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/register', {
         templateUrl: 'template/register.html'
     })
-    .when('/login', {
-        templateUrl: 'template/login.html'
+    .when('/product', {
+        templateUrl: 'template/IndiProduct.html'
     })
+    .when('/productlist', {
+        templateUrl: 'template/productlist.html'
+    })
+   
     .otherwise({
         redirectTo: '/home'
     });
