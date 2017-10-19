@@ -17,6 +17,10 @@
    word-wrap: break-word;      /* IE */
 }
 
+.navbar{
+    margin-bottom: 0px;
+}
+
 /* First Text users will see upon entering website */
 .welcome-text{
   border-right:1px solid black;

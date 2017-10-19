@@ -58,7 +58,7 @@
                                     <option value="Arts and Crafts">Arts and Crafts</option>
                                     <option value="Craft Materials">Craft Materials</option>
                                 </select>
-                                <button type="submit" class="btn btn-warning" data-ng-click="search()">
+                                <button type="submit" class="btn btn-warning" data-ng-click="search()" onclick="alert($(window).width())">
                                     Search <span class="glyphicon glyphicon-search">
                                         <span class="sr-only">Search</span>
                                     </span>
@@ -102,9 +102,7 @@
                         <li><a href="index.html">Products</a></li>
                         <li><a href="index.html">About us</a></li>
                         <li><button class="btn btn-lg btn-warning" id="disclaimerFooter">Disclaimer</button></li>
-                    </ul>
-                    <ul class="nav pull-right">
-                        <li><img src="images/logo-footer.png" alt="Deallo Logo" id="footerBrandImg"/></li>
+                        <li class="pull-right" id="footer-brand"><img src="images/logo-footer.png" alt="Deallo Logo" id="footerBrandImg"/></li>
                     </ul>
                     </div>
                 </div>

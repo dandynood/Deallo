@@ -1,0 +1,24 @@
+/*--footer---*/
+.footer-default {
+    position: absolute;
+    bottom: 0;
+}
+
+.home-buttons{
+    text-align: center;
+}
+
+.navbar {
+    display: none;
+}
+
+.page-header{
+    text-align: center;
+    margin:0;
+    padding: 20px;
+    background-color: rgba(34,96,194,0.8);
+}
+.page-header > img{
+    height: auto;
+    width: 145px;
+}

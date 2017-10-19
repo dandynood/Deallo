@@ -3,6 +3,11 @@
     src: url('../fonts/futura/Futura Book font.ttf')format('truetype');
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body{
     font-family: 'Futura', sans-serif;
 }
@@ -144,6 +149,7 @@ body{
         display: none;
     }
 
+
 @media(max-width:767px) {
     
     .navbar-search {
@@ -231,6 +237,7 @@ body{
     #navlogo{
         display:none;
     }
+    
 
 }
 
@@ -349,7 +356,7 @@ https://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0
 .footer-default {
     width: 100%;
     height: auto;
-    padding: 60px 0px;
+    padding: 30px 0px;
     background-image: url(../../images/footer-background.jpg);
     box-shadow: inset 0px 7px 10px rgba(0,0,0,0.2);
     text-shadow: 3px 0px 5px #000;
@@ -396,6 +403,12 @@ https://work.smarchal.com/twbscolor/css/e74c3cc0392becf0f1ffbbbc0
         margin-top: 10px;
         float: none;
     }
+    
+    #footer-brand{
+    margin-top: 40px;
+        float: left !important;
+    }
+        
 }
 
 

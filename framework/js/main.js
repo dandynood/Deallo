@@ -14,50 +14,46 @@ app.controller("mainCtrl", function($scope,$window,$interval,$location)
 
     };
     
-   
-    
-      $scope.warningArray = new Array();
              
         $scope.enableWarning = function(num)
         {
             $scope.warningArray[num] = true;
-        }
+        };
     
        $scope.disableWarning =function(num)
         {
             $scope.warningArray[num] = false;
             
-        }
+        };
         
        
        $scope.gotoHome = function()
        {
            $location.path('/home');
-       }
+       };
        
        $scope.gotoRegister = function()
        {
             $location.path('/register');
            
-       }
+       };
        
        $scope.gotoLogin = function()
        {
             $location.path('/login');
            
-       }
-   
+       };
 
 
 
      var alwaysCheckForm = function()
     {
         
-       
+       $scope.warningArray = new Array();
         /** Section 1 **/
         $window.email = $scope.registerform.email.$valid;
         $window.password = $scope.registerform.password.$valid;
-        if($scope.password == $scope.repassword)
+        if($scope.password === $scope.repassword)
         {
         $window.repassword = $scope.registerform.repassword.$valid;
         }
@@ -78,7 +74,6 @@ app.controller("mainCtrl", function($scope,$window,$interval,$location)
         $window.loginemail  = $scope.registerform4.loginemail.$valid;
         $window.loginpassword  = $scope.registerform4.loginpassword.$valid;
         
-        alert($scope.registerform4.loginpassword.$valid);
         
         $window.warning0 = $scope.warningArray[0];
         $window.warning1 = $scope.warningArray[1];
@@ -105,9 +100,9 @@ app.controller("mainCtrl", function($scope,$window,$interval,$location)
         }
 
 
-    }
+    };
  
-    setInterval(alwaysCheckForm,50);
+    $interval(alwaysCheckForm,50);
 });
 
 app.controller("loginCtrl",function($scope, $location, $cookies, $http)
