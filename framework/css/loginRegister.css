@@ -18,7 +18,8 @@
     padding: 20px;
     background-color: rgba(34,96,194,0.8);
 }
-.page-header > img{
+.page-header > a > img{
     height: auto;
     width: 145px;
+    cursor:pointer;
 }
