@@ -2,7 +2,7 @@
 /*global angular */
 /*jslint plusplus:true*/
 var app = angular.module("mainApp",['ngRoute']);
-app.controller("mainCtrl", function($scope,$window,$interval)
+app.controller("mainCtrl", function($scope,$window,$interval,$location)
 {
     "use strict";
     
@@ -29,6 +29,17 @@ app.controller("mainCtrl", function($scope,$window,$interval)
             
         }
         
+       $scope.gotoRegister = function()
+       {
+            $location.path('/register');
+           
+       }
+       
+       $scope.gotoLogin = function()
+       {
+            $location.path('/login');
+           
+       }
    
 
 

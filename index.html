@@ -74,14 +74,14 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right" id="loginRegister">
                         <li>
-                            <button class="btn btn-login navbar-btn" id="login-btn">
+                            <button data-ng-click="gotoLogin()"  class="btn btn-login navbar-btn" id="login-btn">
                             <span class="glyphicon glyphicon-log-in"></span> Login
                             </button>
                         </li>
                         <li>
                             <p id="register-here"><small>Not a member?</small>
                             <br/>
-                            <button onclick=' window.location.href = "/index.html#!/register";'  class="btn btn-register navbar-btn">
+                            <button data-ng-click="gotoRegister()"  class="btn btn-register navbar-btn">
                             <span class="glyphicon glyphicon-bookmark"></span> Register
                             </button></p>
                         </li>
