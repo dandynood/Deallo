@@ -182,3 +182,9 @@ transform:translatey(0);
 -webkit-transition-delay:.2s;
 transition-delay:.2s;
 }
+
+.pborder{
+   padding:1px;
+   border:20px solid white;
+   background-color:#F3F3F3;
+}
