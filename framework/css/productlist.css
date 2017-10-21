@@ -13,6 +13,11 @@
 #categories_list{
 	list-style-type: none;
 	padding-left:10px;
+    margin-bottom: 20px;
+}
+
+#categories_list > li{
+    margin-bottom: 10px;
 }
 
 a:hover {
@@ -111,7 +116,6 @@ a {
 }
 
 .hovereffect {
-float:left;
 overflow:hidden;
 position:relative;
 text-align:center;
@@ -195,4 +199,8 @@ transition-delay:.2s;
 
 .margincontainer{
 	margin-left: 1%;
+}
+
+.categoryIcons{
+    margin-right: 10px;
 }

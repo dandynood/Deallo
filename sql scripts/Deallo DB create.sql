@@ -21,6 +21,12 @@ CHECK (accountType = 'Normal' OR accountType = 'Admin'),
 PRIMARY KEY (accountID)
 );
 
+INSERT INTO userAccounts
+(username,password,firstName,lastName,address,postcode,state,country,email,phoneNumber,accountType)
+VALUES
+("James Brooke","ongchin","James","Brooke","75, Lorong Keranji 4A2, Tabuan Desa Indah","93350","Sarawak","Malaysia",
+"sheldon.jam.cam@gmail.com","019562578","Normal");
+
 -- -----------------------------------------------------
 -- Table category
 -- -----------------------------------------------------
@@ -56,10 +62,18 @@ categoryID VARCHAR(5) NOT NULL,
 description VARCHAR(255) NOT NULL,
 extraDetails TEXT,
 accountID INT NOT NULL,
+image BLOB,
 PRIMARY KEY(productID),
 FOREIGN KEY(categoryID) REFERENCES category (categoryID),
 FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 );
+
+INSERT INTO products 
+(productName,price,shippingPrice,stock,dateAdded,categoryID,description,extraDetails,accountID)
+VALUES 
+("A piece of cloth","12.00","0.0","10",NOW(),"CLOTH","Your mom is a monkey and she is like super hairy and smelly","also your dad is like mega skinny, 
+like a stick, like those obelisk in eygpt lol","1");
+
 
 -- -----------------------------------------------------
 -- Table productRatings

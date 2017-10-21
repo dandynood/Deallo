@@ -102,23 +102,5 @@ angular.module('registerService',[])
            }
         });
     };
-    
-    $scope.anything = function()
-    {
-        var str = {
-            username: encodeURIComponent($scope.username),
-            password: encodeURIComponent($scope.password),
-            firstName: encodeURIComponent($scope.first),
-            lastName: encodeURIComponent($scope.last),
-            address: encodeURIComponent($scope.address1 + ", " + $scope.address2),
-            postcode: encodeURIComponent($scope.postcode),
-            state: encodeURIComponent($scope.state),
-            country: encodeURIComponent($scope.country),
-            Email: encodeURIComponent($scope.email),
-            phoneNumber: encodeURIComponent($scope.tel),
-            accountType: encodeURIComponent($scope.accountType)};
-        alert(str);
-        console.log(str);
-    };
 
 });

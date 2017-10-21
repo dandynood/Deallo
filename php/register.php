@@ -7,19 +7,17 @@
         
     }         
         $data = json_decode(file_get_contents("php://input")); 
-        $username = $data->username;
-        $password = $data->password;
-        $firstName = $data->firstName;
-        $lastName = $data->lastName;
-        $address = $data->address;
-        $postcode = $data->postcode;
-        $state = $data->state;
-        $country = $data->country;
-        $Email = $data->email;
-        $phoneNumber = $data->phoneNumber;
-        $accountType = $data->accountType;
-
-        echo json_encode($data);
+        $username = urldecode($data->username);
+        $password = urldecode($data->password);
+        $firstName = urldecode($data->firstName);
+        $lastName = urldecode($data->lastName);
+        $address = urldecode($data->address);
+        $postcode = urldecode($data->postcode);
+        $state = urldecode($data->state);
+        $country = urldecode($data->country);
+        $Email = urldecode($data->email);
+        $phoneNumber = urldecode($data->phoneNumber);
+        $accountType = urldecode($data->accountType);
             
         $sql = "INSERT INTO userAccounts
         (username, password, firstName, lastName, address, postcode, state, country, Email,phoneNumber,accountType) VALUES ('$username','$password','$firstName','$lastName','$address','$postcode','$state','$country','$Email','$phoneNumber','$accountType')";
