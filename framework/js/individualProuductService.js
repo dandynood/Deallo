@@ -80,5 +80,4 @@ indiProduct.controller("individualProuductCtrl",function($scope, $location, $htt
         }});
         
     };
-    
 });
