@@ -89,7 +89,6 @@
             isElementInView: function (element, fullyInView) {
                 var pageTop = $(window).scrollTop();
                 var pageBottom = pageTop + $(window).height();
-                var elementTop = $(element).offset().top;
                 var elementBottom = elementTop + $(element).height();
         
                 if (fullyInView === true) {
@@ -143,7 +142,7 @@
                   // Creates the effect of delete a string text
                   function clearWelcomeText()
                   {
-                      var getString = document.getElementById('welcome-text').innerHTML;
+                      var getString = document.getElementById('welcome-text');
         
         
                             if(getString.length >0 && clearText)
