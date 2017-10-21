@@ -2,7 +2,6 @@
 /*global angular */
 /*jslint plusplus:true*/
 var productList = angular.module('productSearchService',['ngRoute']);
-
 productList.factory('searchFactory',function(){
    "use strict";
    var mySearch = null;
