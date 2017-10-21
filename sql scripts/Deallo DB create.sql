@@ -21,6 +21,12 @@ CHECK (accountType = 'Normal' OR accountType = 'Admin'),
 PRIMARY KEY (accountID)
 );
 
+INSERT INTO userAccounts
+(username,password,firstName,lastName,address,postcode,state,country,email,phoneNumber,accountType)
+VALUES
+("James Brooke","ongchin","James","Brooke","75, Lorong Keranji 4A2, Tabuan Desa Indah","93350","Sarawak","Malaysia",
+"sheldon.jam.cam@gmail.com","019562578","Normal");
+
 -- -----------------------------------------------------
 -- Table category
 -- -----------------------------------------------------
@@ -56,10 +62,19 @@ categoryID VARCHAR(5) NOT NULL,
 description VARCHAR(255) NOT NULL,
 extraDetails TEXT,
 accountID INT NOT NULL,
+image BLOB,
 PRIMARY KEY(productID),
 FOREIGN KEY(categoryID) REFERENCES category (categoryID),
 FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 );
+
+INSERT INTO products 
+(productName,price,shippingPrice,stock,dateAdded,categoryID,description,extraDetails,accountID)
+VALUES 
+("A piece of cloth","12.00","0.0","10",current_date(),"CLOTH","Your mom is a monkey and she is like super hairy and smelly","also your dad is like mega skinny, 
+like a stick, like those obelisk in eygpt lol","1"),
+("A piece of noodles","12.00","0.0","10",CURRENT_DATE,"CLOTH","Some delicious piece of noodle","Please try because it's very delicious and you will like it, I gurantee it lol","1");
+
 
 -- -----------------------------------------------------
 -- Table productRatings
@@ -67,8 +82,21 @@ FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 CREATE TABLE productRatings(
 ratingID INT NOT NULL AUTO_INCREMENT,
 productID INT NOT NULL,
-rating INT NOT NULL,
+accountID INT NOT NULL,
+rating FLOAT NOT NULL,
+title VARCHAR(255) NOT NULL,
 comment VARCHAR(255),
+datePosted DATETIME NOT NULL,
 PRIMARY KEY(ratingID),
-FOREIGN KEY(productID) REFERENCES products(productID)
+FOREIGN KEY(productID) REFERENCES products(productID),
+FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 );
+
+INSERT INTO productRatings
+(productID,accountID,rating,title,comment,datePosted)
+VALUES
+("1","1","5","This is a good piece of cloth","It's so good and silky",current_date()),
+("1","1","1","This is a terrible piece of cloth","The package felt it came straight out of north Korea",current_date());
+
+
+

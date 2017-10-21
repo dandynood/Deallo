@@ -28,6 +28,11 @@ body{
     text-shadow: 2px 0px 2px #000;
 }
 
+.navbar-header{
+    position: relative;
+    z-index: 1;
+}
+
 .navbar-brand>img {
     margin-top: -10px;
     height: auto;

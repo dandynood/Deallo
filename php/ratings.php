@@ -7,17 +7,17 @@
         echo 'failed';
     }         
         $data = json_decode(file_get_contents("php://input")); 
-        $username = urldecode($data->username);
-        $password = $data->password;
-        $sql = "SELECT * FROM userAccounts WHERE email = '$username' AND password = '$password'";
+        $productID = $data->productID; 
 
+        $sql = "SELECT * FROM productRatings WHERE productID = '$productID'";
 
         $result = $conn->query($sql);
 
         if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                echo $row['email'];
-            }
+            $outp = array();
+            $outp[] = $result->fetch_all(MYSQLI_ASSOC);
+
+            echo json_encode($outp);
         }
         else
         {

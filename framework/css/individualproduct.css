@@ -1,27 +1,25 @@
 .rate {
-  border: 1px solid #cccccc;
-  float: left;
-  height: 46px;
-  padding: 0 10px;
+    padding: 0;
+    float: left;
 }
 
 .rate:not(:checked) > input {
-  position: absolute;
-  top: -9999px;
+    display: none;
 }
  
 .rate:not(:checked) > label {
   float: right;
   width: 1em;
-  overflow: hidden;
-  white-space: nowrap;
   cursor: pointer;
-  font-size: 30px;
-  color: #ccc;
+  font-size: 40px;
+  background-color: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
- 
-.rate:not(:checked) > label:before { content: '★ '; }
- 
+
 .rate > input:checked ~ label { color: #ffc700; }
  
 .rate:not(:checked) > label:hover, .rate:not(:checked) > label:hover ~ label { color: #deb217; }
@@ -32,4 +30,96 @@
 {
   background: #4caf50;
   color:white;
+}
+
+.footer-default{
+    position: absolute;
+    bottom: 0;
+}
+
+body{
+    padding-bottom: 163px;
+}
+
+@media(max-width:767px){
+    .footer-default{
+        position: relative;
+    }
+
+    body{
+        padding-bottom: 0;
+    }
+
+}
+
+.productName{
+    margin-top: 0;
+}
+
+.addToCart{
+    background: #4caf50;
+    box-shadow: 0px 3px 2px rgba(0,0,0,0.2);
+    font-size: 18px;
+}
+
+.addToCart:hover{
+    color: white;
+}
+
+.addToCart:active{
+    background: -moz-linear-gradient(top, #d2ff52 0%, #91e842 100%);
+    background: -webkit-linear-gradient(top, #d2ff52 0%,#91e842 100%);
+    background: linear-gradient(to bottom, #d2ff52 0%,#91e842 100%);
+    transform: translateY(3px);
+    color: #11bca4;
+}
+
+.extraDetails{
+    margin-top: 20px;
+}
+
+.details{
+    font-size: 16px;
+}
+
+#review{
+    height:300px;
+}
+
+#commentRateForm .form-group label,
+#commentRateForm .form-group input,
+#commentRateForm .form-group textarea {
+    font-size: 16px;
+}
+
+#commentFormBtns > button{
+    font-size: 16px;
+}
+
+.rating > label{
+    display: inline;
+    width: 1em;
+    font-size: 20px;
+    background-color: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+
+.divider {
+    background: linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.03) 3px,transparent);  
+    height: 20px;
+}
+
+.divider::after{
+    background:linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+    height: 20px;
+    display: block;
+    content: "";
+}
+
+.gold{
+    color: #ffc700 !important;
 }

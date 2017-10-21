@@ -4,46 +4,72 @@
 var app = angular.module("mainApp",
                          ['ngRoute','ngCookies'
                          ,'loginService',
-                         'registerService']);
-app.controller("mainCtrl", function($scope,$window,$interval,$location)
+                         'registerService',
+                          'productSearchService',
+                          'individualProuductService',
+                          'LocalStorageModule']);
+app.controller("mainCtrl", function($scope,$window,$location,$http)
 {
     "use strict";
-    $scope.searchText = "";
-    $scope.categorySelect = "All Categories";
+    $scope.searchItemText = "";
+    $scope.categorySelected = "";
+    $scope.showingResultsFor = "";
     
     $scope.search = function(){
-
+        $scope.gotoProductList($scope.categorySelected,$scope.searchItemText);
     };
     
-             
-        $scope.enableWarning = function(num)
-        {
-            $scope.warningArray[num] = true;
-        };
+    $scope.getCategories = function(){
+        $http.get('php/getCategories.php')
+        .then (
+            function (response) {
+                $scope.categories = response.data;
+            }
+        );
+    };
     
-       $scope.disableWarning =function(num)
-        {
-            $scope.warningArray[num] = false;
-            
-        };
-        
-       
-       $scope.gotoHome = function()
-       {
-           $location.path('/home');
+    $scope.getCategories();
+
+             
+    $scope.enableWarning = function(num)
+    {
+        $scope.warningArray[num] = true;
+    };
+
+   $scope.disableWarning =function(num)
+    {
+        $scope.warningArray[num] = false;
+
+    };
+
+
+   $scope.gotoHome = function()
+   {
+       $location.path('/home');
+   };
+
+   $scope.gotoRegister = function()
+   {
+        $location.path('/register');
+
+   };
+
+   $scope.gotoLogin = function()
+   {
+        $location.path('/login');
+
        };
-       
-       $scope.gotoRegister = function()
-       {
-            $location.path('/register');
-           
-       };
-       
-       $scope.gotoLogin = function()
-       {
-            $location.path('/login');
-           
-       };
+    
+    $scope.gotoProductList = function(category, param){
+        if(category === "") {
+            category = "All";
+        }
+        if(param === ""){
+            param = "index";
+        }
+        $location.path('/productlist/'+category+'/'+param);
+    };
+    
 });
 
 app.config(['$routeProvider', function($routeProvider) 
@@ -61,16 +87,18 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/login', {
         templateUrl: 'template/login.html',
         controller: 'loginCtrl'
+    })  
+    .when('/productlist/:params1/:params2',{
+        templateUrl: 'template/productlist.html',
+        controller: 'productSearchCtrl'
     })
-    .when('/product', {
-        templateUrl: 'template/IndiProduct.html'
+    .when('/product/:id', {
+        templateUrl: 'template/IndiProduct.html',
+        controller: 'individualProuductCtrl'
     })
-    .when('/productlist', {
-        templateUrl: 'template/productlist.html'
-    })
-   
     .otherwise({
         redirectTo: '/home'
     });
     
 }]);
+

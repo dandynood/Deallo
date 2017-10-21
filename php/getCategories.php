@@ -6,18 +6,20 @@
         die("Connection failed: " . $conn->connect_error);
         echo 'failed';
     }         
-        $data = json_decode(file_get_contents("php://input")); 
-        $username = urldecode($data->username);
-        $password = $data->password;
-        $sql = "SELECT * FROM userAccounts WHERE email = '$username' AND password = '$password'";
 
+        $sql = "SELECT * FROM category";
 
         $result = $conn->query($sql);
 
         if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                echo $row['email'];
+           $outp = array();
+            $outp = $result->fetch_all(MYSQLI_ASSOC);
+            foreach($outp as &$v) {
+                $v['categoryID'] = utf8_encode($v['categoryID']);
+                $v['categoryName'] = utf8_encode($v['categoryName']);
             }
+
+            echo json_encode($outp);
         }
         else
         {

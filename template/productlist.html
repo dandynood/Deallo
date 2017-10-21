@@ -1,5 +1,4 @@
-<link href="../framework/css/productlist.css" rel="stylesheet"/>        
-
+<link href="framework/css/productlist.css" rel="stylesheet"/>        
        <!--mobile view -->
 		<div class="container_side m-filter">
 			
@@ -10,31 +9,24 @@
         <div class="row">
 			<div class="col-md-2 alibaba">
 				
-				<h4>Categories</h4>
-				<p>All Results</p>
-				
+				<h4><strong>Categories</strong></h4>		
 				<ul id="categories_list">
-				<li><a href="">Clothing</a></li>
-				<li><a href="">Arts and Crafts</a></li>
-				<li><a href="">Craft Materials</a></li>
+                    <li><a href="#!/productlist/All/{{secondParameter}}">All Results</a></li>
+                    <li data-ng-repeat="cat in categories"><a href="#!/productlist/{{cat.categoryID}}/{{secondParameter}}"><span data-ng-repeat="icon in categoryIcons | filter:{categoryID: cat.categoryID}" class="categoryIcons"><img src="{{icon.link}}" title="Wedding Rings" width="30" height="30"> </span>{{cat.categoryName}}</a></li>
 				</ul>
 				
 				
 					<p><b>PRICE (IN RM)</b></p>
 				
 				<form action="/action_page.php">
-				 RM: <input type="text" name="moneyfrom" maxlength="5" size="1">
-				  to: <input type="text" name="lname" maxlength="5" size="1"><br>
+				 From: <input type="text" name="moneyfrom" maxlength="5" size="1" class="form-control">
+				  To: <input type="text" name="lname" maxlength="5" size="1" class="form-control"><br>
 						
 				</form>
-				<p class="gobtn"><button type="button" class="btn btn-sm button-search" >Search</button></p>
-				
-			
 			<br>
 			
-			<p><b>PRODUCT RATING</b></p>
-			
 			<div class="rate">
+                <p><b>PRODUCT RATING</b></p>
 				<input class="star" type="radio" id="star5" name="rate" value="5" />
 
 				<label  for="star5" title="text">★</label>
@@ -63,47 +55,30 @@
 				
 				<div class="row">
 					<div class="col-md-12">
-					<h4>Showing results for :XXX</h4>
+					<h4>Showing results for : {{showingResultsFor}}</h4>
 					</div>
 				</div>
 				
 				<div class="row">
-					<div class="col-md-3">
+					<div class="text-center col-md-3" data-ng-repeat="product in productSearchResult[0]">
+                        <div class="row">
+                            <div class="col-xs-12">
 							<div class="hovereffect">
-        						<img class="img-responsive pborder" src="images/product_icon.jpg" alt="p1"  >
+        						<img style="margin:0 auto;display:block" class="img-responsive pborder" src="images/product_icon.jpg" alt="p1"  >
 									<div class="overlay">
-										<a class="info" href="#">Buy Now</a>
+										<a class="info" href="#!/product/{{product.productID}}">Buy Now</a>
 									</div>
     						</div>
-					</div>
+                            </div>
+                            <div class="col-xs-12">
+                                <p class="text-center" style="font-size:16.5px;"><b>{{product.productName}}</b></p>
+                                <p class="text-center" style="font-size:15px;color:darkgray">RM{{product.price}}</p>
+                            </div>
+                            </div>
+					</div> 
 					
 
-					<div class="col-md-3">
-								<div class="hovereffect">
-        						<img class="img-responsive pborder" src="images/product_icon.jpg" alt="p2" >
-									<div class="overlay">
-										<a class="info" href="#">Buy Now</a>
-									</div>
-    						</div>
-					</div>
 
-					<div class="col-md-3">
-							<div class="hovereffect">
-        						<img class="img-responsive pborder" src="images/product_icon.jpg" alt="p3" >
-									<div class="overlay">
-										<a class="info" href="#">Buy Now</a>
-									</div>
-    						</div>
-					</div>
-
-					<div class="col-md-3">
-							<div class="hovereffect">
-        						<img class="img-responsive pborder" src="images/product_icon.jpg" alt="p4" >
-									<div class="overlay">
-										<a class="info" href="#">Buy Now</a>
-									</div>
-    						</div>
-					</div>
 				</div>				
 			</div>	
 			</div>
