@@ -23,7 +23,8 @@ angular.module('loginService',[])
                $scope.errorMsg = "";
                $scope.currentLoggedInUser = $cookies.get('user');
                $scope.inputData = [{}];
-               localStorageService.set("loginstatus",true);
+               localStorageService.set("loginstatus",'in');
+               localStorageService.set("userdata",response.data);
                alert(response.data);
                
            }

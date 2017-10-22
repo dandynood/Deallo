@@ -67,15 +67,22 @@
                 <li><a href="">About</a></li>
             </ul>
              <ul class="nav navbar-nav navbar-right" id="loginRegister">
-                <li id="login">
+                <li id="login" data-ng-if="!loggedin">
                     <button data-ng-click="gotoLogin()"  class="btn btn-login navbar-btn" id="login-btn">
                     <span class="glyphicon glyphicon-log-in"></span> Login
                     </button>
                 </li>
-                <li id="register">
+                <li id="register" data-ng-if="!loggedin">
                     <small> New?</small>
                     <button data-ng-click="gotoRegister()"  class="btn btn-register navbar-btn">
                     <span class="glyphicon glyphicon-bookmark"></span> Register
+                    </button>
+                </li>
+                 
+                 <li data-ng-if="loggedin">
+                    <small style="color:white">Hi, {{userdata.firstName}}.</small>
+                    <button data-toggle="modal" data-target="#myModal" class="btn btn-register navbar-btn">
+                    <span class="glyphicon glyphicon-bookmark"></span> Logout
                     </button>
                 </li>
             </ul>
@@ -83,6 +90,29 @@
         </div>
         </div>
       </nav>
+	  
+	  
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Logout Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to log out?</p>
+      </div>
+      <div class="modal-footer">
+        <button data-ng-click="logoutaccount()" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+
+  </div>
+</div>
         
         <div data-ng-view></div>
             

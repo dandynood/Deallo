@@ -17,11 +17,35 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     
     $scope.loggedin = false;
     
-    localStorageService.set("loginstatus",false);
+    $scope.logoutaccount = function()
+    {
+        localStorageService.remove("loginstatus");
+        localStorageService.remove("userdata");
+        $scope.loggedin = false;
+        $scope.userdata= null;
+        
+        //alert("gej");
+    };
+  
+    alert(localStorageService.get("loginstatus"));
+
+ //   localStorageService.set("loginstatus",false);
+        
+
     
     $scope.checkloginstatus = function()
     {
-        $scope.loggedin = localStorageService.get("loginstatus");
+        if(localStorageService.get("loginstatus")=='in')
+            {
+        $scope.loggedin = true;
+        $scope.userdata = localStorageService.get("userdata");
+            }
+        else
+            {
+                        $scope.loggedin = false;
+        $scope.userdata = localStorageService.get("userdata");
+            }
+      
     };
     
     $interval($scope.checkloginstatus,50);
@@ -89,8 +113,7 @@ app.config(['$routeProvider', function($routeProvider)
     "use strict";
     $routeProvider
     .when('/home', {
-        templateUrl: 'template/home-unregistered.html',
-        controller: 'mainCtrl'
+        templateUrl: 'template/home-unregistered.html'
     })
     .when('/register', {
         templateUrl: 'template/register.html',
