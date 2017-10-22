@@ -8,6 +8,7 @@ angular.module('loginService',[])
     $scope.inputData = [{}];
     $scope.inputData.username = "";
     $scope.inputData.password = "";
+    $scope.errorMsg = "";
     
     $scope.login = function(){
         var str = {username: encodeURIComponent($scope.inputData.username), password: encodeURIComponent($scope.inputData.password)};
