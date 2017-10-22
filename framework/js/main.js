@@ -8,12 +8,24 @@ var app = angular.module("mainApp",
                           'productSearchService',
                           'individualProuductService',
                           'LocalStorageModule']);
-app.controller("mainCtrl", function($scope,$window,$location,$http)
+app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval)
 {
     "use strict";
     $scope.searchItemText = "";
     $scope.categorySelected = "";
     $scope.showingResultsFor = "";
+    
+    $scope.loggedin = false;
+    
+    localStorageService.set("loginstatus",false);
+    
+    $scope.checkloginstatus = function()
+    {
+        $scope.loggedin = localStorageService.get("loginstatus");
+    };
+    
+    $interval($scope.checkloginstatus,50);
+    
     
     $scope.search = function(){
         $scope.gotoProductList($scope.categorySelected,$scope.searchItemText);
@@ -78,7 +90,7 @@ app.config(['$routeProvider', function($routeProvider)
     $routeProvider
     .when('/home', {
         templateUrl: 'template/home-unregistered.html',
-        controller: 'loginCtrl'
+        controller: 'mainCtrl'
     })
     .when('/register', {
         templateUrl: 'template/register.html',

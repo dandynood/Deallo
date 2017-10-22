@@ -2,7 +2,7 @@
 /*global angular */
 /*jslint plusplus:true*/
 angular.module('loginService',[])
-.controller("loginCtrl",function($scope, $location, $cookies, $http)
+.controller("loginCtrl",function($scope, $location, $cookies, $http,localStorageService)
 {
     "use strict";
     $scope.inputData = [{}];
@@ -15,14 +15,16 @@ angular.module('loginService',[])
         .then(function(response){
            if(response.data === "failed"){
                $scope.errorMsg = 'Either the username or password is incorrect';
-               alert($scope.errorMsg);
+               //alert($scope.errorMsg);
            } else {
                $cookies.put('user', response.data);
                $location.path("/home");
                $scope.errorMsg = "";
                $scope.currentLoggedInUser = $cookies.get('user');
                $scope.inputData = [{}];
+               localStorageService.set("loginstatus",true);
                alert(response.data);
+               
            }
         });
     };
