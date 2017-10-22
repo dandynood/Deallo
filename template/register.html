@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" data-ng-controller="registerCtrl">
 <div class="col-xs-4"></div>
     <div class="col-xs-4">
         <div class="form-1" style="margin-top:0%;">
@@ -85,7 +85,7 @@
 
 </form>
     <div class="home-buttons">
-            <span onclick="checkThroughDisplay(2,'.form-2','.form-3');turnCircleGreen(2)"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" >Next</span>
+            <span onclick="checkThroughDisplay(2,'.form-2','.form-3');turnCircleGreen(2)"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%" >Next</span>
 
          <p class="form-2-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
 
@@ -150,7 +150,7 @@ data-ng-focus="disableWarning(11)" id="reg-country" />
 </form>
 
 <div class="home-buttons">
-<span onclick="checkThroughDisplay(3,'none','none')"  class="btn align-center inline-block button-next" style="margin-left:30%;margin-top:7%;padding-left:15%;padding-right:15%" data-ng-click="register()" >Register</span>
+<span onclick="checkThroughDisplay(3,'none','none')"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%" data-ng-click="register()" >Register</span>
 <p class="form-3-error text-center" style="visibility:hidden;color:red">Invalid Form field</p>
 </div>
 

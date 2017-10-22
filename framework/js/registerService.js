@@ -19,10 +19,39 @@ angular.module('registerService',[])
     $scope.tel = "";
     $scope.accountType = "Normal";
     
-    var alwaysCheckForm = function()
+    $scope.testertester='test';
+    
+           
+    $scope.warningArray = [];
+    
+    $scope.enableWarning = function(num)
+    {
+        $scope.warningArray[num] = true;
+    };
+
+    $scope.disableWarning =function(num)
+    {
+        $scope.warningArray[num] = false;
+
+    };
+
+        var alwaysCheckForm = function()
     {
         
-       $scope.warningArray = [];
+        $window.warning0 = $scope.warningArray[0];
+        $window.warning1 = $scope.warningArray[1];
+        $window.warning2 = $scope.warningArray[2];
+        $window.warning3 = $scope.warningArray[3];
+        $window.warning4 = $scope.warningArray[4];
+        $window.warning5 = $scope.warningArray[5];
+        $window.warning6 = $scope.warningArray[6];
+        $window.warning7 = $scope.warningArray[7];
+        $window.warning8 = $scope.warningArray[8];
+        $window.warning9 = $scope.warningArray[9];
+        $window.warning10 = $scope.warningArray[10];
+        $window.warning11 = $scope.warningArray[11];
+        
+        
         /** Section 1 **/
         $window.email = $scope.registerform.email.$valid;
         $window.password = $scope.registerform.password.$valid;
@@ -48,18 +77,7 @@ angular.module('registerService',[])
         $window.loginpassword  = $scope.registerform4.loginpassword.$valid;
         
         
-        $window.warning0 = $scope.warningArray[0];
-        $window.warning1 = $scope.warningArray[1];
-        $window.warning2 = $scope.warningArray[2];
-        $window.warning3 = $scope.warningArray[3];
-        $window.warning4 = $scope.warningArray[4];
-        $window.warning5 = $scope.warningArray[5];
-        $window.warning6 = $scope.warningArray[6];
-        $window.warning7 = $scope.warningArray[7];
-        $window.warning8 = $scope.warningArray[8];
-        $window.warning9 = $scope.warningArray[9];
-        $window.warning10 = $scope.warningArray[10];
-        $window.warning11 = $scope.warningArray[11];
+
         
         /* Section Login */
         

@@ -67,16 +67,7 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     $scope.getCategories();
 
              
-    $scope.enableWarning = function(num)
-    {
-        $scope.warningArray[num] = true;
-    };
 
-   $scope.disableWarning =function(num)
-    {
-        $scope.warningArray[num] = false;
-
-    };
 
 
    $scope.gotoHome = function()
