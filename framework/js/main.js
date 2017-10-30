@@ -5,6 +5,7 @@ var app = angular.module("mainApp",
                          ['ngRoute','ngCookies'
                          ,'loginService',
                          'registerService',
+                         'sellingService',
                           'productSearchService',
                           'individualProuductService',
                           'LocalStorageModule']);
