@@ -122,6 +122,10 @@ app.config(['$routeProvider', function($routeProvider)
         templateUrl: 'template/IndiProduct.html',
         controller: 'individualProuductCtrl'
     })
+    .when('/selling', {
+        templateUrl: 'template/sellingdashboard.html',
+        controller: 'sellingCtrl'
+    })
     .otherwise({
         redirectTo: '/home'
     });
