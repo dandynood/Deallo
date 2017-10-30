@@ -87,6 +87,7 @@ rating FLOAT NOT NULL,
 title VARCHAR(255) NOT NULL,
 comment VARCHAR(255),
 datePosted DATETIME NOT NULL,
+discount FLOAT NOT NULL,
 PRIMARY KEY(ratingID),
 FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
@@ -98,5 +99,24 @@ VALUES
 ("1","1","5","This is a good piece of cloth","It's so good and silky",current_date()),
 ("1","1","1","This is a terrible piece of cloth","The package felt it came straight out of north Korea",current_date());
 
+
+CREATE TABLE orders(
+orderID INT AUTO_INCREMENT NOT NULL,
+accountID INT NOT NULL,
+orderDate TIMESTAMP NOT NULL,
+PRIMARY KEY(orderID),
+FOREIGN KEY(accountID) REFERENCES userAccounts(accountID)
+);
+
+CREATE TABLE orderDetails(
+orderDetails INT AUTO_INCREMENT NOT NULL,
+orderID INT NOT NULL,
+productID INT NOT NULL,
+quantity INT NOT NULL,
+orderServed BOOLEAN NOT NULL,
+PRIMARY KEY(orderDetails),
+FOREIGN KEY(productID) REFERENCES products (productID)
+FOREIGN KEY(orderID) REFERENCES orders (orderID)
+);
 
 
