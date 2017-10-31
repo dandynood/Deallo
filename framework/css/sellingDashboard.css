@@ -29,3 +29,24 @@
     border:black solid 1px;
     margin-bottom:0.5%;
 }
+
+.selling-links
+{
+    color:#1ABC9C;
+    font-size:16px;
+    padding-top:5%;
+    padding-bottom:3%;
+    margin-top:3%;
+    cursor: pointer;
+}
+
+.selling-glyphicon
+{
+    color:#1ABC9C;
+    margin-left: 2%;
+}
+
+.inline-block
+{
+    display: inline-block;
+}
