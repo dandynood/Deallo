@@ -1,7 +1,7 @@
 .selling-subtext
 {
     color:#777;
-    font-size:16px;
+    font-size:17px;
 }
 
 .selling-background
@@ -46,7 +46,14 @@
     margin-left: 2%;
 }
 
+
+
 .inline-block
 {
     display: inline-block;
+}
+
+.selling-border-top
+{
+    border-top: 2px solid black;
 }
