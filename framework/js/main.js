@@ -127,6 +127,10 @@ app.config(['$routeProvider', function($routeProvider)
         templateUrl: 'template/sellingdashboard.html',
         controller: 'sellingCtrl'
     })
+    .when('/sellingaddform', {
+        templateUrl: 'template/sellingaddform.html',
+        controller: 'sellingCtrl'
+    })
     .otherwise({
         redirectTo: '/home'
     });
