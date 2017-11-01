@@ -107,6 +107,7 @@ productID INT NOT NULL,
 sellerID INT NOT NULL,
 orderDate TIMESTAMP NOT NULL,
 quantity INT NOT NULL,
+orderStatus BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY(orderID),
 FOREIGN KEY(accountID) REFERENCES userAccounts(accountID),
 FOREIGN KEY(productID) REFERENCES products(productID)
