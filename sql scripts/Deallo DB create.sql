@@ -6,7 +6,7 @@ USE deallo;
 -- -----------------------------------------------------
 CREATE TABLE userAccounts(
 accountID INT NOT NULL AUTO_INCREMENT,
-username VARCHAR(20) NOT NULL,
+username VARCHAR(20) UNIQUE NOT NULL,
 password VARCHAR(20) NOT NULL,
 firstName VARCHAR(20) NOT NULL,
 lastName VARCHAR(20) NOT NULL,
@@ -103,9 +103,14 @@ VALUES
 CREATE TABLE orders(
 orderID INT AUTO_INCREMENT NOT NULL,
 accountID INT NOT NULL,
+productID INT NOT NULL,
+sellerID INT NOT NULL,
 orderDate TIMESTAMP NOT NULL,
+quantity INT NOT NULL,
 PRIMARY KEY(orderID),
-FOREIGN KEY(accountID) REFERENCES userAccounts(accountID)
+FOREIGN KEY(accountID) REFERENCES userAccounts(accountID),
+FOREIGN KEY(productID) REFERENCES products(productID)
+FOREIGN KEY(sellerID) REFERENCES products(accountID)
 );
 
 CREATE TABLE orderDetails(

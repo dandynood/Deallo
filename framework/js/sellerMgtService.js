@@ -1,7 +1,7 @@
 /*jslint white:true */
 /*global angular */
 /*jslint plusplus:true*/
-angular.module('sellerMgtServer',[])
+angular.module('sellerMgtService',[])
 .controller("sellerMgtCtrl",function($scope, $location, $cookies, $http, localStorageService)
 {
     "use strict";
