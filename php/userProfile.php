@@ -7,17 +7,16 @@
         echo 'failed';
     }         
         $data = json_decode(file_get_contents("php://input")); 
-        $productID = $data->productID; 
+        $username = urldecode($data->username);
+        $sql = "SELECT username,firstName,lastName,address,postcode,state,country,email,phoneNumber FROM userAccounts WHERE username = '$username'";
 
-        $sql = "SELECT productratings.*, useraccounts.username FROM productratings INNER JOIN useraccounts ON productratings.accountID=useraccounts.accountID WHERE productID = '$productID'";
 
         $result = $conn->query($sql);
 
         if($result->num_rows > 0){
-            $outp = array();
-            $outp[] = $result->fetch_all(MYSQLI_ASSOC);
-
-            echo json_encode($outp);
+            while($row = $result->fetch_assoc()){
+                echo json_encode($row);
+            }
         }
         else
         {
