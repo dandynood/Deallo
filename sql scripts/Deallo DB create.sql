@@ -27,6 +27,12 @@ VALUES
 ("James Brooke","ongchin","James","Brooke","75, Lorong Keranji 4A2, Tabuan Desa Indah","93350","Sarawak","Malaysia",
 "sheldon.jam.cam@gmail.com","019562578","Normal");
 
+INSERT INTO userAccounts
+(accountID,username,password,firstName,lastName,address,postcode,state,country,email,phoneNumber,accountType)
+VALUES
+("30","MrUglyManWhoIsFatAndUgly","123456","James","Brooke","Jalan Long, 52th tree on the right","93350","Sarawak","Malaysia",
+"sheldon.jam.cam@hotmail.com","019562578","Normal");
+
 -- -----------------------------------------------------
 -- Table category
 -- -----------------------------------------------------
@@ -72,7 +78,7 @@ FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 INSERT INTO products 
 (productName,price,shippingPrice,stock,dateAdded,categoryID,description,extraDetails,accountID)
 VALUES 
-("A piece of cloth","12.00","0.0","10",current_date(),"CLOTH","Your mom is a monkey and she is like super hairy and smelly","also your dad is like mega skinny, 
+("A piece of cloth","12.00","0.0","10",CURRENT_DATE,"CLOTH","Your mom is a monkey and she is like super hairy and smelly","also your dad is like mega skinny, 
 like a stick, like those obelisk in eygpt lol","1"),
 ("A piece of noodles","12.00","0.0","10",CURRENT_DATE,"CLOTH","Some delicious piece of noodle","Please try because it's very delicious and you will like it, I gurantee it lol","1");
 
@@ -96,8 +102,8 @@ FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 INSERT INTO productRatings
 (productID,accountID,rating,title,comment,datePosted)
 VALUES
-("1","1","5","This is a good piece of cloth","It's so good and silky",current_date()),
-("1","1","1","This is a terrible piece of cloth","The package felt it came straight out of north Korea",current_date());
+("1","1","5","This is a good piece of cloth","It's so good and silky",CURRENT_DATE),
+("1","1","1","This is a terrible piece of cloth","The package felt it came straight out of north Korea",CURRENT_DATE);
 
 
 CREATE TABLE orders(
@@ -110,9 +116,16 @@ quantity INT NOT NULL,
 orderStatus BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY(orderID),
 FOREIGN KEY(accountID) REFERENCES userAccounts(accountID),
-FOREIGN KEY(productID) REFERENCES products(productID)
+FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(sellerID) REFERENCES products(accountID)
 );
+
+INSERT INTO orders 
+(accountID,productID,sellerID,orderDate,quantity,orderStatus)
+VALUES
+("30","1","1",CURRENT_DATE,2,0),
+("30","2","1",CURRENT_DATE,1,0),
+("30","3","1",CURRENT_DATE,3,0);
 
 CREATE TABLE orderDetails(
 orderDetails INT AUTO_INCREMENT NOT NULL,
