@@ -1,0 +1,300 @@
+<link href="framework/css/sellingDashboard.css" rel="stylesheet"/>
+
+<div class="row" style="margin-top:3%">
+    <div class="col-xs-12 text-center">
+
+        <h1>Add New Merchandize </h1>
+        <p class="selling-subtext" >Add a new item to be displayed worldwide.</p>
+
+ 
+    </div>  
+</div>
+
+<div class="row" style="margin-top:2%;margin-bottom:5%">
+    <div class="col-xs-4"></div>
+
+    <div class="col-xs-4 text-center">
+                <form name="registerform2" class="form-register">
+                <p class="animate-field animate-field-4" >Product Name</p>
+                <input onfocus="this.placeholder='';animateField('.animate-field-4')" class="align-center inline-block form-control-reg form-first" style="color:black;" placeholder="Product Name"
+                type="text" data-ng-required="true" required="required" name="productname" data-ng-model="productname" data-ng-blur="enableWarning(3)"
+                data-ng-focus="disableWarning(3)" id="reg-productname" />
+                <p class="animate-field animate-field-5" >Product Price (RM)</p>
+                <input onfocus="this.placeholder='';animateField('.animate-field-5')" class="align-center inline-block form-control-reg form-last" style="color:black;" placeholder="Product Price (RM)"
+                type="text" data-ng-required="true" required="required" name="productprice" data-ng-model="productprice" data-ng-blur="enableWarning(4)"
+                data-ng-focus="disableWarning(4)" id="reg-productprice" />
+                <p class="animate-field animate-field-6" >Stock Available</p>
+                <input onfocus="this.placeholder='';animateField('.animate-field-6')" class="align-center inline-block form-control-reg form-tel" style="color:black;" placeholder="Stock Available"
+                type="text" data-ng-required="true" required="required"
+                    data-ng-pattern="/^[0-9]*$/" name="tel" data-ng-model="productstock" data-ng-blur="enableWarning(5)"
+                data-ng-focus="disableWarning(5)" id="reg-productstock" />
+                <p class="animate-field animate-field-7" >Details</p>
+                <textarea class="textarea-details" onfocus="expandtextareadetails();this.placeholder='';animateField('.animate-field-7')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter details for your merchandize" data-ng-model="details"></textarea>
+                <p class="animate-field animate-field-8" >Extra Details</p>
+                <textarea class="textarea-extradetails" onfocus="expandtextareaextradetails();this.placeholder='';animateField('.animate-field-8')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter any extra details" data-ng-model="extradetails"></textarea>
+
+                <span onclick="checkLoginForm();"  class="btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="login()">Add Merchandize</span>
+    </div>
+
+
+    <div class="col-xs-4"></div>
+
+<!--      <p data-ng-model-options="{ updateOn: 'blur'}" data-ng-show="regform.email.$valid == false && warningEmailShow==true" class="text-center"
+        style="margin-top:1%;margin-left:-5%;color:red">Invalid Email</p>
+</div>-->
+
+</form>
+
+<script>
+    
+    function expandtextareadetails()
+    {
+        $('.textarea-details').css("border","2px solid black");
+        $('.textarea-details').animate({rows:8},500);
+
+    }
+
+    function expandtextareaextradetails()
+    {
+        $('.textarea-extradetails').css("border","2px solid black");
+        $('.textarea-extradetails').animate({rows:6},500);
+
+    }
+
+
+  
+    var gloFormIndex = 1;
+    var completion = new Array();
+    completion[1]=false;
+    completion[2]=false;
+    completion[3]=false;
+        
+    function clickCircleNext(destination)
+    {
+        displayNone('.form-'+gloFormIndex.toString(),destination);
+    }
+        
+    function alwaysChangeForm()
+    {
+        
+            if(window.email && window.password && window.repassword)
+            {
+                completion[1] = true; 
+            }
+        
+            if(window.first && window.last && window.tel)
+                    {
+                         completion[2] = true;
+                    }
+        
+        
+            if(window.address1 && window.postcode && window.city && window.state && window.country)
+                    {
+                        completion[3] = true
+                    }
+        
+            if(gloFormIndex==1)
+            {
+                $('.circle-next-1').css('border-color','rgba(34,96,194,0.8)');
+                $('.circle-next-1').css('color','rgba(34,96,194,0.8)');  
+            }else if(gloFormIndex==2)
+            {
+                $('.circle-next-2').css('border-color','rgba(34,96,194,0.8)');
+                $('.circle-next-2').css('color','rgba(34,96,194,0.8)');  
+            }else if(gloFormIndex==3)
+            {
+                $('.circle-next-3').css('border-color','rgba(34,96,194,0.8)');
+                $('.circle-next-3').css('color','rgba(34,96,194,0.8)');  
+            }
+        
+        
+            for(var i=1;i<4;i++)
+            {
+                if(i!=gloFormIndex && !completion[i])
+                {
+                    
+                    var string = ".circle-next-"+i.toString();
+                    $(string).css('border-color','black');
+                    $(string).css('color','black');  
+                    
+                }
+            }
+        
+            if (window.email)
+            {
+                $(".form-email").css('border-color','#39FF14');    
+            }else if(!window.email && window.warning0)
+            {
+                $(".form-email").css('border-color','red'); 
+            }
+        
+            if (window.password)
+            {
+                $(".form-password").css('border-color','#39FF14');    
+            }else if(!window.password && window.warning1)
+            {
+                $(".form-password").css('border-color','red'); 
+            }
+        
+            if (window.repassword)
+            {
+                $(".form-repassword").css('border-color','#39FF14');    
+            }else if(!window.repassword && window.warning2)
+            {
+                $(".form-repassword").css('border-color','red'); 
+            }
+        
+            if (window.first)
+            {
+                $(".form-first").css('border-color','#39FF14');    
+            }else if(!window.first && window.warning3)
+            {
+                $(".form-first").css('border-color','red'); 
+            }
+        
+            if (window.last)
+            {
+                $(".form-last").css('border-color','#39FF14');    
+            }else if(!window.last && window.warning4)
+            {
+                $(".form-last").css('border-color','red'); 
+            }
+        
+            if (window.tel)
+            {
+                $(".form-tel").css('border-color','#39FF14');    
+            }else if(!window.tel && window.warning5)
+            {
+                $(".form-tel").css('border-color','red'); 
+            }
+        
+            if (window.address1)
+            {
+                $(".form-address1").css('border-color','#39FF14');    
+            }else if(!window.address1 && window.warning6)
+            {
+                $(".form-address1").css('border-color','red'); 
+            }
+        
+            
+            if (window.address2)
+            {
+                $(".form-address2").css('border-color','#39FF14');    
+            }else if(!window.address2 && window.warning7)
+            {
+                $(".form-address2").css('border-color','red'); 
+            }
+        
+        
+            if (window.postcode)
+            {
+                $(".form-postcode").css('border-color','#39FF14');    
+            }else if(!window.postcode && window.warning8)
+            {
+                $(".form-postcode").css('border-color','red'); 
+            }
+        
+            
+            if (window.city)
+            {
+                $(".form-city").css('border-color','#39FF14');    
+            }else if(!window.city && window.warning9)
+            {
+                $(".form-city").css('border-color','red'); 
+            }
+        
+            if (window.state)
+            {
+                $(".form-state").css('border-color','#39FF14');    
+            }else if(!window.state && window.warning10)
+            {
+                $(".form-state").css('border-color','red'); 
+            }
+        
+            if (window.country)
+            {
+                $(".form-country").css('border-color','#39FF14');    
+            }else if(!window.country && window.warning11)
+            {
+                $(".form-country").css('border-color','red'); 
+            }
+        
+        
+     }
+        
+        
+    setInterval(alwaysChangeForm,50);
+        
+        
+    function turnCircleGreen(num)
+    {
+        var string = ".circle-next-"+num.toString();
+    
+        $(string).css('border-color', '#39FF14');
+        $(string).css('color', '#39FF14');
+    }
+        
+    function checkThroughDisplay(num,string1,string2)
+        {
+            if(num==1)
+            {
+                if(window.email && window.password && window.repassword)
+                    {
+                        displayNone(string1,string2);
+                    }
+                else
+                    {
+                        $('.form-1-error').css('visibility','visible')
+                    }
+                
+                gloFormIndex=2;
+                    
+            }else if(num==2)
+            {
+                  if(window.first && window.last && window.tel)
+                    {
+                        displayNone(string1,string2);
+                    }
+                else
+                    {
+                        $('.form-2-error').css('visibility','visible');
+                    }
+                
+                 gloFormIndex=3;
+                
+            }else if (num==3)
+                {
+                    if(window.address1 && window.postcode && window.city && window.state && window.country)
+                    {
+                        $('.circle-next-3').css('border-color','#39FF14');  
+                        $('.circle-next-3').css('color','#39FF14');  
+                        $('.form-3').css('display','none');
+                        $('.form-complete').css('display','block');
+                        $('.form-complete').animate({marginTop:'25%',marginBottom:'60%',opacity:1},500);
+                        $('.form-indi').css('display','none');
+                    }
+                }
+        }
+    function displayNone(stringsource,stringtarget)
+    {
+      
+       $(stringsource).animate({opacity:0},1000);
+       setTimeout(function(){$(stringsource).css('display','none');},500);
+    
+     
+    
+       setTimeout(function(){   
+        $(stringtarget).css('display',"block");
+        $(stringtarget).css('opacity',"1");
+      //$(stringtarget).animate({opacity:1},500);
+    },500);
+    
+    }
+    
+    function animateField(string)
+    {
+    $(string).css("visibility","visible");
+    $(string).animate({marginBottom:'-2%',marginTop:'3%',fontSize:'16px'},300);
+    }
+    
+    </script>

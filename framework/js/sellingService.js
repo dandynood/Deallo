@@ -5,5 +5,5 @@ angular.module('sellingService',[])
 .controller("sellingCtrl",function($scope, $location, $interval, $window, $http)
 {
     "use strict";
-   
+
 });
