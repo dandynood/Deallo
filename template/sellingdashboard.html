@@ -61,17 +61,18 @@
 
      </div>
 
+     <div data-ng-repeat="m in sellerProducts">
      <div class="row selling-content">
-
-            <div class="col-xs-4 "  >      
-                <h5>A piece of cloth</h5>
+      
+            <div class="col-xs-4 " >      
+                <h5>{{m.productName}} </h5>
             </div>
     
             <div class="col-xs-2 " >          
-                <h5>RM12</h5>
+                <h5>RM{{m.price}}</h5>
             </div>
             <div class="col-xs-2 " >        
-                <h5>5</h5>
+                <h5>{{m.stock}}</h5>
             </div>
     
             <div class="col-xs-4 " >     
@@ -81,6 +82,9 @@
             </div>
 
       </div>
+      </div>
+
+      <!--
 
       <div class="row selling-content ">
            
@@ -103,6 +107,7 @@
    
       </div>
 
+    -->
 
       <div class="row selling-instruction " style="margin-bottom:5%">
 
