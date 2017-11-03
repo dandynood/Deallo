@@ -7,9 +7,9 @@
         echo 'failed';
     }         
         $data = json_decode(file_get_contents("php://input")); 
-        $productID = $data->productID; 
+        $accountID = urldecode($data->accountID);
+        $sql = "SELECT * FROM products WHERE accountID ='$accountID'";
 
-        $sql = "SELECT productratings.*, useraccounts.username FROM productratings INNER JOIN useraccounts ON productratings.accountID=useraccounts.accountID WHERE productID = '$productID'";
 
         $result = $conn->query($sql);
 

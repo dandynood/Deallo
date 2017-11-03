@@ -1,4 +1,4 @@
-CREATE DATABASE deallo;
+﻿CREATE DATABASE deallo;
 USE deallo;
 
 -- -----------------------------------------------------
@@ -6,7 +6,7 @@ USE deallo;
 -- -----------------------------------------------------
 CREATE TABLE userAccounts(
 accountID INT NOT NULL AUTO_INCREMENT,
-username VARCHAR(20) NOT NULL,
+username VARCHAR(20) UNIQUE NOT NULL,
 password VARCHAR(20) NOT NULL,
 firstName VARCHAR(20) NOT NULL,
 lastName VARCHAR(20) NOT NULL,
@@ -56,6 +56,7 @@ productID INT NOT NULL AUTO_INCREMENT,
 productName VARCHAR(255) NOT NULL,
 price FLOAT NOT NULL,
 shippingPrice FLOAT NOT NULL,
+discount FLOAT NOT NULL,
 stock INT NOT NULL,
 dateAdded DATETIME NOT NULL,
 categoryID VARCHAR(5) NOT NULL,
@@ -98,5 +99,30 @@ VALUES
 ("1","1","5","This is a good piece of cloth","It's so good and silky",current_date()),
 ("1","1","1","This is a terrible piece of cloth","The package felt it came straight out of north Korea",current_date());
 
+
+CREATE TABLE orders(
+orderID INT AUTO_INCREMENT NOT NULL,
+accountID INT NOT NULL,
+productID INT NOT NULL,
+sellerID INT NOT NULL,
+orderDate TIMESTAMP NOT NULL,
+quantity INT NOT NULL,
+orderStatus BOOLEAN NOT NULL DEFAULT 0,
+PRIMARY KEY(orderID),
+FOREIGN KEY(accountID) REFERENCES userAccounts(accountID),
+FOREIGN KEY(productID) REFERENCES products(productID)
+FOREIGN KEY(sellerID) REFERENCES products(accountID)
+);
+
+CREATE TABLE orderDetails(
+orderDetails INT AUTO_INCREMENT NOT NULL,
+orderID INT NOT NULL,
+productID INT NOT NULL,
+quantity INT NOT NULL,
+orderServed BOOLEAN NOT NULL,
+PRIMARY KEY(orderDetails),
+FOREIGN KEY(productID) REFERENCES products (productID)
+FOREIGN KEY(orderID) REFERENCES orders (orderID)
+);
 
 

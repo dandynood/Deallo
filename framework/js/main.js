@@ -5,9 +5,10 @@ var app = angular.module("mainApp",
                          ['ngRoute','ngCookies'
                          ,'loginService',
                          'registerService',
-                         'sellingService',
                           'productSearchService',
                           'individualProuductService',
+                          'userProfileService',
+                          'sellerMgtService',
                           'LocalStorageModule']);
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval)
 {
@@ -27,8 +28,7 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
         
         //alert("gej");
     };
-  
-    alert(localStorageService.get("loginstatus"));
+
 
  //   localStorageService.set("loginstatus",false);
         
@@ -36,7 +36,7 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     
     $scope.checkloginstatus = function()
     {
-        if(localStorageService.get("loginstatus")=='in')
+        if(localStorageService.get("loginstatus")==='in')
             {
         $scope.loggedin = true;
         $scope.userdata = localStorageService.get("userdata");
@@ -123,13 +123,16 @@ app.config(['$routeProvider', function($routeProvider)
         templateUrl: 'template/IndiProduct.html',
         controller: 'individualProuductCtrl'
     })
-    .when('/selling', {
+    .when('/user/:username',{
+        controller: 'userProfileCtrl'
+    })
+    .when('/sell', {
         templateUrl: 'template/sellingdashboard.html',
-        controller: 'sellingCtrl'
+        controller: 'sellerMgtCtrl'
     })
     .when('/sellingaddform', {
         templateUrl: 'template/sellingaddform.html',
-        controller: 'sellingCtrl'
+        controller: 'sellerMgtCtrl'
     })
     .otherwise({
         redirectTo: '/home'
