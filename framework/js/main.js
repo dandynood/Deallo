@@ -5,7 +5,6 @@ var app = angular.module("mainApp",
                          ['ngRoute','ngCookies'
                          ,'loginService',
                          'registerService',
-                         'sellingService',
                           'productSearchService',
                           'individualProuductService',
                           'userProfileService',
@@ -127,9 +126,13 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/user/:username',{
         controller: 'userProfileCtrl'
     })
+    .when('/sell', {
+        templateUrl: 'template/sellingdashboard.html',
+        controller: 'sellerMgtCtrl'
+    })
     .when('/sellingaddform', {
         templateUrl: 'template/sellingaddform.html',
-        controller: 'sellingCtrl'
+        controller: 'sellerMgtCtrl'
     })
     .otherwise({
         redirectTo: '/home'

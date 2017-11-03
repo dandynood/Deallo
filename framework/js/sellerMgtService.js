@@ -5,7 +5,7 @@ angular.module('sellerMgtService',[])
 .controller("sellerMgtCtrl",function($scope, $location, $cookies, $http, localStorageService)
 {
     "use strict";
-    $scope.accountID;
+    $scope.accountID = 1;
     
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
@@ -13,8 +13,10 @@ angular.module('sellerMgtService',[])
     .then(function(response){
        if(response.data === "failed"){
            $scope.noResult = "Server Error: We unfortunately can't retrieve your products!";
+           alert($scope.noResult);
        } else {
            $scope.sellerProducts = response.data;
+           console.log($scope.sellerProducts);
        }});
     };
     
