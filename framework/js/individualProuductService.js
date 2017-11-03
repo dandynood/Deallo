@@ -13,6 +13,7 @@ indiProduct.controller("individualProuductCtrl",function($scope, $location, $htt
     .then(function(response){
        if(response.data === "failed"){
            $scope.errorMsg = "Can't seem to retrieve info on this product! Sorry";
+           alert($scope.errorMsg);
        } else {
            $scope.product = response.data[0];
        }});
@@ -56,7 +57,10 @@ indiProduct.controller("individualProuductCtrl",function($scope, $location, $htt
     };
     
     $scope.checkReview = function(){
-
+        console.log($scope.reviewForm.reviewTitle);
+        console.log($scope.reviewForm.review);
+        console.log($scope.reviewForm.reviewRating);
+        console.log($scope.firstParameter);
     };
     
     $scope.postReview = function(){
@@ -66,25 +70,13 @@ indiProduct.controller("individualProuductCtrl",function($scope, $location, $htt
             title: encodeURIComponent($scope.reviewTitle),
             comment: encodeURIComponent($scope.review),
             rating: encodeURIComponent($scope.reviewRating)};
-        $http({method: 'POST', url:'php/addRating.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
+        $http({method: 'POST', url:'php/searchIndi.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
         .then(function(response){
         if(response.data === "failed"){
            $scope.errorMsg = "Can't seem to post your review! Sorry.";
+           alert($scope.errorMsg);
         } else {
             $scope.postSuccess = "You submitted your review successfully!";
-        }});
-        
-    };
-    
-    $scope.deleteReview = function(id){
-        var str = {
-            ratingID: encodeURIComponent(id)};
-        $http({method: 'POST', url:'php/deleteRating.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
-        .then(function(response){
-        if(response.data === "failed"){
-           $scope.errorMsg = "Can't seem to delete your review! Sorry.";
-        } else {
-            $scope.postSuccess = "You deleted your review successfully!";
         }});
         
     };

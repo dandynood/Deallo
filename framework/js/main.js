@@ -7,8 +7,6 @@ var app = angular.module("mainApp",
                          'registerService',
                           'productSearchService',
                           'individualProuductService',
-                          'userProfileService',
-                          'sellerMgtService',
                           'LocalStorageModule']);
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval)
 {
@@ -28,7 +26,8 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
         
         //alert("gej");
     };
-
+  
+    alert(localStorageService.get("loginstatus"));
 
  //   localStorageService.set("loginstatus",false);
         
@@ -36,7 +35,7 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     
     $scope.checkloginstatus = function()
     {
-        if(localStorageService.get("loginstatus")==='in')
+        if(localStorageService.get("loginstatus")=='in')
             {
         $scope.loggedin = true;
         $scope.userdata = localStorageService.get("userdata");
@@ -122,9 +121,6 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/product/:id', {
         templateUrl: 'template/IndiProduct.html',
         controller: 'individualProuductCtrl'
-    })
-    .when('/user/:username',{
-        controller: 'userProfileCtrl'
     })
     .otherwise({
         redirectTo: '/home'
