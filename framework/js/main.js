@@ -126,12 +126,16 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/user/:username',{
         controller: 'userProfileCtrl'
     })
-    .when('/sell', {
+    .when('/selling', {
         templateUrl: 'template/sellingdashboard.html',
         controller: 'sellerMgtCtrl'
     })
     .when('/sellingaddform', {
         templateUrl: 'template/sellingaddform.html',
+        controller: 'sellerMgtCtrl'
+    })
+    .when('/sellingeditform', {
+        templateUrl: 'template/sellingeditform.html',
         controller: 'sellerMgtCtrl'
     })
     .otherwise({
