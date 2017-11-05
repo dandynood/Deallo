@@ -156,27 +156,29 @@
                         </div>     
         </div>
 
+        <div data-ng-repeat="o in buyerOrders">
         <div class="row selling-content">
                 
             <div class="col-xs-3 "  >      
-                 <h5>A piece of cloth</h5>
+                 <h5>{{o.productName}}</h5>
             </div>
                     
             <div class="col-xs-2 " >          
-                <h5>2</h5>
+                <h5>{{o.quantity}}</h5>
             </div>
             <div class="col-xs-2 " >        
-                <h5>+60128866650</h5>
+                <h5>{{o.phoneNumber}}</h5>
             </div>
 
             <div class="col-xs-3 " >        
-                <h5>23, Jalan Deallo, Lorong James 5, 93350 Kuching.</h5>
+                <h5>{{o.address}}</h5>
             </div>
                     
             <div class="col-xs-1" >     
                 <div style="margin-left:0%" type="button" data-toggle="modal" data-target="#shippingModal" class="btn btn-selling">DELIVERED</div>
             </div>
                 
+        </div>
         </div>
 
         <div class="row selling-instruction " style="margin-bottom:5%">

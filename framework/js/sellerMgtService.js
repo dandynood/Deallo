@@ -7,6 +7,7 @@ angular.module('sellerMgtService',[])
     "use strict";
     $scope.accountID = 1;
     $scope.sellerProducts = null;
+    $scope.buyerOrders = null;
     
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
@@ -26,4 +27,26 @@ angular.module('sellerMgtService',[])
     
     console.log($scope.getSellersProducts());
     console.log($scope.sellerProducts);
+
+    $scope.getBuyerOrders = function(){
+
+        var str = {accountID: encodeURIComponent($scope.accountID)};
+        $http({method: 'POST', url:'php/getOrders.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
+        .then(function(response){
+           if(response.data === "failed"){
+               $scope.noResult = "Server Error: We unfortunately can't retrieve your products!";
+                alert($scope.noResult);
+           } else {
+               $scope.buyerOrders = response.data[0];
+               console.log(response.data[0]);
+               return response.data[0];
+            //   console.log($scope.sellerProducts[0]);
+          
+           }});
+
+
+
+    };
+
+    $scope.getBuyerOrders();
 });
