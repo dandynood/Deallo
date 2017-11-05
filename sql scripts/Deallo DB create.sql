@@ -1,4 +1,4 @@
-﻿CREATE DATABASE deallo;
+CREATE DATABASE deallo;
 USE deallo;
 
 -- -----------------------------------------------------
@@ -6,7 +6,7 @@ USE deallo;
 -- -----------------------------------------------------
 CREATE TABLE userAccounts(
 accountID INT NOT NULL AUTO_INCREMENT,
-username VARCHAR(20) UNIQUE NOT NULL,
+username VARCHAR(255) UNIQUE NOT NULL,
 password VARCHAR(20) NOT NULL,
 firstName VARCHAR(20) NOT NULL,
 lastName VARCHAR(20) NOT NULL,
@@ -76,11 +76,11 @@ FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 );
 
 INSERT INTO products 
-(productName,price,shippingPrice,stock,dateAdded,categoryID,description,extraDetails,accountID)
+(productName,price,shippingPrice,discount,stock,dateAdded,categoryID,description,extraDetails,accountID)
 VALUES 
-("A piece of cloth","12.00","0.0","10",CURRENT_DATE,"CLOTH","Your mom is a monkey and she is like super hairy and smelly","also your dad is like mega skinny, 
+("A piece of cloth","12.00","0.0","0","10",CURRENT_DATE,"CLOTH","Your mom is a monkey and she is like super hairy and smelly","also your dad is like mega skinny, 
 like a stick, like those obelisk in eygpt lol","1"),
-("A piece of noodles","12.00","0.0","10",CURRENT_DATE,"CLOTH","Some delicious piece of noodle","Please try because it's very delicious and you will like it, I gurantee it lol","1");
+("A piece of noodles","12.00","0.0","0","10",CURRENT_DATE,"CLOTH","Some delicious piece of noodle","Please try because it's very delicious and you will like it, I gurantee it lol","1");
 
 
 -- -----------------------------------------------------
@@ -124,18 +124,5 @@ INSERT INTO orders
 (accountID,productID,sellerID,orderDate,quantity,orderStatus)
 VALUES
 ("30","1","1",CURRENT_DATE,2,0),
-("30","2","1",CURRENT_DATE,1,0),
-("30","3","1",CURRENT_DATE,3,0);
-
-CREATE TABLE orderDetails(
-orderDetails INT AUTO_INCREMENT NOT NULL,
-orderID INT NOT NULL,
-productID INT NOT NULL,
-quantity INT NOT NULL,
-orderServed BOOLEAN NOT NULL,
-PRIMARY KEY(orderDetails),
-FOREIGN KEY(productID) REFERENCES products (productID)
-FOREIGN KEY(orderID) REFERENCES orders (orderID)
-);
-
+("30","2","1",CURRENT_DATE,1,0);
 
