@@ -7,18 +7,13 @@
         
     }         
         $data = json_decode(file_get_contents("php://input"));
-        $productID = urldecode($data->productID);
-        $productName = urldecode($data->productName);
-        $price = urldecode($data->price);
-        $shippingPrice = urldecode($data->shippingPrice);
-        $discount = urldecode($data->discount);
-        $stock = urldecode($data->stock);
+        $accountID = urldecode($data->accountID);
+        $address = urldecode($data->productID);
+        $email = urldecode($data->productName);
+        $phoneNumber = urldecode($data->price);
 
-        $categoryID = urldecode($data->categoryID);
-        $description = urldecode($data->description);
-        $extraDetails = urldecode($data->extraDetails);
             
-        $sql = "UPDATE userAccounts SET productName='$productName',price='$price',shippingPrice='$shippingPrice',discount='$discount',stock='$stock',categoryID='$categoryID',description='$description',extraDetails='$extraDetails' WHERE accountID='$accountID'";
+        $sql = "UPDATE userAccounts SET address='$address',email='$email',phonenumber='$phoneNumber' WHERE accountID='$accountID'";
 
 
         $result = $conn->query($sql);
