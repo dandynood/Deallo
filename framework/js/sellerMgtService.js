@@ -9,6 +9,8 @@ angular.module('sellerMgtService',[])
     $scope.sellerProducts = null;
     $scope.buyerOrders = null;
     $scope.sellerHistory = null;
+    $scope.pendingTransaction = null;
+    $scope.totalRevenue = 0.00;
     
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
@@ -21,8 +23,6 @@ angular.module('sellerMgtService',[])
            $scope.sellerProducts = response.data[0];
            console.log(response.data[0]);
            return response.data[0];
-        //   console.log($scope.sellerProducts[0]);
-      
        }});
     };
     
@@ -30,7 +30,6 @@ angular.module('sellerMgtService',[])
     console.log($scope.sellerProducts);
 
     $scope.getBuyerOrders = function(){
-
         var str = {accountID: encodeURIComponent($scope.accountID)};
         $http({method: 'POST', url:'php/getOrders.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
         .then(function(response){
@@ -39,18 +38,13 @@ angular.module('sellerMgtService',[])
                 alert($scope.noResult);
            } else {
                $scope.buyerOrders = response.data[0];
+               $scope.pendingTransaction = response.data[0].length;
                console.log(response.data[0]);
                return response.data[0];
-            //   console.log($scope.sellerProducts[0]);
-          
            }});
-
-
-
     };
 
     $scope.getBuyerOrders();
-
 
     $scope.getSellerHistory = function()
     {
@@ -64,16 +58,27 @@ angular.module('sellerMgtService',[])
            } else {
                $scope.sellerHistory = response.data[0];
                console.log(response.data[0]);
+            $scope.calculateRevenue(response.data[0]);
                
                return response.data[0];
             //   console.log($scope.sellerProducts[0]);
           
            }});
-
-
-
-
     };
 
     $scope.getSellerHistory();
+
+
+
+    $scope.calculateRevenue = function(object)
+    {
+        for (var i =0 ; object.length;i++)
+            {
+                if(object[i].sales!=null)
+                {
+                   $scope.totalRevenue = $scope.totalRevenue + parseFloat(object[i].sales);
+                }
+            }
+        
+    }
 });

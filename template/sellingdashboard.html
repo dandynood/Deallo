@@ -6,10 +6,10 @@
         <h1>Selling Dashboard </h1>
         <p class="selling-subtext" >Track and improve your buisness.</p>
 
-        <p style="display:inline-block;color:black;font-size:17px;font-weight:bold;margin-right:.5%;" >RM0</p><p style="display:inline-block" class="selling-subtext">  total traded.</p>
+        <p style="display:inline-block;color:black;font-size:17px;font-weight:bold;margin-right:.5%;" >RM{{totalRevenue}}</p><p style="display:inline-block" class="selling-subtext">  total traded.</p>
     
         <div>
-        <p style="display:inline-block;color:black;font-size:17px;font-weight:bold;margin-right:.5%;margin-bottom:2%" >0</p><p style="display:inline-block" class="selling-subtext">  pending transactions.</p>
+        <p style="display:inline-block;color:black;font-size:17px;font-weight:bold;margin-right:.5%;margin-bottom:2%" >{{pendingTransaction}}</p><p style="display:inline-block" class="selling-subtext">  pending transactions.</p>
         </div
         <div class="row" >
             <div class="col-xs-5">
@@ -214,7 +214,7 @@
                             <h4>Transaction Date</h4>
                         </div>
                         <div class="col-xs-2" >        
-                            <h4>Individual Price</h4>
+                            <h4>Individual Price (Discount)</h4>
                         </div>
                 
                         <div class="col-xs-2" >
@@ -222,7 +222,7 @@
                         </div>
 
                         <div class="col-xs-2" >     
-                            <h4>Total Revenue</h4> 
+                            <h4>Total Revenue </h4> 
                         </div>     
         </div>
 
@@ -238,7 +238,7 @@
                         <h5>{{h.orderDate}}</h5>
                     </div>
                     <div class="col-xs-2 " >        
-                        <h5>{{h.price}}</h5>
+                        <h5>{{h.price}} ({{h.discount}}%)</h5>
                     </div>
 
                     <div class="col-xs-2 " >        
