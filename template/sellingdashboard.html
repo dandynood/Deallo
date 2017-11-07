@@ -377,6 +377,10 @@
 
         var graphDataLine = new Array();
         var graphDataHist = new Array();
+        var graphDataIndi = new Array();
+
+        var graphDataIndiEval = "[{name: 'All',data: graphDataLine } ";
+
         for (var i=0; i< window.graphPlotLine.length; i++)
         {
             graphDataLine[i] = [Date.UTC(window.graphPlotLine[i][0],window.graphPlotLine[i][1],window.graphPlotLine[i][2]),window.graphPlotLine[i][3]]
@@ -386,6 +390,35 @@
         {
             graphDataHist[i] = [Date.UTC(window.graphPlotHist[i][0],window.graphPlotHist[i][1],window.graphPlotHist[i][2]),window.graphPlotHist[i][3]]
         }
+
+        for (var i=0; i< window.graphPlotIndi.length; i++)
+        {
+         
+                graphDataIndi[i] = window.graphPlotIndi[i][2];  
+
+                graphDataIndiEval += ",{ name: '"+window.graphPlotIndi[i][1].toString()+"' , data:[";
+
+                
+
+                for(var x=0; x < window.graphPlotIndi[i][2].length; x++)
+                {
+                
+                    graphDataIndiEval += "["
+                    graphDataIndiEval +=  window.graphPlotIndi[i][2][x].toString();
+                    graphDataIndiEval += "],";
+                }
+                graphDataIndiEval = graphDataIndiEval.substring(0,graphDataIndiEval.length-1);
+
+                graphDataIndiEval += "]}"
+
+        
+        }
+
+        graphDataIndiEval += "]";
+
+        console.log(graphDataIndiEval);
+
+        
 
       Highcharts.chart('graph-line', {
         chart: {
@@ -417,12 +450,8 @@
                 enableMouseTracking: false
             }
         },
-        series: [{
-            name: 'All',
-            data: graphDataLine
-        
-        }]
-    });
+        series: eval(graphDataIndiEval)
+      });
 
     Highcharts.chart('graph-hist', {
     chart: {
@@ -462,10 +491,10 @@
         }
     },
     series: [{
-        name: 'Tokyo',
+        name: 'All',
         data: graphDataHist
-
-    }]
+        
+    }] 
 });
 
     },1000);
