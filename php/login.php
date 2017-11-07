@@ -9,7 +9,7 @@
         $data = json_decode(file_get_contents("php://input")); 
         $username = urldecode($data->username);
         $password = $data->password;
-        $sql = "SELECT email,firstName FROM userAccounts WHERE email = '$username' AND password = '$password'";
+        $sql = "SELECT accountID,email,firstName FROM userAccounts WHERE email = '$username' AND password = '$password'";
 
 
         $result = $conn->query($sql);

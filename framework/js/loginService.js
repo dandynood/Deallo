@@ -25,7 +25,7 @@ angular.module('loginService',[])
                $scope.inputData = [{}];
                localStorageService.set("loginstatus",'in');
                localStorageService.set("userdata",response.data);
-               alert(response.data);
+               console.log("userdata:"+response.data);
                
            }
         });

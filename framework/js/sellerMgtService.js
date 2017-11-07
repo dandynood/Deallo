@@ -4,8 +4,14 @@
 angular.module('sellerMgtService',[])
 .controller("sellerMgtCtrl",function($scope, $location,$window,$interval, $cookies, $http, localStorageService)
 {
-    "use strict";
-    $scope.accountID = 1;
+    "use strict"
+
+  
+
+    if(localStorageService.get("userdata")){}
+    else{  $location.path('/home');}
+
+    $scope.accountID = localStorageService.get("userdata").accountID;
     $scope.sellerProducts = null;
     $scope.buyerOrders = null;
     $scope.sellerHistory = null;
@@ -31,6 +37,8 @@ angular.module('sellerMgtService',[])
            return response.data[0];
        }});
     };
+
+
     
     console.log($scope.getSellersProducts());
     console.log($scope.sellerProducts);
@@ -65,12 +73,10 @@ angular.module('sellerMgtService',[])
                $scope.sellerHistory = response.data[0];
                console.log(response.data[0]);
             $scope.calculateRevenue(response.data[0]);
-
-            alert("asdasd");
             $scope.plotGraph(response.data[0]);
                
             return response.data[0];
-            //   console.log($scope.sellerProducts[0]);
+          
           
            }});
     };
@@ -108,7 +114,7 @@ angular.module('sellerMgtService',[])
         {
                 currentRevenueIndi[x]=0;
         }
-        
+
         for(var i=0; i< object.length;i++)
         {
             currentRevenue = currentRevenue + parseFloat(object[i].sales);
