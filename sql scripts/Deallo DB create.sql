@@ -1,4 +1,4 @@
--- CREATE DATABASE deallo;
+CREATE DATABASE deallo;
 USE deallo;
 
 -- -----------------------------------------------------
@@ -125,12 +125,14 @@ INSERT INTO orders
 VALUES
 ("1","30","1","1",CURRENT_DATE,2,0),
 ("2","30","2","1",CURRENT_DATE,1,0);
+("3","30","2","1",CURRENT_DATE,1,1);
+("4","30","1","1",CURRENT_DATE,2,1);
 
 
 CREATE TABLE sales(
-orderID INT NOT NULL,
-productID INT NOT NULL,
-sales FLOAT NOT NULL,
+orderID INT NOT NULL
+productID INT NOT NULL
+sales FLOAT NOT NULL
 PRIMARY KEY(orderID, productID),
 FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(orderID) REFERENCES products(orderID)
@@ -141,3 +143,19 @@ INSERT INTO sales
 VALUES
 ("1","1","24.00"),
 ("2","2","12.00");
+("3","2","12.00");
+("4","2","24.00");
+
+CREATE TABLE carts(
+accountID INT NOT NULL,
+productID INT NOT NULL,
+quantity INT NOT NULL,
+price INT NOT NULL,
+PRIMARY(accountID, productID)
+FOREIGN KEY(productID) REFERENCES products(productID),
+FOREIGN KEY(accountID) REFERENCES useraccounts(accountID)
+);
+
+
+
+
