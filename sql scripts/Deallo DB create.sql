@@ -114,15 +114,30 @@ sellerID INT NOT NULL,
 orderDate TIMESTAMP NOT NULL,
 quantity INT NOT NULL,
 orderStatus BOOLEAN NOT NULL DEFAULT 0,
-PRIMARY KEY(orderID),
+PRIMARY KEY(orderID, productID),
 FOREIGN KEY(accountID) REFERENCES userAccounts(accountID),
 FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(sellerID) REFERENCES products(accountID)
 );
 
 INSERT INTO orders 
-(accountID,productID,sellerID,orderDate,quantity,orderStatus)
+(orderID,accountID,productID,sellerID,orderDate,quantity,orderStatus)
 VALUES
-("30","1","1",CURRENT_DATE,2,0),
-("30","2","1",CURRENT_DATE,1,0);
+("1","30","1","1",CURRENT_DATE,2,0),
+("2","30","2","1",CURRENT_DATE,1,0);
 
+
+CREATE TABLE sales(
+orderID INT NOT NULL
+productID INT NOT NULL
+sales FLOAT NOT NULL
+PRIMARY KEY(orderID, productID),
+FOREIGN KEY(productID) REFERENCES products(productID),
+FOREIGN KEY(orderID) REFERENCES products(orderID)
+);
+
+INSERT INTO sales 
+(orderID,productID,sales)
+VALUES
+("1","1","24.00"),
+("2","2","12.00");
