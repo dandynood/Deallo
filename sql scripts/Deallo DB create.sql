@@ -1,4 +1,4 @@
-CREATE DATABASE deallo;
+-- CREATE DATABASE deallo;
 USE deallo;
 
 -- -----------------------------------------------------
@@ -128,9 +128,9 @@ VALUES
 
 
 CREATE TABLE sales(
-orderID INT NOT NULL
-productID INT NOT NULL
-sales FLOAT NOT NULL
+orderID INT NOT NULL,
+productID INT NOT NULL,
+sales FLOAT NOT NULL,
 PRIMARY KEY(orderID, productID),
 FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(orderID) REFERENCES products(orderID)
