@@ -246,7 +246,7 @@
                     </div>
 
                     <div class="col-xs-2 " >        
-                        <h5 class="selling-revenue">{{h.sales}}</h5>
+                        <h5 class="selling-revenue">{{h.sales}}{{graphRevenue}}{{graphDate}}</h5>
                     </div>
             
             </div>
@@ -344,18 +344,31 @@
 
 <script>
 
+
+     setTimeout(function(){ 
+
+        var graphData = new Array();
+        for (var i=0; i< window.graphPlot.length; i++)
+        {
+            graphData[i] = [Date.UTC(window.graphPlot[i][0],window.graphPlot[i][1],window.graphPlot[i][2]),window.graphPlot[i][3]]
+        }
+
       Highcharts.chart('container', {
         chart: {
             type: 'line'
         },
         title: {
-            text: 'Monthly Sales Revenue'
+            text: 'Total Sales Revenue'
         },
         subtitle: {
             text: 'Source: Deallo.com'
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            type: 'datetime',
+    
+        title: {
+            text: 'Date'
+        }
         },
         yAxis: {
             title: {
@@ -371,12 +384,12 @@
             }
         },
         series: [{
-            name: 'A piece of noodle',
-            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }, {
-            name: 'A piece of cloth',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            name: 'All',
+            data: graphData
+        
         }]
     });
+
+    },1000);
 
 </script>
