@@ -11,8 +11,8 @@ angular.module('sellerMgtService',[])
     $scope.sellerHistory = null;
     $scope.pendingTransaction = null;
     $scope.totalRevenue = 0.00;
-    $scope.graphPlot = new Array();
-    $scope.graphDate = new Array();
+    $scope.graphPlotLine = new Array();
+    $scope.graphPlotHist = new Array();
     
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
@@ -96,12 +96,23 @@ angular.module('sellerMgtService',[])
         
             var date = dateobject[0].split("-");
 
-            $scope.graphPlot[i]= [parseInt(date[0]),parseInt(date[1]),parseInt(date[2]),currentRevenue];
+            $scope.graphPlotLine[i]= [parseInt(date[0]),parseInt(date[1]),parseInt(date[2]),currentRevenue];
         }
+
+        for(var i=0; i< object.length;i++)
+            {
+                currentRevenue = currentRevenue + parseFloat(object[i].sales);
+                var dateobject = object[i].orderDate.split(" ");
+            
+                var date = dateobject[0].split("-");
+    
+                $scope.graphPlotHist[i]= [parseInt(date[0]),parseInt(date[1]),parseInt(date[2]),parseFloat(object[i].sales)];
+            }
 
     }
 
-        $window.graphPlot = $scope.graphPlot
+        $window.graphPlotLine = $scope.graphPlotLine;
+        $window.graphPlotHist = $scope.graphPlotHist;
         $window.graphDate = $scope.graphDate;
   
 
