@@ -1,0 +1,97 @@
+<link href="framework/css/userprofile.css" rel="stylesheet"/>
+	<div class="container-fluid">	
+		 <div class="row displayuser">
+			<div class="col-md-12">
+				<p><b>My Personal Information</b></p>
+				
+				
+			 </div>
+		 </div>
+		
+		<div class="row accountcontainer ">
+			<div class="col-md-12">
+				
+				<div class="row centertext ">
+					<div class="col-md-12">
+						<form>
+							
+							<label for="emailedit" >Email Address:</label>
+							<p><input type="text" id="emailedit" size="50" value="{{editUserProfile.email}}" data-ng-model="editForm.email"/></p>
+							
+							<label for="phoneedit">Phone Number:</label>
+							<p>
+							<input type="text" id="phoneedit" size="50" value="{{editUserProfile.phoneNumber}}" data-ng-model="editForm.phoneNumber"/>
+							</p>
+							
+							<b>Shipping Address:</b>
+							<p><textarea rows="5" cols="50" value="{{editUserProfile.address}}" data-ng-model="editForm.address">{{editUserProfile.address}}</textarea></p>
+                            
+                            <label for="phoneedit">City:</label>
+							<p>
+							<input type="text" id="city" size="50" value="{{editUserProfile.city}}" data-ng-model="editForm.city"/>
+							</p>
+                            
+                            <label for="phoneedit">Postcode:</label>
+							<p>
+							<input type="text" id="postcode" size="50" value="{{editUserProfile.postcode}}" data-ng-model="editForm.postcode"/>
+							</p>
+                            <label for="phoneedit">State:</label>
+							<p>
+							<input type="text" id="stateedit" size="50" value="{{editUserProfile.state}}" data-ng-model="editForm.state"/>
+							</p>
+                            
+                            <label for="phoneedit" >Country:</label>
+							<p>
+							<input type="text" id="countryedit" size="50" value="{{editUserProfile.country}}" data-ng-model="editForm.country"/>
+							</p>
+							
+                            <br/>
+							<p>
+								<button type="button" class="btn btn-secondary" value="Submit" data-ng-click="back()"><b>CANCEL</b></button>
+								<button type="submit" class="btn btn-warning" value="Submit" data-ng-click="checkUserInfoEdit()" data-toggle="modal" data-target="#confirmation">SAVE</button>
+                                <button type="reset" class="btn btn-info" value="reset"><b>RESET</b></button>
+							</p>
+							
+
+						</form>
+					</div>	
+				</div>		
+				
+			 </div>
+		 </div>
+        
+        <div id="confirmation" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm profile edit</h4>
+              </div>
+              <div class="modal-body">
+                <p>Please confirm your changes before saving</p>
+                <div class="alert alert-success">
+                    <p><b>Email:</b> {{editForm.email}}</p>
+                    <p><b>Phone Number:</b> {{editForm.phoneNumber}}</p>
+                    <p><b>Address:</b> {{editForm.address}}</p>
+                    <p><b>City:</b> {{editForm.city}}</p>
+                    <p><b>Postcode:</b> {{editForm.postcode}}</p>
+                    <p><b>State:</b> {{editForm.state}}</p>
+                    <p><b>Country:</b> {{editForm.country}}</p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" data-ng-click="saveEdit()">Save</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+		<br/>
+
+		
+		
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  	</div>

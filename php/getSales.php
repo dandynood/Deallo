@@ -9,7 +9,7 @@
         $data = json_decode(file_get_contents("php://input")); 
         $accountID = urldecode($data->accountID);
 
-        $sql = "SELECT orders.orderId, useraccounts.username, useraccounts.firstName, useraccounts.lastName, useraccounts.address, useraccounts.postcode, useraccounts.state, useraccounts.country, useraccounts.phoneNumber, useraccounts.email, products.productID, products.productName,products.price, orderDate, quantity, orders.discount, sales FROM orders INNER JOIN useraccounts ON orders.accountID=useraccounts.accountID INNER JOIN products ON orders.productID=products.productID WHERE products.accountID='$accountID' AND orders.orderStatus=true";
+        $sql = "SELECT orders.orderId, useraccounts.username, useraccounts.firstName, useraccounts.lastName, useraccounts.address, useraccounts.city, useraccounts.postcode, useraccounts.state, useraccounts.country, useraccounts.phoneNumber, useraccounts.email, products.productID, products.productName,products.price, orderDate, quantity, orders.discount, sales FROM orders INNER JOIN useraccounts ON orders.accountID=useraccounts.accountID INNER JOIN products ON orders.productID=products.productID WHERE products.accountID='$accountID' AND orders.orderStatus=true";
 
 
         $result = $conn->query($sql);

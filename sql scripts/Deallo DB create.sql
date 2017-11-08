@@ -11,6 +11,7 @@ password VARCHAR(20) NOT NULL,
 firstName VARCHAR(20) NOT NULL,
 lastName VARCHAR(20) NOT NULL,
 address VARCHAR(255) NOT NULL,
+city VARCHAR(255) NOT NULL,
 postcode INT NOT NULL,
 state VARCHAR(255) NOT NULL,
 country VARCHAR(255) NOT NULL,
@@ -22,15 +23,15 @@ PRIMARY KEY (accountID)
 );
 
 INSERT INTO userAccounts
-(username,password,firstName,lastName,address,postcode,state,country,email,phoneNumber,accountType)
+(username,password,firstName,lastName,address,city,postcode,state,country,email,phoneNumber,accountType)
 VALUES
-("James Brooke","ongchin","James","Brooke","75, Lorong Keranji 4A2, Tabuan Desa Indah","93350","Sarawak","Malaysia",
+("James Brooke","ongchin","James","Brooke","75, Lorong Keranji 4A2, Tabuan Desa Indah","Kuching","93350","Sarawak","Malaysia",
 "sheldon.jam.cam@gmail.com","019562578","Normal");
 
 INSERT INTO userAccounts
-(accountID,username,password,firstName,lastName,address,postcode,state,country,email,phoneNumber,accountType)
+(accountID,username,password,firstName,lastName,address,city,postcode,state,country,email,phoneNumber,accountType)
 VALUES
-("30","MrUglyManWhoIsFatAndUgly","123456","James","Brooke","Jalan Long, 52th tree on the right","93350","Sarawak","Malaysia",
+("30","MrUglyManWhoIsFatAndUgly","123456","Ernest","Soo","Jalan Long, 52th tree on the right","Kuching","93350","Sarawak","Malaysia",
 "sheldon.jam.cam@hotmail.com","019562578","Normal");
 
 -- -----------------------------------------------------

@@ -9,7 +9,9 @@ var app = angular.module("mainApp",
                           'individualProuductService',
                           'userProfileService',
                           'sellerMgtService',
-                          'LocalStorageModule']);
+                          'LocalStorageModule',
+                          'editProfileService',
+                         'editPasswordService']);
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route)
 {
     "use strict";
@@ -125,7 +127,16 @@ app.config(['$routeProvider', function($routeProvider)
         controller: 'individualProuductCtrl'
     })
     .when('/user/:username',{
+        templateUrl: 'template/userprofile.html',
         controller: 'userProfileCtrl'
+    })
+    .when('/edit_password',{
+        templateUrl: 'template/user_change_password.html',
+        controller: 'editPasswordCtrl'
+    })
+    .when('/edit_profile',{
+        templateUrl: 'template/user_edit_info.html',
+        controller: 'editProfileCtrl'
     })
     .when('/dashboard', {
         templateUrl: 'template/sellingdashboard.html',

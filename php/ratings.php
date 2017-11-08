@@ -9,7 +9,7 @@
         $data = json_decode(file_get_contents("php://input")); 
         $productID = $data->productID; 
 
-        $sql = "SELECT productratings.*, useraccounts.username FROM productratings INNER JOIN useraccounts ON productratings.accountID=useraccounts.accountID WHERE productID = '$productID'";
+        $sql = "SELECT productratings.*, useraccounts.accountID, useraccounts.username FROM productratings INNER JOIN useraccounts ON productratings.accountID=useraccounts.accountID WHERE productID = '$productID'";
 
         $result = $conn->query($sql);
 

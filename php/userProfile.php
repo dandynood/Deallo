@@ -8,7 +8,7 @@
     }         
         $data = json_decode(file_get_contents("php://input")); 
         $username = urldecode($data->username);
-        $sql = "SELECT username,firstName,lastName,address,postcode,state,country,email,phoneNumber FROM userAccounts WHERE username = '$username'";
+        $sql = "SELECT accountID,username,firstName,lastName,address,city,postcode,state,country,email,phoneNumber FROM userAccounts WHERE username = '$username'";
 
 
         $result = $conn->query($sql);

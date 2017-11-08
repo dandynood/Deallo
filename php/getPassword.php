@@ -7,9 +7,8 @@
         echo 'failed';
     }         
         $data = json_decode(file_get_contents("php://input")); 
-        $username = urldecode($data->username);
-        $password = $data->password;
-        $sql = "SELECT accountID, username,email,firstName FROM userAccounts WHERE email = '$username' AND password = '$password'";
+        $accountID = urldecode($data->accountID);
+        $sql = "SELECT password FROM useraccounts WHERE accountID = '$accountID'";
 
 
         $result = $conn->query($sql);

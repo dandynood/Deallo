@@ -10,6 +10,8 @@ indiProduct.controller("individualProuductCtrl",function($scope, $location, $htt
     } 
     
     $scope.firstParameter = $routeParams.id;
+    $scope.showReviewSummary = false;
+    $scope.submittedReview = false;
     
     $scope.searchIndiProduct = function(){
     var str = {productID: encodeURIComponent($scope.firstParameter)};
@@ -59,23 +61,31 @@ indiProduct.controller("individualProuductCtrl",function($scope, $location, $htt
         $scope.reviewForm = {reviewTitle: "",review:"",reviewRating:"3"};
     };
     
+    $scope.openReviewForm = function(){
+        $scope.showReviewSummary = false;
+        $scope.submittedReview = false;
+    };
+    
     $scope.checkReview = function(){
-
+        $scope.showReviewSummary = true;
+        $scope.reviewForm.reviewRating = parseFloat($scope.reviewForm.reviewRating);
     };
     
     $scope.postReview = function(){
         var str = {
             productID: encodeURIComponent($scope.firstParameter),
             accountID: encodeURIComponent($scope.accountID),
-            title: encodeURIComponent($scope.reviewTitle),
-            comment: encodeURIComponent($scope.review),
-            rating: encodeURIComponent($scope.reviewRating)};
+            title: encodeURIComponent($scope.reviewForm.reviewTitle),
+            comment: encodeURIComponent($scope.reviewForm.review),
+            rating: encodeURIComponent($scope.reviewForm.reviewRating)};
         $http({method: 'POST', url:'php/addRating.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
         .then(function(response){
         if(response.data === "failed"){
            $scope.errorMsg = "Can't seem to post your review! Sorry.";
         } else {
             $scope.postSuccess = "You submitted your review successfully!";
+            $scope.submittedReview = true;
+            $scope.getRatings();
         }});
         
     };
@@ -88,8 +98,14 @@ indiProduct.controller("individualProuductCtrl",function($scope, $location, $htt
         if(response.data === "failed"){
            $scope.errorMsg = "Can't seem to delete your review! Sorry.";
         } else {
-            $scope.postSuccess = "You deleted your review successfully!";
+            $scope.successDeleteReview = true;
+            $scope.getRatings();
         }});
         
+    };
+    
+    $scope.selectReview = function(review){
+        $scope.selectedReview = review;
+        $scope.successDeleteReview = false;
     };
 });

@@ -8,7 +8,7 @@
     }         
         $data = json_decode(file_get_contents("php://input"));
         $password = urldecode($data->password);
-        $accountID = urldecode($data->accountID)
+        $accountID = urldecode($data->accountID);
             
         $sql = "UPDATE userAccounts SET password='$password' WHERE accountID='$accountID'";
 

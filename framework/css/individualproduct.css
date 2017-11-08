@@ -123,3 +123,7 @@ body{
 .gold{
     color: #ffc700 !important;
 }
+
+.ratingSummary > label {
+    font-size: 3em;
+}
