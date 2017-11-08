@@ -273,30 +273,7 @@
 
             </div>
         </div>
-<!--
-        <div class="row selling-content ">
-                
-                 <div class="col-xs-3 "  >      
-                     <h5>A piece of noodle</h5>
-                 </div>
-         
-                 <div class="col-xs-2 " >          
-                     <h5>27/10/2017</h5>
-                 </div>
-                 <div class="col-xs-2 " >        
-                     <h5>RM20</h5>
-                 </div>
 
-                 <div class="col-xs-2 " >        
-                    <h5>1</h5>
-                 </div>
-
-                <div class="col-xs-2 " >        
-                    <h5 class="selling-revenue">RM20</h5>
-                </div>
-         
-        </div>
-    -->
         <div class="row selling-instruction " style="margin-bottom:5%">
                 
             <div class="col-xs-12"  >      
@@ -337,26 +314,18 @@
             
                     <div class="col-xs-10 ">
                         <h3 style="color:white">Daily Revenue {{graphUpdate}}</h3>
-                
-                
                     </div>
                     <div class="col-xs-2 ">
-                      <!--      <p style="margin-top:7%" class="selling-links inline-block">View All</p>
-                            <span class="glyphicon glyphicon-play selling-glyphicon"></span>-->
                     </div>
             
           </div>
     
                 <!-- Pending Merchandize --> 
-                <div class="row " style="margin-top:3%;margin-bottom:5%">
-                    
+                <div class="row " style="margin-top:3%;margin-bottom:5%">           
                             <div class="col-xs-12 ">
-                                <div id="graph-hist" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                                                
-                            </div>
-                     
-                  </div>
-
+                                <div id="graph-hist" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                          
+                            </div> 
+                </div>
     </div>
 
 
@@ -490,8 +459,12 @@
         var graphDataLine = new Array();
         var graphDataHist = new Array();
         var graphDataIndi = new Array();
+        var graphDataIndiHist = new Array();
 
-        var graphDataIndiEval = "[{name: 'All',data: graphDataLine } ";
+        alert("new");
+        console.log(window.graphPlotIndiHist);
+        var graphDataIndiEval = "[{name: 'Total',data: graphDataLine } ";
+        var graphDataIndiEvalHist = "[{name: 'Total',data: graphDataHist } ";
 
         for (var i=0; i< window.graphPlotLine.length; i++)
         {
@@ -528,10 +501,39 @@
 
         
         }
-
         graphDataIndiEval += "]";
 
+        for (var i=0; i< window.graphPlotIndiHist.length; i++)
+        {
+         
+                graphDataIndiHist[i] = window.graphPlotIndiHist[i][2];  
+
+                graphDataIndiEvalHist += ",{ name: '"+window.graphPlotIndiHist[i][1].toString()+"' , data:[";
+
+                
+
+                for(var x=0; x < window.graphPlotIndiHist[i][2].length; x++)
+                {
+                
+                    graphDataIndiEvalHist += "["
+                    graphDataIndiEvalHist +=  window.graphPlotIndiHist[i][2][x].toString();
+                    graphDataIndiEvalHist += "],";
+                }
+
+                if(window.graphPlotIndiHist[i][2].length!=0)
+                {
+                     graphDataIndiEvalHist = graphDataIndiEvalHist.substring(0,graphDataIndiEvalHist.length-1);
+                }
+                graphDataIndiEvalHist += "]}"
+
+        
+        }
+
+        graphDataIndiEvalHist += "]";
+
+
         console.log(graphDataIndiEval);
+        console.log(graphDataIndiEvalHist);
 
         
 
@@ -573,7 +575,7 @@
         type: 'column'
     },
     title: {
-        text: 'Monthly Average Rainfall'
+        text: 'Daily Revenue'
     },
     subtitle: {
         text: 'Source: Deallo.com'
@@ -588,7 +590,7 @@
     yAxis: {
         min: 0,
         title: {
-            text: 'Rainfall (mm)'
+            text: 'Total Revenue (RM)'
         }
     },
     tooltip: {
@@ -605,11 +607,7 @@
             borderWidth: 0
         }
     },
-    series: [{
-        name: 'All',
-        data: graphDataHist
-        
-    }] 
+    series: eval(graphDataIndiEvalHist)
 });
 }
     },1000);

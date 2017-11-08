@@ -15,7 +15,7 @@ var app = angular.module("mainApp",
                           'sellerAddService',
                           'sellerEditService',
                           'LocalStorageModule']);
-                          
+
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route)
 {
     "use strict";
@@ -33,12 +33,8 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
         $scope.loggedin = false;
         $scope.userdata= null;
         $route.reload();
-        //alert("gej");
     };
 
-
- //   localStorageService.set("loginstatus",false);
-        
 
     
     $scope.checkloginstatus = function()
@@ -75,8 +71,6 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     $scope.getCategories();
 
              
-
-   alert(localStorageService.get("userdata").accountID);
 
    $scope.gotoHome = function()
    {

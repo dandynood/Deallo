@@ -19,6 +19,7 @@ angular.module('sellerMgtService',['ngRoute'])
     $scope.graphPlotLine = [];
     $scope.graphPlotHist = [];
     $scope.graphPlotIndi = [];
+    $scope.graphPlotIndiHist = [];
     $scope.graphUpdate = false;
     
 
@@ -117,6 +118,12 @@ angular.module('sellerMgtService',['ngRoute'])
             $scope.graphPlotIndi[i] = [object[i].productID, object[i].productName,[]];
         }
 
+        var x;
+        for(x=0;x<object.length;x++)
+        {
+            $scope.graphPlotIndiHist[x] = [object[x].productID, object[x].productName,[]];
+        }
+
         console.log($scope.graphPlotIndi);
         console.log(object);
     };
@@ -154,6 +161,7 @@ angular.module('sellerMgtService',['ngRoute'])
                     currentRevenueIndi[x] = currentRevenueIndi[x] + parseFloat(object[i].sales);
                     //console.log("cuurentIndi[x]"+currentRevenueIndi[x]);
                     $scope.graphPlotIndi[x][2].push([Date.UTC(parseInt(date[0]),parseInt(date[1]),parseInt(date[2])),parseFloat(currentRevenueIndi[x])]);
+                    $scope.graphPlotIndiHist[x][2].push([Date.UTC(parseInt(date[0]),parseInt(date[1]),parseInt(date[2])),parseFloat(object[i].sales)]);
                 }
 
 
@@ -226,15 +234,12 @@ angular.module('sellerMgtService',['ngRoute'])
             $window.graphPlotLine = $scope.graphPlotLine;
             $window.graphPlotHist = $scope.graphPlotHist;
             $window.graphPlotIndi = $scope.graphPlotIndi;
+            $window.graphPlotIndiHist = $scope.graphPlotIndiHist;
         }
 
         $scope.sendWindowData();
 
 
-        $scope.reload = function() { // To Reload anypage
-            $templateCache.removeAll();     
-            $state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
-        };
-  
+   
 
 });
