@@ -5,6 +5,10 @@ var indiProduct = angular.module('individualProuductService',[]);
 indiProduct.controller("individualProuductCtrl",function($scope, $location, $http, searchFactory,localStorageService,$routeParams)
 {
     "use strict";
+    if(localStorageService.get("userdata")){
+        $scope.accountID = localStorageService.get("userdata").accountID;
+    } 
+    
     $scope.firstParameter = $routeParams.id;
     
     $scope.searchIndiProduct = function(){

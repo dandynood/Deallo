@@ -10,12 +10,13 @@ var app = angular.module("mainApp",
                           'userProfileService',
                           'sellerMgtService',
                           'LocalStorageModule']);
-app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval)
+app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route)
 {
     "use strict";
     $scope.searchItemText = "";
     $scope.categorySelected = "";
     $scope.showingResultsFor = "";
+    $scope.accountID = null;
     
     $scope.loggedin = false;
     
@@ -25,7 +26,7 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
         localStorageService.remove("userdata");
         $scope.loggedin = false;
         $scope.userdata= null;
-        
+        $route.reload();
         //alert("gej");
     };
 

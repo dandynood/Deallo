@@ -2,7 +2,7 @@
 /*global angular */
 /*jslint plusplus:true*/
 angular.module('loginService',[])
-.controller("loginCtrl",function($scope, $location, $cookies, $http,localStorageService)
+.controller("loginCtrl",function($scope, $location, $cookies, $http,localStorageService,$window)
 {
     "use strict";
     $scope.inputData = [{}];
@@ -19,7 +19,7 @@ angular.module('loginService',[])
                //alert($scope.errorMsg);
            } else {
                $cookies.put('user', response.data);
-               $location.path("/home");
+               $window.history.back();
                $scope.errorMsg = "";
                $scope.currentLoggedInUser = $cookies.get('user');
                $scope.inputData = [{}];
@@ -41,8 +41,9 @@ angular.module('loginService',[])
     
     $scope.showStuff = function(){
         var str = {username: encodeURIComponent($scope.inputData.username), password: encodeURIComponent($scope.inputData.password)};
-        alert(str);
-        console.log(str);
+        //alert(str);
+        //console.log(str);
     };
    
 });
+
