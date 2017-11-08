@@ -140,7 +140,7 @@ accountID INT NOT NULL,
 productID INT NOT NULL,
 quantity INT NOT NULL,
 price INT NOT NULL,
-PRIMARY(accountID, productID)
+PRIMARY(accountID, productID),
 FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(accountID) REFERENCES useraccounts(accountID)
 );
