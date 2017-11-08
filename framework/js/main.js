@@ -36,6 +36,20 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     };
 
 
+    $scope.goToAllProduct = function()
+    {
+        $location.path("/productlist/All/index");
+    }
+
+    $scope.goToAddForm = function()
+    {
+        $location.path("/sellingaddform");
+    }
+
+    $scope.goToDashboard = function()
+    {
+        $location.path("/dashboard");
+    }
     
     $scope.checkloginstatus = function()
     {

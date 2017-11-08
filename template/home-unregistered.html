@@ -79,21 +79,30 @@
 
 
             <div data-ng-show="loggedin==true" class="row registered-hompage-selection">
-              <div class="col-xs-6 text-center border-right-dark-gray">
+              <div class="col-xs-4 text-center border-right-dark-gray">
 
                 <span class="	glyphicon glyphicon-shopping-cart glyphicon-list-search-item" ></span>
-                <button   class="btn align-center inline-block search-item-button" >Search Item</button>
+                <button  data-ng-click="goToAllProduct()" class="btn align-center inline-block search-item-button" >Search Item</button>
 
                   <p style="margin-bottom:10%;margin-top:3%">Search for an item listed in our product list.</p>
 
               </div>
-              <div class="col-xs-6 text-center">
+              <div class="col-xs-4 text-center border-right-dark-gray">
 
                  <span class="	glyphicon glyphicon-usd glyphicon-list-search-item" ></span>
-                <button   class="btn align-center inline-block search-item-button" >Search Item</button>
+                <button data-ng-click="goToAddForm()"  class="btn align-center inline-block search-item-button" >List Item</button>
 
                   <p style="margin-bottom:10%;margin-top:3%">List an item to be sold on the product list.</p>
 
+              </div>
+
+              <div class="col-xs-4 text-center">
+                    
+                                     <span class="	glyphicon glyphicon-signal glyphicon-list-search-item" ></span>
+                                    <button   data-ng-click="goToDashboard()"  class="btn align-center inline-block search-item-button" >Seller Dashboard</button>
+                    
+                                      <p style="margin-bottom:10%;margin-top:3%">Full Track your buisness in details to improve it.</p>
+                    
               </div>
 
 
