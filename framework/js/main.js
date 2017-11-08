@@ -126,7 +126,7 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/user/:username',{
         controller: 'userProfileCtrl'
     })
-    .when('/selling', {
+    .when('/dashboard', {
         templateUrl: 'template/sellingdashboard.html',
         controller: 'sellerMgtCtrl'
     })
