@@ -3,7 +3,7 @@
 <div class="row" style="margin-top:3%">
     <div class="col-xs-12 text-center">
 
-        <h1>Add New Merchandize </h1>
+        <h1>Add New Merchandize {{sellerTest}} </h1>
         <p class="selling-subtext" >Add a new item to be displayed worldwide.</p>
 
  
@@ -32,13 +32,28 @@
                 type="text" data-ng-required="true" required="required"
                     data-ng-pattern="/^[0-9]*$/" name="tel" data-ng-model="productstock" data-ng-blur="enableWarning(5)"
                 data-ng-focus="disableWarning(5)" id="reg-productstock" />
+                <p class="animate-field animate-field-9" >Discount (%)</p>
+                <input onfocus="this.placeholder='';animateField('.animate-field-9')" class="align-center inline-block form-control-reg form-last" style="color:black;" placeholder="Discount (%)"
+                type="text" data-ng-required="true" required="required" name="productdiscount" data-ng-model="productdiscount" data-ng-blur="enableWarning(4)"
+                data-ng-focus="disableWarning(4)" id="reg-productdiscount" />
                 <p class="animate-field animate-field-7" >Details</p>
                 <textarea class="textarea-details" onfocus="expandtextareadetails();this.placeholder='';animateField('.animate-field-7')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter details for your merchandize" data-ng-model="details"></textarea>
                 <p class="animate-field animate-field-8" >Extra Details</p>
                 <textarea class="textarea-extradetails" onfocus="expandtextareaextradetails();this.placeholder='';animateField('.animate-field-8')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter any extra details" data-ng-model="extradetails"></textarea>
 
+
+                <div class="dropdown text-center" style="margin-top:8%">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{productCategoryName}}
+                        <span class="caret"></span></button>
+
+                        <ul class="dropdown-menu" style=" left: 50%;right: auto;text-align: center; transform: translate(-50%, 0);">
+                                <li data-ng-repeat="cat in categories" data-ng-click="setCategory(cat.categoryID,cat.categoryName)"><a href="">{{cat.categoryName}}</a></li>
+                        </ul>
+                </div>
+      
                 <div class="text-center">
-                   <span onclick="checkLoginForm();"  class=" text-center btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="login()">Add Merchandize</span>
+                   <span onclick="checkLoginForm();"  class=" text-center btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="addItem();">Add Merchandize</span>
+                    {{accountID}}{{productname}}{{productprice}}{{productstock}}{{productdiscount}}{{details}}{{extradetails}}{{productCategoryID}}      
                 </div>
     </div>
 

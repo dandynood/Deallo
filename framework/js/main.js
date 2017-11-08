@@ -9,6 +9,7 @@ var app = angular.module("mainApp",
                           'individualProuductService',
                           'userProfileService',
                           'sellerMgtService',
+                          'sellerAddService',
                           'LocalStorageModule']);
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route)
 {
@@ -133,7 +134,7 @@ app.config(['$routeProvider', function($routeProvider)
     })
     .when('/sellingaddform', {
         templateUrl: 'template/sellingaddform.html',
-        controller: 'sellerMgtCtrl'
+        controller: 'sellerAddCtrl'
     })
     .when('/sellingeditform', {
         templateUrl: 'template/sellingeditform.html',
