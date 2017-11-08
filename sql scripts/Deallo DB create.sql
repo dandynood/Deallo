@@ -1,4 +1,4 @@
-CREATE DATABASE deallo;
+﻿CREATE DATABASE deallo;
 USE deallo;
 
 -- -----------------------------------------------------
@@ -164,6 +164,16 @@ PRIMARY(accountID, productID)
 FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(accountID) REFERENCES useraccounts(accountID)
 );
+
+CREATE TABLE images_tbl(
+   img_id INT (255),
+   img_name VARCHAR(500),
+   img_path VARCHAR(200) NOT NULL,
+   img_type VARCHAR(500),
+   PRIMARY KEY (images_id)
+);
+
+
 
 
 

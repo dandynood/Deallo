@@ -14,6 +14,10 @@
     <div class="col-xs-4"></div>
 
     <div class="col-xs-4 ">
+				<form action="php/upload.php" method="post" enctype="multipart/form-data">
+					<input type="file" name="file_img" />
+					<input type="submit" name="btn_upload" value="Upload">	
+				</form>
                 <form name="registerform2" class="form-register">
                 <p class="animate-field animate-field-4" >Product Name</p>
                 <input onfocus="this.placeholder='';animateField('.animate-field-4')" class="align-center inline-block form-control-reg form-first" style="color:black;" placeholder="Product Name"
