@@ -62,7 +62,7 @@ productID INT NOT NULL AUTO_INCREMENT,
 productName VARCHAR(255) NOT NULL,
 price FLOAT NOT NULL,
 shippingPrice FLOAT NOT NULL,
-discount FLOAT NOT NULL,
+discount FLOAT NOT NULL DEFAULT 0,
 stock INT NOT NULL,
 dateAdded DATETIME NOT NULL,
 categoryID VARCHAR(5) NOT NULL,
@@ -113,6 +113,8 @@ productID INT NOT NULL,
 sellerID INT NOT NULL,
 orderDate TIMESTAMP NOT NULL,
 quantity INT NOT NULL,
+discount FLOAT NOT NULL DEFAULT 0,
+sales FLOAT NOT NULL, 
 orderStatus BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY(orderID, productID),
 FOREIGN KEY(accountID) REFERENCES userAccounts(accountID),
@@ -121,38 +123,16 @@ FOREIGN KEY(sellerID) REFERENCES products(accountID)
 );
 
 INSERT INTO orders 
-(orderID,accountID,productID,sellerID,orderDate,quantity,orderStatus)
+(orderID, accountID, productID, sellerID, orderDate, quantity, discount, sales, orderStatus) 
 VALUES
-("1","30","1","1","2017-11-04 01:00:00",2,0),
-("2","30","2","1","2017-11-05 02:00:00",1,0),
-("3","30","2","1","2017-11-06 03:00:00",1,1),
-("4","30","1","1","2017-11-07 04:00:00",2,1),
-("5","30","1","1","2017-11-08 05:00:00",2,1),
-("6","30","2","1","2017-11-09 06:00:00",1,1),
-("7","30","2","1","2017-11-10 07:00:00",1,1),
-("8","30","1","1","2017-11-11 08:00:00",2,1);
-
-
-CREATE TABLE sales(
-orderID INT NOT NULL,
-productID INT NOT NULL,
-sales FLOAT NOT NULL,
-PRIMARY KEY(orderID, productID),
-FOREIGN KEY(productID) REFERENCES products(productID),
-FOREIGN KEY(orderID) REFERENCES orders(orderID)
-);
-
-INSERT INTO sales 
-(orderID,productID,sales)
-VALUES
-("1","1","24.00"),
-("2","2","12.00"),
-("3","2","12.00"),
-("4","1","24.00"),
-("5","1","24.00"),
-("6","2","12.00"),
-("7","2","12.00"),
-("8","1","24.00");
+(1, 30, 1, 1, '2017-11-03 03:39:38', 2, 0, 24, 0),
+(2, 30, 2, 1, '2017-11-04 03:39:38', 1, 0, 12, 0),
+(3, 30, 2, 1, '2017-11-05 03:39:38', 1, 0.2, 9.6, 1),
+(4, 30, 1, 1, '2017-11-08 03:39:38', 2, 0.5, 12, 1),
+(5, 30, 1, 1, '2017-11-09 03:39:38', 2, 0, 24, 1),
+(6, 30, 2, 1, '2017-11-10 03:39:38', 1, 0, 12, 1),
+(7, 30, 2, 1, '2017-11-11 03:39:38', 1, 0, 12, 1),
+(8, 30, 1, 1, '2017-11-12 03:39:39', 2, 0, 12, 1);
 
 
 CREATE TABLE carts(
