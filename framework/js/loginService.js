@@ -19,7 +19,6 @@ angular.module('loginService',[])
                alert($scope.errorMsg);
            } else {
                $cookies.put('user', response.data);
-               $window.history.back();
                $scope.errorMsg = "";
                $scope.inputData = [{}];
                localStorageService.set("loginstatus",'in');

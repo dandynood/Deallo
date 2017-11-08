@@ -12,6 +12,8 @@ var app = angular.module("mainApp",
                           'LocalStorageModule',
                           'editProfileService',
                          'editPasswordService']);
+                          'sellerAddService',
+                          'LocalStorageModule']);
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route)
 {
     "use strict";
@@ -144,7 +146,7 @@ app.config(['$routeProvider', function($routeProvider)
     })
     .when('/sellingaddform', {
         templateUrl: 'template/sellingaddform.html',
-        controller: 'sellerMgtCtrl'
+        controller: 'sellerAddCtrl'
     })
     .when('/sellingeditform', {
         templateUrl: 'template/sellingeditform.html',

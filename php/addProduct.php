@@ -18,7 +18,7 @@
         $extraDetails = urldecode($data->extraDetails);
         $accountID = urldecode($data->accountID);
             
-        $sql = "INSERT INTO products (productName,price,shippingPrice,discount,stock,dateAdded,categoryID,description,extraDetails,accountID) VALUES ('$productName','$price','$shippingPrice','$discount','$stock',current_date(),'$categoryID',$description','$extraDetails','$accountID')";
+        $sql = "INSERT INTO products (productName,price,shippingPrice,discount,stock,dateAdded,categoryID,description,extraDetails,accountID) VALUES ('$productName','$price','$shippingPrice','$discount','$stock',CURRENT_DATE,'$categoryID','$description','$extraDetails','$accountID')";
 
 
         $result = $conn->query($sql);
