@@ -26,7 +26,7 @@ if(isset($_POST['btn_upload']))
 	
 	move_uploaded_file($filetmp,$filepath);
 	
-	$sql = "INSERT INTO images_tbl (img_name,img_path,img_type) VALUES ('$filename','$filepath','$filetype')";
+	$sql = "INSERT INTO product (img_name,img_path,img_type) VALUES ('$filename','$filepath','$filetype')";
 	$result = mysqli_query($conn,$sql);
 }
 ?>

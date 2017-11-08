@@ -140,7 +140,7 @@ accountID INT NOT NULL,
 productID INT NOT NULL,
 quantity INT NOT NULL,
 price INT NOT NULL,
-PRIMARY(accountID, productID)
+PRIMARY KEY(accountID, productID),
 FOREIGN KEY(productID) REFERENCES products(productID),
 FOREIGN KEY(accountID) REFERENCES useraccounts(accountID)
 );
@@ -150,7 +150,7 @@ CREATE TABLE images_tbl(
    img_name VARCHAR(500),
    img_path VARCHAR(200) NOT NULL,
    img_type VARCHAR(500),
-   PRIMARY KEY (images_id)
+   PRIMARY KEY (img_id)
 );
 
 
