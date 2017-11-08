@@ -19,6 +19,7 @@ angular.module('sellerMgtService',[])
     $scope.graphPlotLine = [];
     $scope.graphPlotHist = [];
     $scope.graphPlotIndi = [];
+    $scope.graphUpdate = false;
     
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
@@ -106,8 +107,12 @@ angular.module('sellerMgtService',[])
     $scope.plotGraph = function(object)
     {
 
-        var currentRevenue = 0,x,i,date,dateobject,
+        var currentRevenue = 0, x ,i, date,dateobject,
+
+        
         currentRevenueIndi = [];
+
+        alert(currentRevenue);
         for(x=0;x<$scope.graphPlotIndi.length;x++)
         {
                 currentRevenueIndi[x]=0;
@@ -185,14 +190,26 @@ angular.module('sellerMgtService',[])
                $scope.failDelivered = false;
                $scope.getBuyerOrders();
                $scope.getSellerHistory();
+
+
+               $scope.graphUpdate = !$scope.graphUpdate;
+               $scope.sendWindowData();
+
+
            }});
     };
     
 
-        $window.graphPlotLine = $scope.graphPlotLine;
-        $window.graphPlotHist = $scope.graphPlotHist;
-        $window.graphPlotIndi = $scope.graphPlotIndi;
-        $window.graphDate = $scope.graphDate;
+        $scope.sendWindowData = function()
+        {
+            $window.graphPlotLine = $scope.graphPlotLine;
+            $window.graphPlotHist = $scope.graphPlotHist;
+            $window.graphPlotIndi = $scope.graphPlotIndi;
+            $window.graphUpdate = $scope.graphUpdate;
+        }
+
+        $scope.sendWindowData();
+
   
 
 });
