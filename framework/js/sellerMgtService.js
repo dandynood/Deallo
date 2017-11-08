@@ -34,6 +34,15 @@ angular.module('sellerMgtService',['ngRoute'])
         localStorageService.set("editdetails",m.description);
         localStorageService.set("editxdetails",m.extraDetails);
     }
+
+    $scope.goToView = function(str)
+    {
+        $location.path("/product/"+str);
+    }
+    $scope.goToAdd = function()
+    {
+        $location.path("/sellingaddform");
+    }
     $scope.goToEdit = function()
     {
         $location.path("/sellingeditform");
