@@ -28,10 +28,10 @@ angular.module('sellerAddService',['ngRoute'])
         .then(function(response){
            if(response.data === "failed"){
                $scope.errorMsg = 'Registration failed! Somethere went wrong! Sorry';
-               alert($scope.errorMsg);
-               alert(response.data);
+               //alert($scope.errorMsg);
+               //alert(response.data);
            } else {
-               alert(response.data);
+               $scope.goToDashboard();
            }
         });
     };
@@ -40,5 +40,10 @@ angular.module('sellerAddService',['ngRoute'])
     {
         $scope.productCategoryID = str;
         $scope.productCategoryName = str1;
+    }
+
+    $scope.goToDashboard = function()
+    {
+        $location.path("/dashboard");
     }
 });

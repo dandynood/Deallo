@@ -77,7 +77,10 @@ angular.module('sellerMgtService',['ngRoute'])
                 $scope.noResult = "Deletion Failed!";
                 alert($scope.noResult);
             } else if(response.data === "success") {
-                alert("Item Deleted!");
+                setTimeout(function(){
+                    $location.path("/home");
+                 setTimeout(function(){$location.path("/dashboard");},20)     
+                },750);
         }});
 
 
