@@ -10,20 +10,20 @@
         $name = urldecode($data->name);
         $category = $data->category;
 
-        $sql = "SELECT * FROM products WHERE productName LIKE '%".$name."%' AND categoryID = '$category'";
+        $sql = "SELECT products.*, AVG(productratings.rating) AS averageRating FROM products LEFT OUTER JOIN productratings ON products.productID = productratings.productID WHERE productName LIKE '%".$name."%' AND categoryID = '$category' GROUP BY products.productID";
         
         if($category == "All")
         {
-            $sql = "SELECT * FROM products WHERE productName LIKE '%".$name."%'";
+            $sql = "SELECT products.*, AVG(productratings.rating) AS averageRating FROM products LEFT OUTER JOIN productratings ON products.productID = productratings.productID WHERE productName LIKE '%".$name."%' GROUP BY products.productID";
         } 
         
         if($name == "index")
         {
-            $sql = "SELECT * FROM products WHERE categoryID = '$category'";
+            $sql = "SELECT products.*, AVG(productratings.rating) AS averageRating FROM products LEFT OUTER JOIN productratings ON products.productID = productratings.productID WHERE categoryID = '$category' GROUP BY products.productID";
         }
         
         if($name == "index" && $category == "All"){
-            $sql = "SELECT * FROM products";
+            $sql = "SELECT products.*, AVG(productratings.rating) AS averageRating FROM products LEFT OUTER JOIN productratings ON products.productID = productratings.productID GROUP BY products.productID";
         }
 
         $result = $conn->query($sql);

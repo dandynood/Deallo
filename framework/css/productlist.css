@@ -43,24 +43,24 @@ a {
 }
 
 .rate {
- 
   float: left;
-	
 }
 
 .rate:not(:checked) > input {
-  position: fixed;
-  top: -9999px;
+    display: none;
 }
  
 .rate:not(:checked) > label {
   float: right;
   width: 1em;
-  overflow: hidden;
-  white-space: nowrap;
   cursor: pointer;
   font-size: 30px;
-  color: #ccc;
+  background-color: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
  
 
@@ -70,6 +70,23 @@ a {
 .rate:not(:checked) > label:hover, .rate:not(:checked) > label:hover ~ label { color: #deb217; }
  
 .rate > input:checked + label:hover, .rate > input:checked + label:hover ~ label, .rate > input:checked ~ label:hover, .rate > input:checked ~ label:hover ~ label, .rate > label:hover ~ input:checked ~ label { color: #c59b08; }
+
+.rating > label{
+    display: inline;
+    width: 1em;
+    font-size: 20px;
+    background-color: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+
+
+.gold{
+    color: #ffc700 !important;
+}
 
 /* For mobile*/
 @media only screen and (max-width: 995px )

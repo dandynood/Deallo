@@ -1,87 +1,97 @@
-<link href="framework/css/productlist.css" rel="stylesheet"/>        
-       <!--mobile view -->
-		<div class="container_side m-filter">
-			
-		</div>
-		
-         <!--Desktop view -->
-        <div class="container-fluid margincontainer">
-        <div class="row">
-			<div class="col-md-2 alibaba">
-				
-				<h4><strong>Categories</strong></h4>		
-				<ul id="categories_list">
-                    <li><a href="#!/productlist/All/{{secondParameter}}">All Results</a></li>
-                    <li data-ng-repeat="cat in categories"><a href="#!/productlist/{{cat.categoryID}}/{{secondParameter}}"><span data-ng-repeat="icon in categoryIcons | filter:{categoryID: cat.categoryID}" class="categoryIcons"><img src="{{icon.link}}" title="Wedding Rings" width="30" height="30"> </span>{{cat.categoryName}}</a></li>
-				</ul>
-				
-				
-					<p><b>PRICE (IN RM)</b></p>
-				
-				<form action="/action_page.php">
-				 From: <input type="text" name="moneyfrom" maxlength="5" size="1" class="form-control">
-				  To: <input type="text" name="lname" maxlength="5" size="1" class="form-control"><br>
-						
-				</form>
-			<br>
-			
-			<div class="rate">
-                <p><b>PRODUCT RATING</b></p>
-				<input class="star" type="radio" id="star5" name="rate" value="5" />
+<link href="framework/css/productlist.css" rel="stylesheet" />
+<!--mobile view -->
+<div class="container_side m-filter">
 
-				<label  for="star5" title="text">★</label>
+</div>
 
-				<input class="star" type="radio" id="star4" name="rate" value="4" />
+<!--Desktop view -->
+<div class="container-fluid margincontainer">
+    <div class="row">
+        <div class="col-md-2 alibaba">
 
-				<label for="star4" title="text">★</label>
+            <h4><strong>Categories</strong></h4>
+            <ul id="categories_list">
+                <li><a href="#!/productlist/All/{{secondParameter}}">All Results</a></li>
+                <li data-ng-repeat="cat in categories"><a href="#!/productlist/{{cat.categoryID}}/{{secondParameter}}"><span data-ng-repeat="icon in categoryIcons | filter:{categoryID: cat.categoryID}" class="categoryIcons"><img src="{{icon.link}}" title="Wedding Rings" width="30" height="30"> </span>{{cat.categoryName}}</a></li>
+            </ul>
 
-				<input class="star" type="radio" id="star3" name="rate" value="3" />
 
-				<label for="star3" title="text">★</label>
+            <p><b>PRICE (IN RM)</b></p>
 
-				<input class="star" type="radio" id="star2" name="rate" value="2" />
+            <form action="/action_page.php">
+                From: <input type="text" data-ng-model="minPrice" name="moneyfrom" maxlength="5" size="1" class="form-control"> To: <input type="text" data-ng-model="maxPrice" name="lname" maxlength="5" size="1" class="form-control"><br>
 
-				<label for="star2" title="text">★</label>
+            </form>
+            <br>
 
-				<input class="star" type="radio" id="star1" name="rate" value="1" />
+            <div class="rate">
+                <p><b>PRODUCT RATING</b> <br/> (minimum)</p>
+                <input class="star" type="radio" id="star5" name="rate" value="5" data-ng-model="rating" />
 
-				<label for="star1" title="text">★</label>
-    	</div>
-			
-			 <!--product_listing section -->
-			</div>
-			<div class="container-fluid">
-			<div class="col-md-10">
-				
-				<div class="row">
-					<div class="col-md-12">
-					<h4>Showing results for : {{showingResultsFor}}</h4>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="text-center col-md-3" data-ng-repeat="product in productSearchResult[0]">
+                <label for="star5" title="text">★</label>
+
+                <input class="star" type="radio" id="star4" name="rate" value="4" data-ng-model="rating" />
+
+                <label for="star4" title="text">★</label>
+
+                <input class="star" type="radio" id="star3" name="rate" value="3" data-ng-model="rating" />
+
+                <label for="star3" title="text">★</label>
+
+                <input class="star" type="radio" id="star2" name="rate" value="2" data-ng-model="rating" />
+
+                <label for="star2" title="text">★</label>
+
+                <input class="star" type="radio" id="star1" name="rate" value="1" data-ng-model="rating" />
+
+                <label for="star1" title="text">★</label>
+            </div>
+            <div>
+                <button class="btn btn-warning" data-ng-click="rating=0">Reset</button>
+            </div>
+            <br/>
+
+            <!--product_listing section -->
+        </div>
+        <div class="container-fluid">
+            <div class="col-md-10">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Showing results for : {{showingResultsFor}}</h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="text-center col-md-3" data-ng-repeat="product in productSearchResult[0] | filter:ratingFilter | filter:priceFilter">
                         <div class="row">
                             <div class="col-xs-12">
-							<div class="hovereffect">
-        						<img style="margin:0 auto;display:block" class="img-responsive pborder" src="images/product_icon.jpg" alt="p1"  >
-									<div class="overlay">
-										<a class="info" href="#!/product/{{product.productID}}">Buy Now</a>
-									</div>
-    						</div>
+                                <div class="hovereffect">
+                                    <img style="margin:0 auto;display:block" class="img-responsive pborder" src="images/product_icon.jpg" alt="p1">
+                                    <div class="overlay">
+                                        <a class="info" href="#!/product/{{product.productID}}">Buy Now</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-xs-12">
                                 <p class="text-center" style="font-size:16.5px;"><b>{{product.productName}}</b></p>
+                                <p class="text-center"><b>
+                                    <span class="rating">
+                                        <label for="star1" data-ng-class="{'gold': isGold(1,product.averageRating)}" title="text">★</label>
+                                        <label for="star2" data-ng-class="{'gold': isGold(2,product.averageRating)}" title="text">★</label>
+                                        <label for="star3" data-ng-class="{'gold': isGold(3,product.averageRating)}" title="text">★</label>
+                                        <label for="star4" data-ng-class="{'gold': isGold(4,product.averageRating)}" title="text">★</label>
+                                        <label for="star5" data-ng-class="{'gold': isGold(5,product.averageRating)}" title="text">★</label>
+                                    </span></b></p>
                                 <p class="text-center" style="font-size:15px;color:darkgray">RM{{product.price}}</p>
                             </div>
-                            </div>
-					</div> 
-					
+                        </div>
+                    </div>
 
 
-				</div>				
-			</div>	
-			</div>
-		</div>
-		</div>
- 
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
