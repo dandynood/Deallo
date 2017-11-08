@@ -11,9 +11,11 @@ var app = angular.module("mainApp",
                           'sellerMgtService',
                           'LocalStorageModule',
                           'editProfileService',
-                         'editPasswordService']);
+                         'editPasswordService',
                           'sellerAddService',
+                          'sellerEditService',
                           'LocalStorageModule']);
+                          
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route)
 {
     "use strict";
@@ -74,7 +76,7 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
 
              
 
-
+   alert(localStorageService.get("userdata").accountID);
 
    $scope.gotoHome = function()
    {
@@ -150,7 +152,7 @@ app.config(['$routeProvider', function($routeProvider)
     })
     .when('/sellingeditform', {
         templateUrl: 'template/sellingeditform.html',
-        controller: 'sellerMgtCtrl'
+        controller: 'sellerEditCtrl'
     })
     .otherwise({
         redirectTo: '/home'

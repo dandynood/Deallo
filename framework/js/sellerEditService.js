@@ -1,223 +1,53 @@
 /*jslint white:true */
 /*global angular */
 /*jslint plusplus:true*/
-angular.module('sellerMgtService',['ngRoute'])
-.controller("sellerMgtCtrl",function($scope,$route, $location,$window,$interval, $cookies, $http, localStorageService)
+angular.module('sellerEditService',['ngRoute'])
+.controller("sellerEditCtrl",function($scope,$route, $location,$window,$interval, $cookies, $http, localStorageService)
 {
     "use strict";
 
-    if(localStorageService.get("userdata")){
-        $scope.accountID = localStorageService.get("userdata").accountID;
+    $scope.productID = localStorageService.get("editid");
+    $scope.productprice = localStorageService.get("editprice");
+    $scope.productdiscount = localStorageService.get("editdiscount");
+    $scope.productCategoryID = localStorageService.get("editcategory");
+    $scope.productCategoryName = localStorageService.get("editcategory");
+    $scope.productname = localStorageService.get("editname");
+    $scope.productstock = localStorageService.get("editstock");
+    $scope.details = localStorageService.get("editdetails");
+    $scope.extradetails = localStorageService.get("editxdetails");
+
+
+    $scope.editItem = function(){
+        var str = {
+            accountID: encodeURIComponent(localStorageService.get("userdata").accountID),
+            productID: encodeURIComponent($scope.productID),
+            shippingPrice: encodeURIComponent("0"),
+            discount: encodeURIComponent($scope.productdiscount),
+            categoryID: encodeURIComponent($scope.productCategoryID),
+            productName: encodeURIComponent($scope.productname),
+            price: encodeURIComponent($scope.productprice),
+            stock: encodeURIComponent($scope.productstock),
+            description: encodeURIComponent($scope.details),
+            extraDetails: encodeURIComponent($scope.extradetails)};
+        
+        $http({method: 'POST', url:'php/editProduct.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
+        .then(function(response){
+           if(response.data === "failed"){
+               $scope.errorMsg = 'Registration failed! Somethere went wrong! Sorry';
+               alert($scope.errorMsg);
+               alert(response.data);
+           } else {
+               alert(response.data);
+           }
+        });
+    };
+    
+    $scope.setCategory = function(str,str1)
+    {
+        $scope.productCategoryID = str;
+        $scope.productCategoryName = str1;
     }
-    else{  $location.path('/home');}
-
-    $scope.sellerProducts = null;
-    $scope.buyerOrders = null;
-    $scope.sellerHistory = null;
-    $scope.pendingTransaction = null;
-    $scope.totalRevenue = 0.00;
-    $scope.graphPlotLine = [];
-    $scope.graphPlotHist = [];
-    $scope.graphPlotIndi = [];
-    $scope.graphUpdate = false;
-    
-    $scope.getSellersProducts = function(){
-    var str = {accountID: encodeURIComponent($scope.accountID)};
-    $http({method: 'POST', url:'php/sellerProducts.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
-    .then(function(response){
-       if(response.data === "failed"){
-           $scope.noResult = "Server Error: We unfortunately can't retrieve your products!";
-           alert($scope.noResult);
-       } else {
-           $scope.sellerProducts = response.data[0];
-
-           $scope.initIndiArray(response.data[0]);
-
-           console.log(response.data[0]);
-           return response.data[0];
-       }});
-    };
 
 
-    
-    console.log($scope.getSellersProducts());
-    console.log($scope.sellerProducts);
-
-    $scope.getBuyerOrders = function(){
-        var str = {accountID: encodeURIComponent($scope.accountID)};
-        $http({method: 'POST', url:'php/getOrders.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
-        .then(function(response){
-           if(response.data === "failed"){
-               $scope.noOrders = "No pending orders found";
-               $scope.buyerOrders = "";
-           } else {
-               $scope.noOrders = "";
-               $scope.buyerOrders = response.data[0];
-               $scope.pendingTransaction = response.data[0].length;
-               console.log(response.data[0]);
-               return response.data[0];
-           }});
-    };
-
-    $scope.getBuyerOrders();
-
-    $scope.getSellerHistory = function()
-    {
-        var str = {accountID: encodeURIComponent($scope.accountID)};
-        $http({method: 'POST', url:'php/getSales.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
-        .then(function(response){
-           if(response.data === "failed"){
-               $scope.noSellerHistory = "No selling history? Get started!";
-           } else {
-               $scope.noSellerHistory = "";
-               $scope.sellerHistory = response.data[0];
-               console.log(response.data[0]);
-            $scope.calculateRevenue(response.data[0]);
-            $scope.plotGraph(response.data[0]);  
-            return response.data[0];
-           }});
-    };
-
-    $scope.getSellerHistory();
-
-
-
-    $scope.calculateRevenue = function(object)
-    {
-        var i;
-        for (i =0 ;i < object.length;i++)
-        {
-            $scope.totalRevenue = $scope.totalRevenue + parseFloat(object[i].sales);
-        }
-        
-    };
-
-    $scope.initIndiArray = function(object)
-    {
-        var i;
-        for(i=0;i<object.length;i++)
-        {
-            $scope.graphPlotIndi[i] = [object[i].productID, object[i].productName,[]];
-        }
-
-        console.log($scope.graphPlotIndi);
-        console.log(object);
-    };
-
-    $scope.plotGraph = function(object)
-    {
-
-        var currentRevenue = 0, x ,i, date,dateobject,
-
-        
-        currentRevenueIndi = [];
-
-    
-        for(x=0;x<$scope.graphPlotIndi.length;x++)
-        {
-                currentRevenueIndi[x]=0;
-        }
-
-        for(i=0; i< object.length;i++)
-        {
-            currentRevenue = currentRevenue + parseFloat(object[i].sales);
-            
-            dateobject = object[i].orderDate.split(" ");
-        
-            date = dateobject[0].split("-");
-
-            $scope.graphPlotLine[i]= [parseInt(date[0]),parseInt(date[1]),parseInt(date[2]),currentRevenue];
-        
-            for(x=0;x<$scope.graphPlotIndi.length;x++)
-            {
-                
-                if($scope.graphPlotIndi[x][0] === object[i].productID)
-                {
-                    //console.log("yoyoyooyoyoyoyo");
-                    currentRevenueIndi[x] = currentRevenueIndi[x] + parseFloat(object[i].sales);
-                    //console.log("cuurentIndi[x]"+currentRevenueIndi[x]);
-                    $scope.graphPlotIndi[x][2].push([Date.UTC(parseInt(date[0]),parseInt(date[1]),parseInt(date[2])),parseFloat(currentRevenueIndi[x])]);
-                }
-
-
-            }
-        
-        }
-
-
-        console.log($scope.graphPlotIndi);
-        for(i=0; i< object.length;i++)
-            {
-                currentRevenue = currentRevenue + parseFloat(object[i].sales);
-                dateobject = object[i].orderDate.split(" ");
-            
-                date = dateobject[0].split("-");
-    
-                $scope.graphPlotHist[i]= [parseInt(date[0]),parseInt(date[1]),parseInt(date[2]),parseFloat(object[i].sales)];
-            }
-
-    };
-    
-    
-    $scope.checkDiscount = function(price,discount){
-        var originalPrice = parseFloat(price),discountPrice;
-        if(discount > 0){
-            discountPrice = originalPrice - price*parseFloat(discount);
-            return discountPrice.toString();
-        } else {
-            return price.toString();
-        }
-    };
-    
-    $scope.selectOrder = function(object){
-        $scope.successDelivered = false;
-        $scope.failDelivered = false;
-        $scope.selectedOrder = object;
-    };
-    
-    $scope.markDelivered = function(order,status){
-        var str = {orderId: encodeURIComponent(order.orderId), productId: encodeURIComponent(order.productID), status: encodeURIComponent(status)};
-        console.log(str);
-        $http({method: 'POST', url:'php/setDelivered.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
-        .then(function(response){
-           if(response.data === "failed"){
-               console.log(response.data);
-               $scope.failDelivered = true;
-               $scope.successDelivered = false;
-           } else {
-               console.log(response.data);
-               $scope.successDelivered = true;
-               $scope.failDelivered = false;
-               $scope.getBuyerOrders();
-               $scope.getSellerHistory();
-
-         
-           setTimeout(function()
-            {
-                $location.path('/path');
-                $location.path('/dashboard')
-            },400)
-            
-
-
-           }});
-    };
-    
-
-        $scope.sendWindowData = function()
-        {
-            $window.graphPlotLine = $scope.graphPlotLine;
-            $window.graphPlotHist = $scope.graphPlotHist;
-            $window.graphPlotIndi = $scope.graphPlotIndi;
-        }
-
-        $scope.sendWindowData();
-
-
-        $scope.reload = function() { // To Reload anypage
-            $templateCache.removeAll();     
-            $state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
-        };
-  
 
 });

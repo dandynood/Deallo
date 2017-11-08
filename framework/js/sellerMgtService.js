@@ -21,6 +21,22 @@ angular.module('sellerMgtService',['ngRoute'])
     $scope.graphPlotIndi = [];
     $scope.graphUpdate = false;
     
+
+    $scope.setLocalEdit = function(m)
+    {
+        localStorageService.set("editid",m.productID);
+        localStorageService.set("editprice",m.price);
+        localStorageService.set("editdiscount",m.discount);
+        localStorageService.set("editcategory",m.categoryID);
+        localStorageService.set("editname", m.productName);
+        localStorageService.set("editstock",m.stock);
+        localStorageService.set("editdetails",m.description);
+        localStorageService.set("editxdetails",m.extraDetails);
+    }
+    $scope.goToEdit = function()
+    {
+        $location.path("/sellingeditform");
+    }
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
     $http({method: 'POST', url:'php/sellerProducts.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
@@ -71,6 +87,7 @@ angular.module('sellerMgtService',['ngRoute'])
            } else {
                $scope.noSellerHistory = "";
                $scope.sellerHistory = response.data[0];
+               console.log("graph");
                console.log(response.data[0]);
             $scope.calculateRevenue(response.data[0]);
             $scope.plotGraph(response.data[0]);  

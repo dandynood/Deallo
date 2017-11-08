@@ -83,7 +83,7 @@
     
             <div class="col-xs-4">     
                 <div type="button" class="btn btn-selling">VIEW</div>
-                <div type="button" class="btn btn-selling">EDIT</div>
+                <div type="button" data-ng-click="goToEdit();setLocalEdit(m)" class="btn btn-selling">EDIT</div>
                 <div type="button" class="btn btn-selling">DELETE</div>
             </div>
 
@@ -519,8 +519,11 @@
                     graphDataIndiEval +=  window.graphPlotIndi[i][2][x].toString();
                     graphDataIndiEval += "],";
                 }
-                graphDataIndiEval = graphDataIndiEval.substring(0,graphDataIndiEval.length-1);
 
+                if(window.graphPlotIndi[i][2].length!=0)
+                {
+                     graphDataIndiEval = graphDataIndiEval.substring(0,graphDataIndiEval.length-1);
+                }
                 graphDataIndiEval += "]}"
 
         
