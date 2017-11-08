@@ -413,7 +413,7 @@
             <p style="color: red" data-ng-if="failDelivered">Sorry but it seems we can't set the order as delivered</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-ng-click="markDelivered(selectedOrder,0)" data-ng-if="!successDelivered">Yes</button>
+              <button type="button" onclick="" data-dismiss="modal" class="btn btn-default" data-ng-click="markDelivered(selectedOrder,0)" data-ng-if="!successDelivered">Yes</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-if="!successDelivered">No</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-if="successDelivered">Close</button>
             </div>
@@ -466,7 +466,7 @@
             <p style="color: red" data-ng-if="failDelivered">Sorry but it seems we can't set the order as delivered</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-ng-click="markDelivered(selectedOrder,1)" data-ng-if="!successDelivered">Yes</button>
+              <button type="button" class="btn btn-default" data-ng-click="markDelivered(selectedOrder,1)" data-dismiss="modal" data-ng-if="!successDelivered">Yes</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-if="!successDelivered">No</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-if="successDelivered">Close</button>
             </div>
@@ -481,20 +481,6 @@
 
 
      setTimeout(function(){ 
-
-        var graphBool = false;
-
-        setInterval(function(){
-
-        
-            if(window.graphUpdate == !graphBool)
-            {
-                windowPlot();
-                alert("called");
-                graphBool = !graphBool;
-            }
-
-        },100);
 
         windowPlot();
 

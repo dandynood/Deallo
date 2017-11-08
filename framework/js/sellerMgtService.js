@@ -1,8 +1,8 @@
 /*jslint white:true */
 /*global angular */
 /*jslint plusplus:true*/
-angular.module('sellerMgtService',[])
-.controller("sellerMgtCtrl",function($scope, $location,$window,$interval, $cookies, $http, localStorageService)
+angular.module('sellerMgtService',['ngRoute'])
+.controller("sellerMgtCtrl",function($scope,$route, $location,$window,$interval, $cookies, $http, localStorageService)
 {
     "use strict";
 
@@ -112,7 +112,7 @@ angular.module('sellerMgtService',[])
         
         currentRevenueIndi = [];
 
-        alert(currentRevenue);
+    
         for(x=0;x<$scope.graphPlotIndi.length;x++)
         {
                 currentRevenueIndi[x]=0;
@@ -191,9 +191,13 @@ angular.module('sellerMgtService',[])
                $scope.getBuyerOrders();
                $scope.getSellerHistory();
 
-
-               $scope.graphUpdate = !$scope.graphUpdate;
-               $scope.sendWindowData();
+         
+           setTimeout(function()
+            {
+                $location.path('/path');
+                $location.path('/dashboard')
+            },400)
+            
 
 
            }});
@@ -205,11 +209,15 @@ angular.module('sellerMgtService',[])
             $window.graphPlotLine = $scope.graphPlotLine;
             $window.graphPlotHist = $scope.graphPlotHist;
             $window.graphPlotIndi = $scope.graphPlotIndi;
-            $window.graphUpdate = $scope.graphUpdate;
         }
 
         $scope.sendWindowData();
 
+
+        $scope.reload = function() { // To Reload anypage
+            $templateCache.removeAll();     
+            $state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
+        };
   
 
 });
