@@ -1,0 +1,32 @@
+.displayuser{
+	margin-left: 80px;
+	margin-right: 80px;
+	font-size: 17px;
+	
+}
+.accountcontainer{
+	margin-left: 10%;
+	margin-right: 10%;
+	
+	padding: 30px;
+	background-color: #F3F3F3;
+	
+	
+}
+
+.centertext{
+	text-align: center;
+}
+
+.edittext{
+	font-style: italic;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.editinfotextalign{
+	margin-left: 200px;
+	margin-right:200px;
+	
+	
+}
