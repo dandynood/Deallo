@@ -21,8 +21,13 @@ angular.module('sellerMgtService',['ngRoute'])
     $scope.graphPlotIndi = [];
     $scope.graphPlotIndiHist = [];
     $scope.graphUpdate = false;
+    $scope.deleteID = null;
     
 
+    $scope.setDelete = function(int)
+    {
+        $scope.deleteID = int;
+    }
     $scope.setLocalEdit = function(m)
     {
         localStorageService.set("editid",m.productID);
@@ -47,6 +52,39 @@ angular.module('sellerMgtService',['ngRoute'])
     {
         $location.path("/sellingeditform");
     }
+
+    
+
+    $scope.getPasswordConfirmation = function(){
+        var str = {accountID: encodeURIComponent($scope.accountID),
+                   password: encodeURIComponent($scope.confirmpassword)};
+        $http({method: 'POST', url:'php/confirmPassword.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
+        .then(function(response){
+           if(response.data === "failed"){
+               $scope.noResult = "Server Error: We unfortunately can't retrieve your products!";
+               alert($scope.noResult);
+           } else if(response.data === "success") {
+               $scope.deleteProducts();
+        }});
+    };
+
+    $scope.deleteProducts = function(){
+        var str = {productID: encodeURIComponent($scope.deleteID)};
+
+        $http({method: 'POST', url:'php/deleteProduct.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
+        .then(function(response){
+            if(response.data === "failed"){
+                $scope.noResult = "Deletion Failed!";
+                alert($scope.noResult);
+            } else if(response.data === "success") {
+                alert("Item Deleted!");
+        }});
+
+
+    };
+
+
+
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
     $http({method: 'POST', url:'php/sellerProducts.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})

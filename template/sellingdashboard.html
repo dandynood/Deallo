@@ -84,7 +84,7 @@
             <div class="col-xs-4">     
                 <div type="button" data-ng-click="goToView(m.productID)" class="btn btn-selling">VIEW</div>
                 <div type="button" data-ng-click="goToEdit();setLocalEdit(m)" class="btn btn-selling">EDIT</div>
-                <div type="button" class="btn btn-selling">DELETE</div>
+                <div type="button" data-ng-click="setDelete(m.productID);" data-toggle="modal" data-target="#deleteModal" class="btn btn-selling">DELETE</div>
             </div>
 
       </div>
@@ -125,7 +125,7 @@
 
 
 
-
+      lol;{{deleteID}}
       <!-- Pending Merchandize --> 
       <div class="row selling-background" style="margin-top:4%">
             
@@ -445,9 +445,41 @@
 </div>
 
 
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+              <p>Please enter your password to confirm deletion.</p>
+              <p class="animate-field animate-field-2" >Password</p>
+              <p>
+              <input onfocus="this.placeholder='';animateField('.animate-field-2')"  class="form-focus form-control-reg" type="password" id="confirmpassword" size="50" placeholder="Password" data-ng-model="confirmpassword"/>
+              </p>
+
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-ng-click="getPasswordConfirmation()" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+</div>
+
+
 
 <script>
-
+    function animateField(string)
+				{
+				$(string).css("visibility","visible");
+				$(string).animate({marginBottom:'-2%',marginTop:'3%',fontSize:'16px'},300);
+				}
 
      setTimeout(function(){ 
 

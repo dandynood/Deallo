@@ -111,7 +111,6 @@ CREATE TABLE orders(
 orderID INT AUTO_INCREMENT NOT NULL,
 accountID INT NOT NULL,
 productID INT NOT NULL,
-sellerID INT NOT NULL,
 orderDate DATETIME NOT NULL,
 quantity INT NOT NULL,
 discount FLOAT NOT NULL DEFAULT 0,
@@ -119,21 +118,20 @@ sales FLOAT NOT NULL,
 orderStatus BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY(orderID, productID),
 FOREIGN KEY(accountID) REFERENCES userAccounts(accountID),
-FOREIGN KEY(productID) REFERENCES products(productID),
-FOREIGN KEY(sellerID) REFERENCES products(accountID)
+FOREIGN KEY(productID) REFERENCES products(productID)
 );
 
 INSERT INTO orders 
-(orderID, accountID, productID, sellerID, orderDate, quantity, discount, sales, orderStatus) 
+(orderID, accountID, productID, orderDate, quantity, discount, sales, orderStatus) 
 VALUES
-(1, 30, 1, 1, '2017-11-03 03:39:38', 2, 0, 24, 0),
-(2, 30, 2, 1, '2017-11-04 03:39:38', 1, 0, 12, 0),
-(3, 30, 2, 1, '2017-11-05 03:39:38', 1, 0.2, 9.6, 1),
-(4, 30, 1, 1, '2017-11-08 03:39:38', 2, 0.5, 12, 1),
-(5, 30, 1, 1, '2017-11-09 03:39:38', 2, 0, 24, 1),
-(6, 30, 2, 1, '2017-11-10 03:39:38', 1, 0, 12, 1),
-(7, 30, 2, 1, '2017-11-11 03:39:38', 1, 0, 12, 1),
-(8, 30, 1, 1, '2017-11-12 03:39:39', 2, 0, 12, 1);
+(1, 30, 1, '2017-11-03 03:39:38', 2, 0, 24, 0),
+(2, 30, 2, '2017-11-04 03:39:38', 1, 0, 12, 0),
+(3, 30, 2, '2017-11-05 03:39:38', 1, 0.2, 9.6, 1),
+(4, 30, 1, '2017-11-08 03:39:38', 2, 0.5, 12, 1),
+(5, 30, 1, '2017-11-09 03:39:38', 2, 0, 24, 1),
+(6, 30, 2, '2017-11-10 03:39:38', 1, 0, 12, 1),
+(7, 30, 2, '2017-11-11 03:39:38', 1, 0, 12, 1),
+(8, 30, 1, '2017-11-12 03:39:39', 2, 0, 12, 1);
 
 
 CREATE TABLE carts(
