@@ -2,9 +2,7 @@
 	 <div class="container">	
 		 <div class="row displayuser">
 			<div class="col-md-12">
-				<p><b>{{userProfile.username}}</b></p>
-				<p>Account Dashboard</p>
-				
+				<h3><b>{{userProfile.username}}</b><a href="#!/dashboard" class="pull-right btn btn-login" style="margin-top: -10px; margin-right: 0px;" data-ng-if="loggedin"><span class="glyphicon glyphicon-signal"></span> My Seller Management Dashboard <span class="glyphicon glyphicon-forward"></span></a></h3>
 			 </div>
 		 </div>
 		
@@ -12,16 +10,15 @@
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-8">
-						
-	
+						<h3 style="margin-top: 0px;">My profile</h3>
 					</div>
 					
 					<div class="col-md-1" data-ng-if="accountID == userProfile.accountID">
-						<p class="edittext"><a href="#!/edit_profile">EDIT</a></p>
+						<p class="edittext"><a href="#!/edit_profile" class="btn btn-warning">EDIT</a></p>
 					</div>
 					
 					<div class="col-md-3" data-ng-if="accountID == userProfile.accountID">
-						<p class="edittext"><a href="#!/edit_password">CHANGE PASSWORD</a></p>
+						<p class="edittext"><a href="#!/edit_password" class="btn btn-warning">CHANGE PASSWORD</a></p>
 					</div>
 				
 				</div>
@@ -95,6 +92,12 @@
                         </div>
                     </div>	
                 </div>
+                <div data-ng-if="recentOrders.length == 0 || recentOrders == null">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 style="color: red;">Seems that this user hasn't bought anything!</h3>
+                        </div>
+                    </div>
 			 </div>
 		 </div>
 		
