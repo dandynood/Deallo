@@ -105,3 +105,8 @@
     margin-bottom:5%;
 
   }
+
+  #file_img button
+  {
+      background:black;
+  }

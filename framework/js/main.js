@@ -13,6 +13,7 @@ var app = angular.module("mainApp",
                           'editProfileService',
                          'editPasswordService',
                           'sellerAddService',
+                          'sellerEditService',
                           'checkoutService',
                           'LocalStorageModule']);
 app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route,$rootScope)
@@ -34,13 +35,23 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
         $scope.loggedin = false;
         $scope.userdata= null;
         $route.reload();
-        //alert("gej");
     };
 
 
- //   localStorageService.set("loginstatus",false);
-        
+    $scope.goToAllProduct = function()
+    {
+        $location.path("/productlist/All/index");
+    }
 
+    $scope.goToAddForm = function()
+    {
+        $location.path("/sellingaddform");
+    }
+
+    $scope.goToDashboard = function()
+    {
+        $location.path("/dashboard");
+    }
     
     $scope.checkloginstatus = function()
     {
@@ -75,6 +86,10 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     
     $scope.getCategories();
 
+<<<<<<< HEAD
+=======
+             
+>>>>>>> origin/master
 
    $scope.gotoHome = function()
    {
@@ -202,7 +217,7 @@ app.config(['$routeProvider', function($routeProvider)
     })
     .when('/sellingeditform', {
         templateUrl: 'template/sellingeditform.html',
-        controller: 'sellerMgtCtrl'
+        controller: 'sellerEditCtrl'
     })
     .when('/checkout', {
         templateUrl: 'template/checkout.html',

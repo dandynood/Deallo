@@ -36,7 +36,7 @@
     
     
         </div>
-        <div class="col-xs-3 ">
+        <div class="col-xs-3 " data-ng-click="goToAdd()">
             <p class="selling-links inline-block">Add New Merchandize</p>
             <span class="glyphicon glyphicon-plus-sign selling-glyphicon"></span>
         </div>
@@ -82,9 +82,9 @@
             </div>
     
             <div class="col-xs-4">     
-                <div type="button" class="btn btn-selling">VIEW</div>
-                <div type="button" class="btn btn-selling">EDIT</div>
-                <div type="button" class="btn btn-selling">DELETE</div>
+                <div type="button" data-ng-click="goToView(m.productID)" class="btn btn-selling">VIEW</div>
+                <div type="button" data-ng-click="goToEdit();setLocalEdit(m)" class="btn btn-selling">EDIT</div>
+                <div type="button" data-ng-click="setDelete(m.productID);" data-toggle="modal" data-target="#deleteModal" class="btn btn-selling">DELETE</div>
             </div>
 
       </div>
@@ -122,9 +122,6 @@
             </div>
 
       </div>
-
-
-
 
       <!-- Pending Merchandize --> 
       <div class="row selling-background" style="margin-top:4%">
@@ -273,30 +270,7 @@
 
             </div>
         </div>
-<!--
-        <div class="row selling-content ">
-                
-                 <div class="col-xs-3 "  >      
-                     <h5>A piece of noodle</h5>
-                 </div>
-         
-                 <div class="col-xs-2 " >          
-                     <h5>27/10/2017</h5>
-                 </div>
-                 <div class="col-xs-2 " >        
-                     <h5>RM20</h5>
-                 </div>
 
-                 <div class="col-xs-2 " >        
-                    <h5>1</h5>
-                 </div>
-
-                <div class="col-xs-2 " >        
-                    <h5 class="selling-revenue">RM20</h5>
-                </div>
-         
-        </div>
-    -->
         <div class="row selling-instruction " style="margin-bottom:5%">
                 
             <div class="col-xs-12"  >      
@@ -337,26 +311,18 @@
             
                     <div class="col-xs-10 ">
                         <h3 style="color:white">Daily Revenue {{graphUpdate}}</h3>
-                
-                
                     </div>
                     <div class="col-xs-2 ">
-                      <!--      <p style="margin-top:7%" class="selling-links inline-block">View All</p>
-                            <span class="glyphicon glyphicon-play selling-glyphicon"></span>-->
                     </div>
             
           </div>
     
                 <!-- Pending Merchandize --> 
-                <div class="row " style="margin-top:3%;margin-bottom:5%">
-                    
+                <div class="row " style="margin-top:3%;margin-bottom:5%">           
                             <div class="col-xs-12 ">
-                                <div id="graph-hist" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                                                
-                            </div>
-                     
-                  </div>
-
+                                <div id="graph-hist" style="min-width: 310px; height: 400px; margin: 0 auto"></div>                          
+                            </div> 
+                </div>
     </div>
 
 
@@ -476,9 +442,41 @@
 </div>
 
 
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+              <p>Please enter your password to confirm deletion.</p>
+              <p class="animate-field animate-field-2" >Password</p>
+              <p>
+              <input onfocus="this.placeholder='';animateField('.animate-field-2')"  class="form-focus form-control-reg" type="password" id="confirmpassword" size="50" placeholder="Password" data-ng-model="confirmpassword"/>
+              </p>
+
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-ng-click="getPasswordConfirmation()" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+</div>
+
+
 
 <script>
-
+    function animateField(string)
+				{
+				$(string).css("visibility","visible");
+				$(string).animate({marginBottom:'-2%',marginTop:'3%',fontSize:'16px'},300);
+				}
 
      setTimeout(function(){ 
 
@@ -490,8 +488,11 @@
         var graphDataLine = new Array();
         var graphDataHist = new Array();
         var graphDataIndi = new Array();
+        var graphDataIndiHist = new Array();
 
-        var graphDataIndiEval = "[{name: 'All',data: graphDataLine } ";
+        console.log(window.graphPlotIndiHist);
+        var graphDataIndiEval = "[{name: 'Total',data: graphDataLine } ";
+        var graphDataIndiEvalHist = "[{name: 'Total',data: graphDataHist } ";
 
         for (var i=0; i< window.graphPlotLine.length; i++)
         {
@@ -519,16 +520,48 @@
                     graphDataIndiEval +=  window.graphPlotIndi[i][2][x].toString();
                     graphDataIndiEval += "],";
                 }
-                graphDataIndiEval = graphDataIndiEval.substring(0,graphDataIndiEval.length-1);
 
+                if(window.graphPlotIndi[i][2].length!=0)
+                {
+                     graphDataIndiEval = graphDataIndiEval.substring(0,graphDataIndiEval.length-1);
+                }
                 graphDataIndiEval += "]}"
 
         
         }
-
         graphDataIndiEval += "]";
 
+        for (var i=0; i< window.graphPlotIndiHist.length; i++)
+        {
+         
+                graphDataIndiHist[i] = window.graphPlotIndiHist[i][2];  
+
+                graphDataIndiEvalHist += ",{ name: '"+window.graphPlotIndiHist[i][1].toString()+"' , data:[";
+
+                
+
+                for(var x=0; x < window.graphPlotIndiHist[i][2].length; x++)
+                {
+                
+                    graphDataIndiEvalHist += "["
+                    graphDataIndiEvalHist +=  window.graphPlotIndiHist[i][2][x].toString();
+                    graphDataIndiEvalHist += "],";
+                }
+
+                if(window.graphPlotIndiHist[i][2].length!=0)
+                {
+                     graphDataIndiEvalHist = graphDataIndiEvalHist.substring(0,graphDataIndiEvalHist.length-1);
+                }
+                graphDataIndiEvalHist += "]}"
+
+        
+        }
+
+        graphDataIndiEvalHist += "]";
+
+
         console.log(graphDataIndiEval);
+        console.log(graphDataIndiEvalHist);
 
         
 
@@ -570,7 +603,7 @@
         type: 'column'
     },
     title: {
-        text: 'Monthly Average Rainfall'
+        text: 'Daily Revenue'
     },
     subtitle: {
         text: 'Source: Deallo.com'
@@ -585,7 +618,7 @@
     yAxis: {
         min: 0,
         title: {
-            text: 'Rainfall (mm)'
+            text: 'Total Revenue (RM)'
         }
     },
     tooltip: {
@@ -602,11 +635,7 @@
             borderWidth: 0
         }
     },
-    series: [{
-        name: 'All',
-        data: graphDataHist
-        
-    }] 
+    series: eval(graphDataIndiEvalHist)
 });
 }
     },1000);

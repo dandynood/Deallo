@@ -19,8 +19,75 @@ angular.module('sellerMgtService',['ngRoute'])
     $scope.graphPlotLine = [];
     $scope.graphPlotHist = [];
     $scope.graphPlotIndi = [];
+    $scope.graphPlotIndiHist = [];
     $scope.graphUpdate = false;
+    $scope.deleteID = null;
     
+
+    $scope.setDelete = function(int)
+    {
+        $scope.deleteID = int;
+    }
+    $scope.setLocalEdit = function(m)
+    {
+        localStorageService.set("editid",m.productID);
+        localStorageService.set("editprice",m.price);
+        localStorageService.set("editdiscount",m.discount);
+        localStorageService.set("editcategory",m.categoryID);
+        localStorageService.set("editname", m.productName);
+        localStorageService.set("editstock",m.stock);
+        localStorageService.set("editdetails",m.description);
+        localStorageService.set("editxdetails",m.extraDetails);
+    }
+
+    $scope.goToView = function(str)
+    {
+        $location.path("/product/"+str);
+    }
+    $scope.goToAdd = function()
+    {
+        $location.path("/sellingaddform");
+    }
+    $scope.goToEdit = function()
+    {
+        $location.path("/sellingeditform");
+    }
+
+    
+
+    $scope.getPasswordConfirmation = function(){
+        var str = {accountID: encodeURIComponent($scope.accountID),
+                   password: encodeURIComponent($scope.confirmpassword)};
+        $http({method: 'POST', url:'php/confirmPassword.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
+        .then(function(response){
+           if(response.data === "failed"){
+               $scope.noResult = "Server Error: We unfortunately can't retrieve your products!";
+               alert($scope.noResult);
+           } else if(response.data === "success") {
+               $scope.deleteProducts();
+        }});
+    };
+
+    $scope.deleteProducts = function(){
+        var str = {productID: encodeURIComponent($scope.deleteID)};
+
+        $http({method: 'POST', url:'php/deleteProduct.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
+        .then(function(response){
+            if(response.data === "failed"){
+                $scope.noResult = "Deletion Failed!";
+                alert($scope.noResult);
+            } else if(response.data === "success") {
+                setTimeout(function(){
+                    $location.path("/home");
+                 setTimeout(function(){$location.path("/dashboard");},20)     
+                },750);
+        }});
+
+
+    };
+
+
+
     $scope.getSellersProducts = function(){
     var str = {accountID: encodeURIComponent($scope.accountID)};
     $http({method: 'POST', url:'php/sellerProducts.php', data: str, header:{'Content-Type':'application/x-www-form-urlencoded'}})
@@ -71,6 +138,7 @@ angular.module('sellerMgtService',['ngRoute'])
            } else {
                $scope.noSellerHistory = "";
                $scope.sellerHistory = response.data[0];
+               console.log("graph");
                console.log(response.data[0]);
             $scope.calculateRevenue(response.data[0]);
             $scope.plotGraph(response.data[0]);  
@@ -98,6 +166,12 @@ angular.module('sellerMgtService',['ngRoute'])
         for(i=0;i<object.length;i++)
         {
             $scope.graphPlotIndi[i] = [object[i].productID, object[i].productName,[]];
+        }
+
+        var x;
+        for(x=0;x<object.length;x++)
+        {
+            $scope.graphPlotIndiHist[x] = [object[x].productID, object[x].productName,[]];
         }
 
         console.log($scope.graphPlotIndi);
@@ -137,6 +211,7 @@ angular.module('sellerMgtService',['ngRoute'])
                     currentRevenueIndi[x] = currentRevenueIndi[x] + parseFloat(object[i].sales);
                     //console.log("cuurentIndi[x]"+currentRevenueIndi[x]);
                     $scope.graphPlotIndi[x][2].push([Date.UTC(parseInt(date[0]),parseInt(date[1]),parseInt(date[2])),parseFloat(currentRevenueIndi[x])]);
+                    $scope.graphPlotIndiHist[x][2].push([Date.UTC(parseInt(date[0]),parseInt(date[1]),parseInt(date[2])),parseFloat(object[i].sales)]);
                 }
 
 
@@ -209,15 +284,12 @@ angular.module('sellerMgtService',['ngRoute'])
             $window.graphPlotLine = $scope.graphPlotLine;
             $window.graphPlotHist = $scope.graphPlotHist;
             $window.graphPlotIndi = $scope.graphPlotIndi;
+            $window.graphPlotIndiHist = $scope.graphPlotIndiHist;
         }
 
         $scope.sendWindowData();
 
 
-        $scope.reload = function() { // To Reload anypage
-            $templateCache.removeAll();     
-            $state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
-        };
-  
+   
 
 });

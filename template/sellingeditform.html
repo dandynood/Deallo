@@ -3,7 +3,7 @@
 <div class="row" style="margin-top:3%">
     <div class="col-xs-12 text-center">
 
-        <h1>Edit Existing Merchandize </h1>
+        <h1>Edit Existing Merchandizea {{testertester}} </h1>
        
  
     </div>  
@@ -13,28 +13,46 @@
     <div class="col-xs-4"></div>
 
     <div class="col-xs-4 ">
-                <form name="registerform2" class="form-register">
-                <p class="animate-field animate-field-4" >Product Name</p>
-                <input onfocus="this.placeholder='';animateField('.animate-field-4')" class="align-center inline-block form-control-reg form-first" style="color:black;" placeholder="Product Name"
-                type="text" data-ng-required="true" required="required" name="productname" data-ng-model="productname" data-ng-blur="enableWarning(3)"
-                data-ng-focus="disableWarning(3)" id="reg-productname" />
-                <p class="animate-field animate-field-5" >Product Price (RM)</p>
-                <input onfocus="this.placeholder='';animateField('.animate-field-5')" class="align-center inline-block form-control-reg form-last" style="color:black;" placeholder="Product Price (RM)"
-                type="text" data-ng-required="true" required="required" name="productprice" data-ng-model="productprice" data-ng-blur="enableWarning(4)"
-                data-ng-focus="disableWarning(4)" id="reg-productprice" />
-                <p class="animate-field animate-field-6" >Stock Available</p>
-                <input onfocus="this.placeholder='';animateField('.animate-field-6')" class="align-center inline-block form-control-reg form-tel" style="color:black;" placeholder="Stock Available"
-                type="text" data-ng-required="true" required="required"
-                    data-ng-pattern="/^[0-9]*$/" name="tel" data-ng-model="productstock" data-ng-blur="enableWarning(5)"
-                data-ng-focus="disableWarning(5)" id="reg-productstock" />
-                <p class="animate-field animate-field-7" >Details</p>
-                <textarea class="textarea-details" onfocus="expandtextareadetails();this.placeholder='';animateField('.animate-field-7')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter details for your merchandize" data-ng-model="details"></textarea>
-                <p class="animate-field animate-field-8" >Extra Details</p>
-                <textarea class="textarea-extradetails" onfocus="expandtextareaextradetails();this.placeholder='';animateField('.animate-field-8')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter any extra details" data-ng-model="extradetails"></textarea>
+            <form action="php/upload.php" method="post" enctype="multipart/form-data">
+                <input type="file" name="file_img" />
+                <input type="submit" name="btn_upload" value="Upload">	
+            </form>
+            <form name="registerform3" class="form-register">
+            <p class="animate-field animate-field-4" >Product Name</p>
+            <input  onfocus="this.placeholder='';animateField('.animate-field-4')" class="form-focus align-center inline-block form-control-reg form-first" style="color:black;" placeholder="Product Name"
+            type="text" data-ng-required="true" required="required" name="productname" data-ng-model="productname" data-ng-blur="enableWarning(3)"
+            data-ng-focus="disableWarning(3)" id="reg-productname" />
+            <p class="animate-field animate-field-5" >Product Price (RM)</p>
+            <input onfocus="this.placeholder='';animateField('.animate-field-5')" class=" form-focus align-center inline-block form-control-reg form-last" style="color:black;" placeholder="Product Price (RM)"
+            type="text" data-ng-required="true" required="required" name="productprice" data-ng-model="productprice" data-ng-blur="enableWarning(4)"
+            data-ng-focus="disableWarning(4)" id="reg-productprice" />
+            <p class="animate-field animate-field-6" >Stock Available</p>
+            <input onfocus="this.placeholder='';animateField('.animate-field-6')" class=" form-focus align-center inline-block form-control-reg form-tel" style="color:black;" placeholder="Stock Available"
+            type="text" data-ng-required="true" required="required"
+                data-ng-pattern="/^[0-9]*$/" name="tel" data-ng-model="productstock" data-ng-blur="enableWarning(5)"
+            data-ng-focus="disableWarning(5)" id="reg-productstock" />
+            <p class="animate-field animate-field-9" >Discount (%)</p>
+            <input onfocus="this.placeholder='';animateField('.animate-field-9')" class=" form-focus align-center inline-block form-control-reg form-last" style="color:black;" placeholder="Discount (%)"
+            type="text" data-ng-required="true" required="required" name="productdiscount" data-ng-model="productdiscount" data-ng-blur="enableWarning(4)"
+            data-ng-focus="disableWarning(4)" id="reg-productdiscount" />
+            <p class="animate-field animate-field-7" >Details</p>
+            <textarea class="textarea-details form-focus" onfocus="expandtextareadetails();this.placeholder='';animateField('.animate-field-7')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter details for your merchandize" data-ng-model="details"></textarea>
+            <p class="animate-field animate-field-8" >Extra Details</p>
+            <textarea class="textarea-extradetails form-focus" onfocus="expandtextareaextradetails();this.placeholder='';animateField('.animate-field-8')" style="margin-top:2.5%;border: none;border-bottom:2px solid black; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" rows="1" placeholder="Enter any extra details" data-ng-model="extradetails"></textarea>
 
-                <div class="text-center">
-                   <span onclick="checkLoginForm();"  class=" text-center btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="login()">Save Changes</span>
-                </div>
+
+            <div class="dropdown text-center" style="margin-top:8%">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{productCategoryName}}
+                    <span class="caret"></span></button>
+
+                    <ul class="dropdown-menu" style=" left: 50%;right: auto;text-align: center; transform: translate(-50%, 0);">
+                            <li data-ng-repeat="cat in categories" data-ng-click="setCategory(cat.categoryID,cat.categoryName)"><a href="">{{cat.categoryName}}</a></li>
+                    </ul>
+            </div>
+  
+            <div class="text-center">
+               <span onclick="checkLoginForm();"  class=" text-center btn align-center inline-block button-next" style="margin-top:7%;padding-left:15%;padding-right:15%;" data-ng-click="editItem();">Add Merchandize</span>
+            </div>
     </div>
 
 
@@ -48,6 +66,9 @@
 
 <script>
     
+
+    $('.form-focus').focus();
+
     function expandtextareadetails()
     {
         $('.textarea-details').css("border","2px solid black");

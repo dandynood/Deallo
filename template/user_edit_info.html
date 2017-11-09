@@ -1,8 +1,10 @@
 <link href="framework/css/userprofile.css" rel="stylesheet"/>
+<link href="framework/css/sellingDashboard.css" rel="stylesheet"/>
+
 	<div class="container-fluid">	
 		 <div class="row displayuser">
 			<div class="col-md-12">
-				<p><b>My Personal Information</b></p>
+				<p class="text-center" style="font-size:35px;margin-top:3%;margin-bottom:2%"><b>My Personal Information</b></p>
 				
 				
 			 </div>
@@ -10,51 +12,53 @@
 		
 		<div class="row accountcontainer ">
 			<div class="col-md-12">
-				
-				<div class="row centertext ">
-					<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
 						<form>
 							
-							<label for="emailedit" >Email Address:</label>
-							<p><input type="text" id="emailedit" size="50" value="{{editUserProfile.email}}" data-ng-model="editForm.email"/></p>
 							
-							<label for="phoneedit">Phone Number:</label>
+							<p class="animate-field  animate-field-1" >Email Address</p>
+							<p><input onfocus="this.placeholder='';animateField('.animate-field-1')" class="form-focus form-control-reg" type="text" id="emailedit" size="50" value="{{editUserProfile.email}}" data-ng-model="editForm.email"/></p>
+							
+							<p class="animate-field animate-field-2" >Phone Number:</p>
 							<p>
-							<input type="text" id="phoneedit" size="50" value="{{editUserProfile.phoneNumber}}" data-ng-model="editForm.phoneNumber"/>
+							<input onfocus="this.placeholder='';animateField('.animate-field-2')"  class="form-focus form-control-reg" type="text" id="phoneedit" size="50" value="{{editUserProfile.phoneNumber}}" data-ng-model="editForm.phoneNumber"/>
 							</p>
 							
-							<b>Shipping Address:</b>
-							<p><textarea rows="5" cols="50" value="{{editUserProfile.address}}" data-ng-model="editForm.address">{{editUserProfile.address}}</textarea></p>
+							<p class="animate-field animate-field-3" >Shipping Address:</p>
+							<p><textarea class="form-focus text-area" onfocus="expandtextarea();this.placeholder='';animateField('.animate-field-3')"  rows="1" cols="50" value="{{editUserProfile.address}}" data-ng-model="editForm.address" style="margin-top:2.5%;border: none;border-bottom:2px solid black;	background: #F3F3F3; width:100%;outline:none;-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;font-size:18px;     padding: 6px 12px;   line-height: 1.42857143;" >{{editUserProfile.address}}</textarea></p>
                             
-                            <label for="phoneedit">City:</label>
+                            <p class="animate-field animate-field-4" >City:</p>
 							<p>
-							<input type="text" id="city" size="50" value="{{editUserProfile.city}}" data-ng-model="editForm.city"/>
+							<input onfocus="this.placeholder='';animateField('.animate-field-4')"  class="form-focus form-control-reg" type="text" id="city" size="50" value="{{editUserProfile.city}}" data-ng-model="editForm.city"/>
 							</p>
                             
-                            <label for="phoneedit">Postcode:</label>
+                            <p class="animate-field animate-field-5" >Postcode:</p>
 							<p>
-							<input type="text" id="postcode" size="50" value="{{editUserProfile.postcode}}" data-ng-model="editForm.postcode"/>
+							<input onfocus="this.placeholder='';animateField('.animate-field-5')"  class="form-focus form-control-reg" type="text" id="postcode" size="50" value="{{editUserProfile.postcode}}" data-ng-model="editForm.postcode"/>
 							</p>
-                            <label for="phoneedit">State:</label>
+                            <p class="animate-field animate-field-6" >State:</p>
 							<p>
-							<input type="text" id="stateedit" size="50" value="{{editUserProfile.state}}" data-ng-model="editForm.state"/>
+							<input onfocus="this.placeholder='';animateField('.animate-field-6')"  class="form-focus form-control-reg" type="text" id="stateedit" size="50" value="{{editUserProfile.state}}" data-ng-model="editForm.state"/>
 							</p>
                             
-                            <label for="phoneedit" >Country:</label>
+                            <p class="animate-field animate-field-7" >Country</p>
 							<p>
-							<input type="text" id="countryedit" size="50" value="{{editUserProfile.country}}" data-ng-model="editForm.country"/>
+							<input onfocus="this.placeholder='';animateField('.animate-field-7')"  class="form-focus form-control-reg" type="text" id="countryedit" size="50" value="{{editUserProfile.country}}" data-ng-model="editForm.country"/>
 							</p>
 							
                             <br/>
-							<p>
+							<div class="text-center">
 								<button type="button" class="btn btn-secondary" value="Submit" data-ng-click="back()"><b>CANCEL</b></button>
 								<button type="submit" class="btn btn-warning" value="Submit" data-ng-click="checkUserInfoEdit()" data-toggle="modal" data-target="#confirmation">SAVE</button>
                                 <button type="reset" class="btn btn-info" value="reset"><b>RESET</b></button>
-							</p>
+							</div>
 							
 
 						</form>
 					</div>	
+					<div class="col-md-4"></div>
 				</div>		
 				
 			 </div>
@@ -81,7 +85,7 @@
                     <p><b>Country:</b> {{editForm.country}}</p>
                 </div>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer" >
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary" data-dismiss="modal" data-ng-click="saveEdit()">Save</button>
               </div>
@@ -95,3 +99,24 @@
 		
 		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
   	</div>
+
+	  <script>
+
+		  $('.form-focus').focus();
+
+
+		  function expandtextarea()
+			{
+				$('.text-area').css("border","2px solid black");
+				$('.text-area').animate({rows:6},500);
+
+			}
+		      function animateField(string)
+				{
+				$(string).css("visibility","visible");
+				$(string).animate({marginBottom:'-2%',marginTop:'3%',fontSize:'16px'},300);
+				}
+    
+	 
+	 
+	 </script>
