@@ -85,12 +85,6 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     };
     
     $scope.getCategories();
-
-<<<<<<< HEAD
-=======
-             
->>>>>>> origin/master
-
    $scope.gotoHome = function()
    {
        $location.path('/home');
