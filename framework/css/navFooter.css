@@ -158,6 +158,23 @@ body{
         display: none;
     }
 
+#shoppingCartBtn{
+    margin-left: 20px;
+}
+
+.shoppingCartMenu{
+    background-color: white !important;
+}
+
+.shoppingCartMenu > li > a{
+    text-shadow: none;
+    color: black !important;
+}
+
+.shoppingCartMenu > li > a:hover{
+    color: white !important;
+}
+
 
 @media(max-width:767px) {
     
@@ -231,6 +248,9 @@ body{
         display:none;
     }
     
+    #shoppingCartBtn{
+        margin-left: 0px;
+    }
 
 }
 

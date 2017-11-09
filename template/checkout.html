@@ -1,0 +1,183 @@
+<link href="framework/css/individualproduct.css" rel="stylesheet"/>
+<body data-ng-controller="">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+		<h2>My shopping cart <span class="pull-right">Total: RM {{totalCost}}</span></h2>
+		<div class="table-responsive" data-ng-if="checkoutcart != null && checkoutcart.length != 0">
+			<table class="table table-striped table-hover">
+			<tr>
+				<th>Product</th>
+				<th></th>
+				<th>Rating</th>
+				<th>Price per unit (RM)</th>
+				<th>Quantity</th>
+				<th class="text-right">Total Price</th>
+				<th class="text-center">Action</th>
+			</tr>
+			<tr data-ng-repeat="item in checkoutcart">
+				<td><a href="#!/product/{{item.productID}}"><img src="images/fish.jpg" alt="Product 1" width="250" height="150"></a></td>
+                <td><a href="#!/product/{{item.productID}}">{{item.productName}}</a></td>
+				<td><span class="rating">
+                    <label  data-ng-class="{'gold': isGold(1,item.averageRating)}" title="text">★</label>
+                    <label  data-ng-class="{'gold': isGold(2,item.averageRating)}" title="text">★</label>
+                    <label  data-ng-class="{'gold': isGold(3,item.averageRating)}" title="text">★</label>
+                    <label  data-ng-class="{'gold': isGold(4,item.averageRating)}" title="text">★</label>
+                    <label  data-ng-class="{'gold': isGold(5,item.averageRating)}" title="text">★</label>
+                </span></td>
+				<td>RM {{item.price}}</td>
+				<td><input id="user_lic" type="number" min="1" max="50" value="1" data-ng-model="item.quantity" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');" data-ng-change="getTotal()" data-ng-model-options="{updateOn: 'blur'}"/></td>
+				<td class="text-right">RM {{item.price * item.quantity}}</td>
+				<td class="text-center">
+                    <button class="btn btn-danger" id="delete" data-toggle="modal" data-target="#confirmation" data-ng-click="selectCartItem(item)">Remove</button>
+                </td>
+                
+			</tr>
+		</table>
+            <button class="btn btn-login btn-lg pull-right" style="margin-bottom: 20px;" data-toggle="modal" data-target="#confirmOrder">Place order</button>
+		</div>
+        </div>
+    </div>
+    <div class="row" data-ng-if="checkoutcart == null || checkoutcart.length == 0">
+        <div class="col-xs-12">
+            <h3 class="alert alert-danger">You seem to have nothing in your cart! Why not buy something now?</h3>
+            <a class="btn btn-lg btn-login" href="#!/productlist/All/index"><span class="glyphicons glyphicons-shopping-cart"></span>Buy now!</a>
+        </div>
+    </div>
+    
+    <div id="confirmation" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Remove <strong>{{selectedCartItem.productName}}</strong></h4>
+              </div>
+              <div class="modal-body">
+                <div data-ng-if="!successRemove">
+                    <p>Are sure you want to remove this item from your shopping cart?</p>
+                    <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Product</th>
+                        <th></th>
+                        <th>Rating</th>
+                        <th>Price per unit (RM)</th>
+                        <th>Quantity</th>
+                        <th class="text-right">Total Price</th>
+                    </tr>
+                    <tr>
+                        <td><a href="#!/product/{{selectedCartItem.productID}}"><img src="images/fish.jpg" alt="Product 1" width="250" height="150"></a></td>
+                        <td><a href="#!/product/{{selectedCartItem.productID}}">{{selectedCartItem.productName}}</a></td>
+                        <td><span class="rating">
+                            <label  data-ng-class="{'gold': isGold(1,selectedCartItem.averageRating)}" title="text">★</label>
+                            <label  data-ng-class="{'gold': isGold(2,selectedCartItem.averageRating)}" title="text">★</label>
+                            <label  data-ng-class="{'gold': isGold(3,selectedCartItem.averageRating)}" title="text">★</label>
+                            <label  data-ng-class="{'gold': isGold(4,selectedCartItem.averageRating)}" title="text">★</label>
+                            <label  data-ng-class="{'gold': isGold(5,selectedCartItem.averageRating)}" title="text">★</label>
+                        </span></td>
+                        <td>RM {{item.price}}</td>
+                        <td>RM {{item.quantity}}</td>
+                        <td class="text-right">RM {{selectedCartItem.price * selectedCartItem.quantity}}</td>
+                    </tr>
+		          </table>
+                </div>
+                <p data-ng-if="successRemove" class="alert alert-success">
+                    Successfully removed {{selectedCartItem.productName}}
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-ng-if="!successRemove">Cancel</button>
+                <button type="submit" class="btn btn-danger" data-ng-click="removeFromCart(selectedCartItem)" data-ng-if="!successRemove">Remove</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" data-ng-if="successRemove">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    
+    <div id="confirmOrder" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm orders</h4>
+              </div>
+              <div class="modal-body">
+                <div class="alert alert-info" data-ng-if="!successOrder">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Product</th>
+                        <th></th>
+                        <th>Rating</th>
+                        <th>Price per unit (RM)</th>
+                        <th>Quantity</th>
+                        <th class="text-right">Total Price</th>
+                    </tr>
+                    <tr data-ng-repeat="item in checkoutcart">
+                        <td><a href="#!/product/{{item.productID}}"><img src="images/fish.jpg" alt="Product 1" width="250" height="150"></a></td>
+                        <td><a href="#!/product/{{item.productID}}">{{item.productName}}</a></td>
+                        <td><span class="rating">
+                            <label data-ng-class="{'gold': isGold(1,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(2,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(3,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(4,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(5,item.averageRating)}" title="text">★</label>
+                        </span></td>
+                        <td>RM {{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td class="text-right">RM {{item.price * item.quantity}}</td>
+                    </tr>
+                </table>
+                </div>
+                <h3 class="text-right">Total: {{totalCost}}</h3>
+                </div>
+                  <div class="alert alert-success" data-ng-if="successOrder">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                    <tr>
+                        <th>Product</th>
+                        <th></th>
+                        <th>Rating</th>
+                        <th>Price per unit (RM)</th>
+                        <th>Quantity</th>
+                        <th class="text-right">Total Price</th>
+                    </tr>
+                    <tr data-ng-repeat="item in cartSummary">
+                        <td><a href="#!/product/{{item.productID}}"><img src="images/fish.jpg" alt="Product 1" width="250" height="150"></a></td>
+                        <td><a href="#!/product/{{item.productID}}">{{item.productName}}</a></td>
+                        <td><span class="rating">
+                            <label data-ng-class="{'gold': isGold(1,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(2,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(3,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(4,item.averageRating)}" title="text">★</label>
+                            <label data-ng-class="{'gold': isGold(5,item.averageRating)}" title="text">★</label>
+                        </span></td>
+                        <td>RM {{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td class="text-right">RM {{item.price * item.quantity}}</td>
+                    </tr>
+                </table>
+                </div>
+                <h3 class="text-right">Total: {{totalCost}}</h3>
+                <div data-ng-if="successOrder">
+                    <h3>Your order has been placed!</h3>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-ng-if="!successOrder">Cancel</button>
+                <form data-ng-if="!successOrder" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display: inline-block;">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="975ZW2YZA6SN6">
+                    <button type="submit" class="btn btn-login" data-ng-click="orderItems()" >Order</button>
+                </form>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" data-ng-if="successOrder">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+</div>

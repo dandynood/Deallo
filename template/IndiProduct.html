@@ -40,9 +40,26 @@
     
     <!--Product Details-->
             <div class="col-sm-7 col-xs-12">
-                <h1 class="productName">{{product.productName}}</h1>
+                <span class="pull-right =" style="color:red; font-size: 16px" data-ng-if="!loggedin">Interested in buying? <button data-ng-click="gotoLogin()" style="margin-right: 0px" class="btn btn-sm btn-login" id="login-btn">
+                    <span class="glyphicon glyphicon-log-in"></span> Login
+                    </button> or <button data-ng-click="gotoRegister()"  class="btn btn-sm btn-register">
+                    <span class="glyphicon glyphicon-bookmark"></span> Register!
+                    </button></span>
+                <h1 class="productName">{{product.productName}} 
+                    <span class="pull-right form-inline" style="width:40%" data-ng-if="loggedin && product.accountID != userdata.accountID">
+                        <button class="btn btn-success addToCart"  value="Submit" data-ng-click="addToCart(product,quantityToBuy)" data-ng-disabled="quantityToBuy==0 || quantityToBuy==null || !loggedin" data-html="true" data-toggle="popover" title="Added {{quantityToBuy}} <strong>{{product.productName}}</strong>" data-content="You just added an item to the cart!" data-trigger="focus" data-placement="bottom"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button>
+                        <input type="number" value="{{quantityToBuy}}" class="form-control" style="width: 40%" data-ng-model="quantityToBuy" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+                    </span>
+                </h1>
+                <span class="rating">
+                    <label for="star1" data-ng-class="{'gold': isGold(1,product.averageRating)}" title="text">★</label>
+                    <label for="star2" data-ng-class="{'gold': isGold(2,product.averageRating)}" title="text">★</label>
+                    <label for="star3" data-ng-class="{'gold': isGold(3,product.averageRating)}" title="text">★</label>
+                    <label for="star4" data-ng-class="{'gold': isGold(4,product.averageRating)}" title="text">★</label>
+                    <label for="star5" data-ng-class="{'gold': isGold(5,product.averageRating)}" title="text">★</label>
+                </span>
                 <hr/>
-                <h4><strong>Price: <span style="color: red;">RM {{product.price}}</span> <button class="btn btn-success addToCart pull-right"  value="Submit"><span class="glyphicon glyphicon-shopping-cart"></span> Add to cart</button></strong></h4>
+                <h4><strong>Price: <span style="color: red;">RM {{product.price}}</span></strong></h4>
                 <h4><strong>Stock left: <span data-ng-style="inStock">{{product.stock}}</span></strong></h4>
                 <br/>
                 <h4><strong>Details</strong></h4>
@@ -63,7 +80,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h3><strong>Customer Reviews</strong>
-                <button class="btn btn-warning btn-lg pull-right" data-ng-if="accountID != null" style="margin-top: -10px" data-ng-click="openReviewForm()" data-toggle="modal" data-target="#reviewForm"><span class="glyphicon glyphicon-pencil"></span> Write a review</button></h3>
+                <button class="btn btn-warning btn-lg pull-right" data-ng-if="accountID != null && product.accountID != userdata.accountID" style="margin-top: -10px" data-ng-click="openReviewForm()" data-toggle="modal" data-target="#reviewForm"><span class="glyphicon glyphicon-pencil"></span> Write a review</button></h3>
         </div>
     </div>
     
@@ -199,3 +216,8 @@
           </div>
         </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</script>

@@ -8,7 +8,7 @@
     }         
         $data = json_decode(file_get_contents("php://input")); 
         $accountID = urldecode($data->accountID);
-        $sql = "SELECT orders.orderId, orders.productID, products.productName, orderDate, quantity, SUM(products.price * quantity) AS TotalPrice FROM orders INNER JOIN products ON orders.productID=products.productID WHERE orders.accountID='$accountID' GROUP BY orders.orderID, products.productID";
+        $sql = "SELECT orders.orderId, orders.productID, products.productName, orderDate, orderStatus, quantity, SUM(products.price * quantity) AS TotalPrice FROM orders INNER JOIN products ON orders.productID=products.productID WHERE orders.accountID='$accountID' GROUP BY orders.orderID, products.productID";
 
 
         $result = $conn->query($sql);

@@ -8,7 +8,7 @@
     }         
         $data = json_decode(file_get_contents("php://input")); 
         $productID = $data->productID; 
-        $sql = "SELECT * FROM products WHERE productID = '$productID'";
+        $sql = "SELECT products.*, AVG(productratings.rating) AS averageRating FROM products LEFT OUTER JOIN productratings ON products.productID = productratings.productID WHERE products.productID = '$productID'";
 
         $result = $conn->query($sql);
 

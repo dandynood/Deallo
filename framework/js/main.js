@@ -11,10 +11,11 @@ var app = angular.module("mainApp",
                           'sellerMgtService',
                           'LocalStorageModule',
                           'editProfileService',
-                         'editPasswordService']);
+                         'editPasswordService',
                           'sellerAddService',
+                          'checkoutService',
                           'LocalStorageModule']);
-app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route)
+app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageService,$interval,$route,$rootScope)
 {
     "use strict";
     $scope.searchItemText = "";
@@ -28,6 +29,8 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     {
         localStorageService.remove("loginstatus");
         localStorageService.remove("userdata");
+        localStorageService.remove("cart");
+        $scope.shoppingCart = [];
         $scope.loggedin = false;
         $scope.userdata= null;
         $route.reload();
@@ -72,9 +75,6 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
     
     $scope.getCategories();
 
-             
-
-
 
    $scope.gotoHome = function()
    {
@@ -91,7 +91,7 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
    {
         $location.path('/login');
 
-       };
+   };
     
     $scope.gotoProductList = function(category, param){
         if(category === "") {
@@ -101,6 +101,58 @@ app.controller("mainCtrl", function($scope,$window,$location,$http,localStorageS
             param = "index";
         }
         $location.path('/productlist/'+category+'/'+param);
+    };
+    
+    $scope.goTocheckout = function()
+    {
+        $location.path('/checkout');
+
+    };
+    
+    $rootScope.$on("callGetShoppingCart", function(){
+           $scope.getShoppingCart();
+        });
+
+    $scope.getShoppingCart = function(){
+        if(localStorageService.get("cart")){
+            $scope.shoppingCart = localStorageService.get("cart");
+        } else {
+            $scope.shoppingCart = [];
+        }
+    };
+    
+    $scope.getShoppingCart();
+    
+    $scope.quantityToBuy = 1;
+    
+    $scope.getQuantityValid = function(){
+        if($scope.quantityToBuy === 0 || $scope.quantityToBuy === ""){
+            return true;
+        }
+        return false;
+    };
+    
+    $scope.addToCart = function(product,quantity){
+        var i, alreadyPresent = false;
+        $scope.quantityToBuy = angular.copy(quantity);
+        
+        for(i=0;i<$scope.shoppingCart.length;i++){
+            if($scope.shoppingCart[i].productID === product.productID){
+                alreadyPresent = true;
+                $scope.shoppingCart[i].quantity = $scope.shoppingCart[i].quantity + quantity;
+                break;
+            } else {
+                alreadyPresent = false;
+            }
+        }
+        
+        if(alreadyPresent === false){
+            product.quantity = quantity;
+            $scope.shoppingCart.push(product);
+        }
+        
+        localStorageService.set("cart", $scope.shoppingCart);
+        console.log(localStorageService.get("cart"));
     };
     
 });
@@ -151,6 +203,10 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/sellingeditform', {
         templateUrl: 'template/sellingeditform.html',
         controller: 'sellerMgtCtrl'
+    })
+    .when('/checkout', {
+        templateUrl: 'template/checkout.html',
+        controller: 'checkoutCtrl'
     })
     .otherwise({
         redirectTo: '/home'

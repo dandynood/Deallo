@@ -9,7 +9,6 @@
        <link href="framework/css/navFooter.css" rel="stylesheet"/>
        <script src="https://code.highcharts.com/highcharts.js"></script>
        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-       
        <!-- Newest version of JQuery -->
        <!--My stylesheet-->
        <!--<link href="framework/css/" rel="stylesheet"/>-->
@@ -88,17 +87,18 @@
                     <span class="glyphicon glyphicon-bookmark"></span> Logout
                     </button>
                 </li>
-				 
-				 
-				 <img src="images/cart.png" hight="50" width="50" data-toggle="dropdown"><span class="caret"></span>
-  		  		<ul class="dropdown-menu">
-			 			<li><a href="#">Product 1</a></li>
-    					<li><a href="#">Product 2</a></li>
-    					<li><a href="#">Product 3</a></li>
-					<li><a align="center"><button type="button" class="btn">Checkout </button></a></li>
+				<li data-ng-if="loggedin">
+				<button class="btn btn-info navbar-btn" data-toggle="dropdown" id="shoppingCartBtn">
+				    <img src="images/cart.png" height="20" width="20"> <span class="badge">{{shoppingCart.length}}</span> <span class="caret"></span>
+                </button>
+                 <ul class="dropdown-menu shoppingCartMenu">
+                    <li data-ng-if="shoppingCart.length == 0"><a>Opps you seem to have no products!</a></li>
+                    <li data-ng-if="shoppingCart.length != 0" data-ng-repeat="item in shoppingCart">
+                        <a href="#!/product/{{item.productID}}">{{item.quantity}} {{item.productName}}</a>
+                     </li>
+					<li data-ng-if="shoppingCart.length != 0"><a align="center"><button type="button" class="btn btn-info" data-ng-click="goTocheckout()">Checkout </button></a></li>
 				 </ul>
-								
-
+                </li>					
             </ul>
           </div>
         </div>
@@ -169,5 +169,6 @@
         <script src="framework/js/editPasswordService.js"></script>
         <script src="framework/js/editProfileService.js"></script>
         <script src="framework/js/sellerAddService.js"></script>
+        <script src="framework/js/checkoutService.js"></script>
     </body>
 </html>

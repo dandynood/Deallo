@@ -55,7 +55,7 @@
 						<p><b>Product Name</b></p>		
 					</div>
 					
-					<div class="col-md-3">
+					<div class="col-md-1">
 						<p><b>Quantity</b></p>
 					</div>
 					
@@ -66,6 +66,9 @@
 					<div class="col-md-3">
 						<p><b>Total(RM)</b></p>
 					</div>
+                    <div class="col-md-2">
+						<p><b>Order Status</b></p>
+					</div>
 				
 				</div>
 				
@@ -75,7 +78,7 @@
                             <p><a href="#!/product/{{product.productID}}">{{product.productName}}</a></p>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-1">
                             <p>{{product.quantity}}</p>
                         </div>
 
@@ -85,6 +88,10 @@
 
                         <div class="col-md-3">
                             <p>RM {{product.TotalPrice}}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <p data-ng-if="product.orderStatus == 0" class="label label-info" style="font-size: 100%">Pending</p>
+                            <p data-ng-if="product.orderStatus == 1" class="label label-success" style="font-size: 100%">Recieved</p>
                         </div>
                     </div>	
                 </div>
