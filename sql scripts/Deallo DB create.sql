@@ -134,23 +134,6 @@ VALUES
 (8, 30, 1, '2017-11-12 03:39:39', 2, 0, 12, 1);
 
 
-CREATE TABLE carts(
-accountID INT NOT NULL,
-productID INT NOT NULL,
-quantity INT NOT NULL,
-price INT NOT NULL,
-PRIMARY KEY(accountID, productID),
-FOREIGN KEY(productID) REFERENCES products(productID),
-FOREIGN KEY(accountID) REFERENCES useraccounts(accountID)
-);
-
-CREATE TABLE images_tbl(
-   img_id INT (255),
-   img_name VARCHAR(500),
-   img_path VARCHAR(200) NOT NULL,
-   img_type VARCHAR(500),
-   PRIMARY KEY (img_id)
-);
 
 
 

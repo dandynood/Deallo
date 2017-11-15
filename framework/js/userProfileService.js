@@ -19,7 +19,7 @@ userProfile.controller("userProfileCtrl",function($scope, $location, $http, sear
            alert($scope.errorMsg);
        } else {
            $scope.userProfile = response.data;
-           console.log($scope.userProfile.accountID);
+           console.log($scope.userProfile);
            $scope.getBuyerOrders($scope.userProfile.accountID);
        }});
     };
