@@ -79,9 +79,8 @@ FOREIGN KEY(accountID) REFERENCES userAccounts (accountID)
 INSERT INTO products 
 (productName,price,shippingPrice,discount,stock,dateAdded,categoryID,description,extraDetails,accountID)
 VALUES 
-("A piece of cloth","12.00","0.0","0","10",CURRENT_DATE,"CLOTH","Your mom is a monkey and she is like super hairy and smelly","also your dad is like mega skinny, 
-like a stick, like those obelisk in eygpt lol","1"),
-("A piece of noodles","12.00","0.0","0","10",CURRENT_DATE,"CLOTH","Some delicious piece of noodle","Please try because it's very delicious and you will like it, I gurantee it lol","1");
+("Cloth","12.00","0.0","0","10",CURRENT_DATE,"CLOTH","Top qulity cloth","Blue colour silk cloth","1"),
+("Noodle Art","12.00","0.0","0","10",CURRENT_DATE,"CLOTH","An art noodles that looks delicious","Please try because it's very delicious and you will like it, I gurantee it lol","1");
 
 
 -- -----------------------------------------------------
